@@ -1,0 +1,54 @@
+.byline {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: baseline;
+  gap: 0.35rem;
+  color: inherit;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  margin: 0.25rem 0 1.5rem;
+}
+
+.byline.compact {
+  justify-content: flex-start;
+  flex-direction: column;
+  font-family: var(--serif);
+  font-size: 0.9375rem;
+  line-height: 1.375rem;
+  margin: 0.25rem 0 0;
+  gap: 0.1rem;
+  color: inherit;
+}
+
+.byline .author {
+  font-weight: 400;
+  color: inherit;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+}
+
+.byline.compact .author {
+  font-size: 0.9375rem;
+}
+
+.withSep::before {
+  content: " · ";
+  color: inherit;
+  opacity: 0.6;
+}
+
+.compact .withSep::before {
+  content: none;
+}
+
+@media (max-width: 480px) {
+  .withSep::before {
+    content: none;
+  }
+}
+
+.byline time {
+  font-variant-numeric: tabular-nums;
+}

@@ -1,0 +1,10 @@
+.signup {
+  border-top: 1px solid var(--rule);
+  padding: 3rem 0 1.5rem;
+
+  > p {
+    font-family: var(--serif);
+    font-size: 1rem;
+    margin: 0 0 0.75rem;
+  }
+}

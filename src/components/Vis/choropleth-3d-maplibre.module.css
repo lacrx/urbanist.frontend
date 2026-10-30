@@ -1,0 +1,79 @@
+.mapRoot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+  opacity: 0;
+  cursor: default;
+  transition: opacity 400ms ease-out;
+}
+
+.mapRoot:not(.ready) canvas {
+  cursor: default !important;
+}
+
+.attribution {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
+  z-index: 2;
+  font-size: 10px;
+  line-height: 1.2;
+  color: rgba(0, 0, 0, 0.5);
+  background: rgba(255, 255, 255, 0.65);
+  padding: 2px 6px;
+  border-radius: 3px;
+  pointer-events: auto;
+}
+
+.attribution a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: underline;
+}
+
+.mapRoot.ready {
+  opacity: 1;
+  cursor: auto;
+}
+
+.mapRoot canvas {
+  outline: none;
+}
+
+:global(.viz-camera-ctrl-h) {
+  display: flex !important;
+  flex-direction: row !important;
+  width: auto !important;
+}
+
+:global(.viz-camera-ctrl-h) button {
+  border-radius: 0 !important;
+  border-bottom: 0 !important;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+:global(.viz-camera-ctrl-h) button:first-child {
+  border-radius: 4px 0 0 4px !important;
+}
+
+:global(.viz-camera-ctrl-h) button:last-child {
+  border-radius: 0 4px 4px 0 !important;
+  border-right: 0;
+}
+
+/* Lighten all map-control button icons uniformly. Opacity on the
+   icon element (SVG for camera controls, .maplibregl-ctrl-icon span
+   for MapLibre's built-in +/- zoom buttons) desaturates both
+   stroke and background-image paths without touching the button
+   border/background. */
+.mapRoot :global(.maplibregl-ctrl button > *) {
+  opacity: 0.8;
+}

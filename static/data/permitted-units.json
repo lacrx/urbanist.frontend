@@ -1,0 +1,1340 @@
+{
+  "tracts": [
+    {
+      "tractId": "06073017801",
+      "name": "Census Tract 178.01",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073017901",
+      "name": "Census Tract 179.01",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073018000",
+      "name": "Census Tract 180",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073018101",
+      "name": "Census Tract 181.01",
+      "totalApproved": 32,
+      "byYear": {
+        "2019": 6,
+        "2023": 6,
+        "2018": 6,
+        "2021": 11,
+        "2022": 3
+      },
+      "byCategory": {
+        "ADU": 24,
+        "SFD": 4,
+        "MH": 4
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 2,
+          "SFD": 4
+        },
+        "2023": {
+          "ADU": 4,
+          "MH": 2
+        },
+        "2018": {
+          "ADU": 5,
+          "MH": 1
+        },
+        "2021": {
+          "ADU": 11
+        },
+        "2022": {
+          "ADU": 2,
+          "MH": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018102",
+      "name": "Census Tract 181.02",
+      "totalApproved": 56,
+      "byYear": {
+        "2019": 4,
+        "2023": 3,
+        "2018": 30,
+        "2021": 18,
+        "2022": 1
+      },
+      "byCategory": {
+        "ADU": 19,
+        "SFD": 6,
+        "SFA": 12,
+        "2-4": 19
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 2,
+          "SFD": 2
+        },
+        "2023": {
+          "ADU": 3
+        },
+        "2018": {
+          "SFD": 3,
+          "SFA": 12,
+          "2-4": 11,
+          "ADU": 4
+        },
+        "2021": {
+          "ADU": 9,
+          "2-4": 8,
+          "SFD": 1
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018201",
+      "name": "Census Tract 182.01",
+      "totalApproved": 104,
+      "byYear": {
+        "2019": 25,
+        "2023": 3,
+        "2018": 12,
+        "2021": 62,
+        "2022": 2
+      },
+      "byCategory": {
+        "ADU": 18,
+        "5+": 70,
+        "2-4": 3,
+        "SFA": 8,
+        "SFD": 4,
+        "MH": 1
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 2,
+          "5+": 20,
+          "2-4": 3
+        },
+        "2023": {
+          "ADU": 3
+        },
+        "2018": {
+          "SFA": 8,
+          "ADU": 1,
+          "SFD": 3
+        },
+        "2021": {
+          "ADU": 11,
+          "5+": 50,
+          "SFD": 1
+        },
+        "2022": {
+          "ADU": 1,
+          "MH": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018202",
+      "name": "Census Tract 182.02",
+      "totalApproved": 42,
+      "byYear": {
+        "2019": 27,
+        "2018": 4,
+        "2021": 10,
+        "2022": 1
+      },
+      "byCategory": {
+        "SFA": 23,
+        "ADU": 16,
+        "2-4": 2,
+        "SFD": 1
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFA": 21,
+          "ADU": 4,
+          "2-4": 2
+        },
+        "2018": {
+          "SFA": 2,
+          "ADU": 2
+        },
+        "2021": {
+          "ADU": 9,
+          "SFD": 1
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018301",
+      "name": "Census Tract 183.01",
+      "totalApproved": 31,
+      "byYear": {
+        "2019": 9,
+        "2018": 7,
+        "2021": 5,
+        "2022": 10
+      },
+      "byCategory": {
+        "SFA": 12,
+        "2-4": 17,
+        "SFD": 2
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFA": 2,
+          "2-4": 7
+        },
+        "2018": {
+          "2-4": 6,
+          "SFD": 1
+        },
+        "2021": {
+          "2-4": 4,
+          "SFD": 1
+        },
+        "2022": {
+          "SFA": 10
+        }
+      }
+    },
+    {
+      "tractId": "06073018302",
+      "name": "Census Tract 183.02",
+      "totalApproved": 22,
+      "byYear": {
+        "2019": 4,
+        "2018": 6,
+        "2021": 11,
+        "2022": 1
+      },
+      "byCategory": {
+        "2-4": 12,
+        "SFA": 2,
+        "5+": 5,
+        "ADU": 3
+      },
+      "byYearCategory": {
+        "2019": {
+          "2-4": 4
+        },
+        "2018": {
+          "2-4": 4,
+          "SFA": 2
+        },
+        "2021": {
+          "5+": 5,
+          "ADU": 2,
+          "2-4": 4
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018400",
+      "name": "Census Tract 184",
+      "totalApproved": 686,
+      "byYear": {
+        "2019": 80,
+        "2023": 4,
+        "2018": 4,
+        "2021": 452,
+        "2022": 146
+      },
+      "byCategory": {
+        "5+": 661,
+        "2-4": 15,
+        "SFD": 3,
+        "ADU": 7
+      },
+      "byYearCategory": {
+        "2019": {
+          "5+": 76,
+          "2-4": 3,
+          "SFD": 1
+        },
+        "2023": {
+          "ADU": 4
+        },
+        "2018": {
+          "ADU": 1,
+          "2-4": 3
+        },
+        "2021": {
+          "ADU": 2,
+          "2-4": 9,
+          "5+": 439,
+          "SFD": 2
+        },
+        "2022": {
+          "5+": 146
+        }
+      }
+    },
+    {
+      "tractId": "06073018504",
+      "name": "Census Tract 185.04",
+      "totalApproved": 83,
+      "byYear": {
+        "2019": 13,
+        "2023": 7,
+        "2018": 9,
+        "2021": 41,
+        "2022": 13
+      },
+      "byCategory": {
+        "SFD": 34,
+        "ADU": 44,
+        "5+": 5
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 5,
+          "ADU": 8
+        },
+        "2023": {
+          "ADU": 6,
+          "SFD": 1
+        },
+        "2018": {
+          "SFD": 4,
+          "ADU": 5
+        },
+        "2021": {
+          "ADU": 18,
+          "SFD": 18,
+          "5+": 5
+        },
+        "2022": {
+          "ADU": 7,
+          "SFD": 6
+        }
+      }
+    },
+    {
+      "tractId": "06073018509",
+      "name": "Census Tract 185.09",
+      "totalApproved": 173,
+      "byYear": {
+        "2019": 12,
+        "2023": 3,
+        "2018": 1,
+        "2021": 156,
+        "2022": 1
+      },
+      "byCategory": {
+        "SFD": 12,
+        "ADU": 10,
+        "5+": 151
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 11,
+          "ADU": 1
+        },
+        "2023": {
+          "ADU": 3
+        },
+        "2018": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 4,
+          "SFD": 1,
+          "5+": 151
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018510",
+      "name": "Census Tract 185.10",
+      "totalApproved": 38,
+      "byYear": {
+        "2023": 2,
+        "2018": 29,
+        "2021": 7
+      },
+      "byCategory": {
+        "ADU": 9,
+        "2-4": 12,
+        "5+": 15,
+        "SFA": 2
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2018": {
+          "2-4": 12,
+          "5+": 15,
+          "SFA": 2
+        },
+        "2021": {
+          "ADU": 7
+        }
+      }
+    },
+    {
+      "tractId": "06073018511",
+      "name": "Census Tract 185.11",
+      "totalApproved": 27,
+      "byYear": {
+        "2019": 1,
+        "2023": 6,
+        "2018": 5,
+        "2021": 8,
+        "2020": 7
+      },
+      "byCategory": {
+        "ADU": 16,
+        "MH": 3,
+        "SFD": 8
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 1
+        },
+        "2023": {
+          "MH": 3,
+          "ADU": 3
+        },
+        "2018": {
+          "ADU": 4,
+          "SFD": 1
+        },
+        "2021": {
+          "ADU": 8
+        },
+        "2020": {
+          "SFD": 7
+        }
+      }
+    },
+    {
+      "tractId": "06073018512",
+      "name": "Census Tract 185.12",
+      "totalApproved": 137,
+      "byYear": {
+        "2021": 137
+      },
+      "byCategory": {
+        "5+": 137
+      },
+      "byYearCategory": {
+        "2021": {
+          "5+": 137
+        }
+      }
+    },
+    {
+      "tractId": "06073018515",
+      "name": "Census Tract 185.15",
+      "totalApproved": 16,
+      "byYear": {
+        "2019": 1,
+        "2021": 13,
+        "2018": 2
+      },
+      "byCategory": {
+        "ADU": 5,
+        "5+": 10,
+        "SFD": 1
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 3,
+          "5+": 10
+        },
+        "2018": {
+          "SFD": 1,
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018516",
+      "name": "Census Tract 185.16",
+      "totalApproved": 7,
+      "byYear": {
+        "2021": 5,
+        "2023": 2
+      },
+      "byCategory": {
+        "ADU": 7
+      },
+      "byYearCategory": {
+        "2021": {
+          "ADU": 5
+        },
+        "2023": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018517",
+      "name": "Census Tract 185.17",
+      "totalApproved": 1,
+      "byYear": {
+        "2021": 1
+      },
+      "byCategory": {
+        "ADU": 1
+      },
+      "byYearCategory": {
+        "2021": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018518",
+      "name": "Census Tract 185.18",
+      "totalApproved": 4,
+      "byYear": {
+        "2023": 2,
+        "2021": 2
+      },
+      "byCategory": {
+        "ADU": 4
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2021": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018519",
+      "name": "Census Tract 185.19",
+      "totalApproved": 5,
+      "byYear": {
+        "2023": 2,
+        "2018": 1,
+        "2021": 2
+      },
+      "byCategory": {
+        "ADU": 5
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2018": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018520",
+      "name": "Census Tract 185.20",
+      "totalApproved": 58,
+      "byYear": {
+        "2021": 57,
+        "2023": 1
+      },
+      "byCategory": {
+        "ADU": 4,
+        "SFA": 54
+      },
+      "byYearCategory": {
+        "2021": {
+          "ADU": 3,
+          "SFA": 54
+        },
+        "2023": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018521",
+      "name": "Census Tract 185.21",
+      "totalApproved": 219,
+      "byYear": {
+        "2019": 53,
+        "2018": 165,
+        "2022": 1
+      },
+      "byCategory": {
+        "SFA": 79,
+        "SFD": 72,
+        "2-4": 53,
+        "5+": 10,
+        "MH": 5
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFA": 53
+        },
+        "2018": {
+          "SFD": 72,
+          "2-4": 53,
+          "5+": 10,
+          "SFA": 26,
+          "MH": 4
+        },
+        "2022": {
+          "MH": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018522",
+      "name": "Census Tract 185.22",
+      "totalApproved": 533,
+      "byYear": {
+        "2019": 385,
+        "2018": 148
+      },
+      "byCategory": {
+        "SFD": 23,
+        "SFA": 242,
+        "5+": 268
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 23,
+          "SFA": 94,
+          "5+": 268
+        },
+        "2018": {
+          "SFA": 148
+        }
+      }
+    },
+    {
+      "tractId": "06073018523",
+      "name": "Census Tract 185.23",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073018524",
+      "name": "Census Tract 185.24",
+      "totalApproved": 2,
+      "byYear": {
+        "2019": 1,
+        "2023": 1
+      },
+      "byCategory": {
+        "ADU": 1,
+        "SFD": 1
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 1
+        },
+        "2023": {
+          "SFD": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018525",
+      "name": "Census Tract 185.25",
+      "totalApproved": 5,
+      "byYear": {
+        "2023": 1,
+        "2018": 1,
+        "2021": 2,
+        "2022": 1
+      },
+      "byCategory": {
+        "ADU": 5
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 1
+        },
+        "2018": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 2
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018601",
+      "name": "Census Tract 186.01",
+      "totalApproved": 20,
+      "byYear": {
+        "2019": 1,
+        "2023": 8,
+        "2018": 1,
+        "2021": 7,
+        "2022": 3
+      },
+      "byCategory": {
+        "SFD": 1,
+        "ADU": 19
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 1
+        },
+        "2023": {
+          "ADU": 8
+        },
+        "2018": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 7
+        },
+        "2022": {
+          "ADU": 3
+        }
+      }
+    },
+    {
+      "tractId": "06073018608",
+      "name": "Census Tract 186.08",
+      "totalApproved": 4,
+      "byYear": {
+        "2023": 1,
+        "2018": 1,
+        "2021": 2
+      },
+      "byCategory": {
+        "ADU": 3,
+        "MH": 1
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 1
+        },
+        "2018": {
+          "MH": 1
+        },
+        "2021": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018609",
+      "name": "Census Tract 186.09",
+      "totalApproved": 12,
+      "byYear": {
+        "2023": 3,
+        "2018": 1,
+        "2021": 4,
+        "2022": 4
+      },
+      "byCategory": {
+        "ADU": 6,
+        "MH": 6
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2,
+          "MH": 1
+        },
+        "2018": {
+          "MH": 1
+        },
+        "2021": {
+          "ADU": 4
+        },
+        "2022": {
+          "MH": 4
+        }
+      }
+    },
+    {
+      "tractId": "06073018612",
+      "name": "Census Tract 186.12",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073018613",
+      "name": "Census Tract 186.13",
+      "totalApproved": 3,
+      "byYear": {
+        "2023": 1,
+        "2021": 2
+      },
+      "byCategory": {
+        "ADU": 3
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018615",
+      "name": "Census Tract 186.15",
+      "totalApproved": 25,
+      "byYear": {
+        "2019": 8,
+        "2023": 6,
+        "2018": 4,
+        "2021": 6,
+        "2022": 1
+      },
+      "byCategory": {
+        "SFD": 5,
+        "ADU": 15,
+        "2-4": 3,
+        "SFA": 2
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 2,
+          "ADU": 1,
+          "2-4": 3,
+          "SFA": 2
+        },
+        "2023": {
+          "ADU": 6
+        },
+        "2018": {
+          "ADU": 2,
+          "SFD": 2
+        },
+        "2021": {
+          "ADU": 5,
+          "SFD": 1
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018616",
+      "name": "Census Tract 186.16",
+      "totalApproved": 3,
+      "byYear": {
+        "2023": 2,
+        "2021": 1
+      },
+      "byCategory": {
+        "ADU": 3
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2021": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018617",
+      "name": "Census Tract 186.17",
+      "totalApproved": 5,
+      "byYear": {
+        "2019": 4,
+        "2021": 1
+      },
+      "byCategory": {
+        "ADU": 4,
+        "SFD": 1
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 3,
+          "SFD": 1
+        },
+        "2021": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018618",
+      "name": "Census Tract 186.18",
+      "totalApproved": 5,
+      "byYear": {
+        "2019": 2,
+        "2021": 2,
+        "2023": 1
+      },
+      "byCategory": {
+        "ADU": 5
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 2
+        },
+        "2021": {
+          "ADU": 2
+        },
+        "2023": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018619",
+      "name": "Census Tract 186.19",
+      "totalApproved": 7,
+      "byYear": {
+        "2019": 3,
+        "2023": 1,
+        "2018": 1,
+        "2021": 2
+      },
+      "byCategory": {
+        "SFD": 4,
+        "ADU": 3
+      },
+      "byYearCategory": {
+        "2019": {
+          "SFD": 2,
+          "ADU": 1
+        },
+        "2023": {
+          "SFD": 1
+        },
+        "2018": {
+          "SFD": 1
+        },
+        "2021": {
+          "ADU": 2
+        }
+      }
+    },
+    {
+      "tractId": "06073018620",
+      "name": "Census Tract 186.20",
+      "totalApproved": 1,
+      "byYear": {
+        "2018": 1
+      },
+      "byCategory": {
+        "ADU": 1
+      },
+      "byYearCategory": {
+        "2018": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018621",
+      "name": "Census Tract 186.21",
+      "totalApproved": 4,
+      "byYear": {
+        "2023": 3,
+        "2021": 1
+      },
+      "byCategory": {
+        "MH": 3,
+        "ADU": 1
+      },
+      "byYearCategory": {
+        "2023": {
+          "MH": 3
+        },
+        "2021": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073018622",
+      "name": "Census Tract 186.22",
+      "totalApproved": 13,
+      "byYear": {
+        "2023": 1,
+        "2018": 8,
+        "2021": 1,
+        "2022": 3
+      },
+      "byCategory": {
+        "ADU": 2,
+        "MH": 11
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 1
+        },
+        "2018": {
+          "MH": 8
+        },
+        "2021": {
+          "ADU": 1
+        },
+        "2022": {
+          "MH": 3
+        }
+      }
+    },
+    {
+      "tractId": "06073018700",
+      "name": "Census Tract 187",
+      "totalApproved": 309,
+      "byYear": {
+        "2019": 309
+      },
+      "byCategory": {
+        "5+": 309
+      },
+      "byYearCategory": {
+        "2019": {
+          "5+": 309
+        }
+      }
+    },
+    {
+      "tractId": "06073018803",
+      "name": "Census Tract 188.03",
+      "totalApproved": 137,
+      "byYear": {
+        "2019": 137
+      },
+      "byCategory": {
+        "5+": 137
+      },
+      "byYearCategory": {
+        "2019": {
+          "5+": 137
+        }
+      }
+    },
+    {
+      "tractId": "06073019301",
+      "name": "Census Tract 193.01",
+      "totalApproved": 8,
+      "byYear": {
+        "2023": 2,
+        "2018": 1,
+        "2021": 4,
+        "2022": 1
+      },
+      "byCategory": {
+        "ADU": 8
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2018": {
+          "ADU": 1
+        },
+        "2021": {
+          "ADU": 4
+        },
+        "2022": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073019303",
+      "name": "Census Tract 193.03",
+      "totalApproved": 174,
+      "byYear": {
+        "2023": 2,
+        "2018": 8,
+        "2021": 106,
+        "2022": 57,
+        "2019": 1
+      },
+      "byCategory": {
+        "ADU": 11,
+        "SFD": 38,
+        "5+": 102,
+        "2-4": 23
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2018": {
+          "SFD": 6,
+          "ADU": 2
+        },
+        "2021": {
+          "SFD": 25,
+          "5+": 52,
+          "2-4": 23,
+          "ADU": 6
+        },
+        "2022": {
+          "SFD": 7,
+          "5+": 50
+        },
+        "2019": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073019304",
+      "name": "Census Tract 193.04",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019305",
+      "name": "Census Tract 193.05",
+      "totalApproved": 37,
+      "byYear": {
+        "2023": 2,
+        "2021": 25,
+        "2022": 10
+      },
+      "byCategory": {
+        "ADU": 3,
+        "2-4": 9,
+        "5+": 25
+      },
+      "byYearCategory": {
+        "2023": {
+          "ADU": 2
+        },
+        "2021": {
+          "2-4": 9,
+          "5+": 15,
+          "ADU": 1
+        },
+        "2022": {
+          "5+": 10
+        }
+      }
+    },
+    {
+      "tractId": "06073019403",
+      "name": "Census Tract 194.03",
+      "totalApproved": 2,
+      "byYear": {
+        "2021": 1,
+        "2023": 1
+      },
+      "byCategory": {
+        "ADU": 2
+      },
+      "byYearCategory": {
+        "2021": {
+          "ADU": 1
+        },
+        "2023": {
+          "ADU": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073019404",
+      "name": "Census Tract 194.04",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019405",
+      "name": "Census Tract 194.05",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019406",
+      "name": "Census Tract 194.06",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019701",
+      "name": "Census Tract 197.01",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019803",
+      "name": "Census Tract 198.03",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019805",
+      "name": "Census Tract 198.05",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019808",
+      "name": "Census Tract 198.08",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019809",
+      "name": "Census Tract 198.09",
+      "totalApproved": 17,
+      "byYear": {
+        "2019": 1,
+        "2023": 10,
+        "2018": 2,
+        "2021": 3,
+        "2022": 1
+      },
+      "byCategory": {
+        "ADU": 9,
+        "MH": 8
+      },
+      "byYearCategory": {
+        "2019": {
+          "ADU": 1
+        },
+        "2023": {
+          "MH": 5,
+          "ADU": 5
+        },
+        "2018": {
+          "MH": 2
+        },
+        "2021": {
+          "ADU": 3
+        },
+        "2022": {
+          "MH": 1
+        }
+      }
+    },
+    {
+      "tractId": "06073019810",
+      "name": "Census Tract 198.10",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073019904",
+      "name": "Census Tract 199.04",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    },
+    {
+      "tractId": "06073990100",
+      "name": "Census Tract 9901",
+      "totalApproved": 0,
+      "byYear": {},
+      "byCategory": {},
+      "byYearCategory": {}
+    }
+  ],
+  "citywide": {
+    "totalApproved": 3101,
+    "rhnaPace": 28.4,
+    "ytd": 0,
+    "byYear": {
+      "2019": 1090,
+      "2023": 87,
+      "2018": 458,
+      "2021": 1199,
+      "2022": 260,
+      "2020": 7
+    },
+    "byCategory": {
+      "5+": 1936,
+      "ADU": 296,
+      "SFD": 220,
+      "SFA": 439,
+      "2-4": 168,
+      "MH": 42
+    }
+  },
+  "unlocated": {
+    "totalApproved": 34
+  },
+  "yearRange": [
+    2018,
+    2025
+  ],
+  "sparklineByYear": [
+    458,
+    1090,
+    7,
+    1199,
+    260,
+    87,
+    0,
+    0
+  ],
+  "categories": [
+    "2-4",
+    "5+",
+    "ADU",
+    "MH",
+    "SFA",
+    "SFD"
+  ],
+  "rhna": {
+    "veryLow": 1268,
+    "low": 718,
+    "moderate": 883,
+    "aboveModerate": 2574,
+    "total": 5443
+  },
+  "metadata": {
+    "source": "HCD Annual Progress Report (APR) Table A",
+    "notes": "82 records could not be geocoded to a tract."
+  }
+}

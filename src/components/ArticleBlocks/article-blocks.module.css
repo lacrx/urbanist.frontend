@@ -1,0 +1,246 @@
+.cover {
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+.richText {
+}
+
+.richText :global(h2),
+.richText :global(h3) {
+  margin-top: 1.75em;
+  margin-bottom: 0.25em;
+}
+
+.richText :global(h3) {
+  font-family: var(--serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  color: var(--black);
+  letter-spacing: normal;
+}
+
+.richText :global(p) {
+  margin: 1.25em 0;
+  line-height: 1.75;
+}
+
+.richText :global(ul),
+.richText :global(ol) {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--grey);
+  margin: 1.25em 0;
+  padding-left: 1.5em;
+}
+
+.richText :global(ul) {
+  list-style: disc;
+}
+
+.richText :global(ol) {
+  list-style: decimal;
+}
+
+.richText :global(li) {
+  margin: 0.4em 0;
+}
+
+.richText :global(img) {
+  display: block;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  margin: 2em auto 0.5em;
+}
+
+.richText :global(p:has(> em:only-child)) {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 2em;
+  font-size: 0.9rem;
+  font-style: italic;
+  color: var(--grey);
+}
+
+.richText :global(em) {
+  font-style: italic;
+}
+
+.richText :global(a) {
+  color: var(--grey);
+  text-decoration: underline;
+}
+
+.richText :global(a:hover) {
+  color: var(--black);
+}
+
+.richText :global(table) {
+  display: block;
+  overflow-x: auto;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--serif);
+  font-size: 0.88rem;
+  line-height: 1.45;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  margin: 1.5em 0;
+}
+
+.richText :global(th) {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding: 0.6rem 0.75rem;
+  border-bottom: 2px solid var(--rule);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.richText :global(td) {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+  color: var(--text);
+  vertical-align: top;
+}
+
+.richText :global(tbody tr:last-child td) {
+  border-bottom: none;
+}
+
+.richText :global(tbody tr:nth-child(even)) {
+  background: color-mix(in srgb, var(--rule) 15%, transparent);
+}
+
+@media (max-width: 600px) {
+  .richText :global(table) {
+    font-size: 0.78rem;
+  }
+
+  .richText :global(th),
+  .richText :global(td) {
+    padding: 0.4rem 0.5rem;
+  }
+}
+
+.richText:last-child {
+  padding-bottom: 0;
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+}
+
+.vizFigure {
+  margin: 2.5rem 0;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.vizFigure.inline {
+}
+
+.vizFigure.wide {
+  margin-inline: calc((100vw - min(100vw, 960px)) / -2);
+  max-width: 100vw;
+}
+
+.vizFigure.fullBleed {
+  margin-inline: calc(50% - 50vw);
+  max-width: 100vw;
+}
+
+.vizStage {
+  position: relative;
+  width: 100%;
+  background: #ffffff;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+/* Artifact-declared heights are tuned for desktop. On narrow
+   viewports the camera renders the same content at a higher zoom-out
+   (viewportWidth-driven zoom offset in the renderer), which leaves
+   noticeable blank space above and below the extrusions. Shrink the
+   stage with !important so the inline `height: Npx` from the block
+   component is overridden. */
+@media (max-width: 768px) {
+  .vizStage {
+    height: 350px !important;
+  }
+}
+
+.vizStage > * {
+  position: absolute;
+  inset: 0;
+}
+
+.vizPoster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.vizPosterFill {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+.vizLoader {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  display: flex;
+  gap: 4px;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.55);
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 300ms ease-out;
+}
+
+.vizLoader span {
+  opacity: 0.25;
+  animation: vizLoaderEllipsis 1200ms ease-in-out infinite;
+}
+
+.vizLoader span:nth-child(2) { animation-delay: 160ms; }
+.vizLoader span:nth-child(3) { animation-delay: 320ms; }
+
+@keyframes vizLoaderEllipsis {
+  0%, 70%, 100% { opacity: 0.25; }
+  35% { opacity: 1; }
+}
+
+.vizStage:has([data-viz-ready="true"]) .vizLoader {
+  opacity: 0;
+}
+
+.vizCaption {
+  margin-top: 0.75rem;
+  font-size: 0.9rem;
+  color: #555;
+  line-height: 1.4;
+}
+
+.vizMissing {
+  padding: 1rem;
+  border: 1px dashed #c0392b;
+  color: #c0392b;
+  font-size: 0.9rem;
+}

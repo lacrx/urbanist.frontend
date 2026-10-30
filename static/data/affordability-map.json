@@ -1,0 +1,558 @@
+{
+  "tracts": [
+    {
+      "tractId": "06073017801",
+      "name": "Census Tract 178.01",
+      "medianRent": 2320,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 1030000,
+      "medianHouseholdIncome": 110143,
+      "costBurdenedPct": 57.3
+    },
+    {
+      "tractId": "06073017901",
+      "name": "Census Tract 179.01",
+      "medianRent": 2043,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 1006100,
+      "medianHouseholdIncome": 77371,
+      "costBurdenedPct": 55.5
+    },
+    {
+      "tractId": "06073018000",
+      "name": "Census Tract 180",
+      "medianRent": 2293,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 1382600,
+      "medianHouseholdIncome": 101351,
+      "costBurdenedPct": 39.9
+    },
+    {
+      "tractId": "06073018101",
+      "name": "Census Tract 181.01",
+      "medianRent": 2259,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 790500,
+      "medianHouseholdIncome": 88170,
+      "costBurdenedPct": 38.8
+    },
+    {
+      "tractId": "06073018102",
+      "name": "Census Tract 181.02",
+      "medianRent": 1738,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 1169700,
+      "medianHouseholdIncome": 67340,
+      "costBurdenedPct": 61.3
+    },
+    {
+      "tractId": "06073018201",
+      "name": "Census Tract 182.01",
+      "medianRent": 1782,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 890800,
+      "medianHouseholdIncome": 68563,
+      "costBurdenedPct": 67.0
+    },
+    {
+      "tractId": "06073018202",
+      "name": "Census Tract 182.02",
+      "medianRent": 1736,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 912900,
+      "medianHouseholdIncome": 68816,
+      "costBurdenedPct": 65.5
+    },
+    {
+      "tractId": "06073018301",
+      "name": "Census Tract 183.01",
+      "medianRent": 2143,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 818500,
+      "medianHouseholdIncome": 71442,
+      "costBurdenedPct": 64.9
+    },
+    {
+      "tractId": "06073018302",
+      "name": "Census Tract 183.02",
+      "medianRent": 1890,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 959100,
+      "medianHouseholdIncome": 63011,
+      "costBurdenedPct": 66.6
+    },
+    {
+      "tractId": "06073018400",
+      "name": "Census Tract 184",
+      "medianRent": 1731,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 800500,
+      "medianHouseholdIncome": 73365,
+      "costBurdenedPct": 42.0
+    },
+    {
+      "tractId": "06073018504",
+      "name": "Census Tract 185.04",
+      "medianRent": 1906,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 893600,
+      "medianHouseholdIncome": 71607,
+      "costBurdenedPct": 79.6
+    },
+    {
+      "tractId": "06073018509",
+      "name": "Census Tract 185.09",
+      "medianRent": 1676,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 626000,
+      "medianHouseholdIncome": 59048,
+      "costBurdenedPct": 60.0
+    },
+    {
+      "tractId": "06073018510",
+      "name": "Census Tract 185.10",
+      "medianRent": 1672,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 630000,
+      "medianHouseholdIncome": 53958,
+      "costBurdenedPct": 75.4
+    },
+    {
+      "tractId": "06073018511",
+      "name": "Census Tract 185.11",
+      "medianRent": 1753,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 622000,
+      "medianHouseholdIncome": 69573,
+      "costBurdenedPct": 60.2
+    },
+    {
+      "tractId": "06073018512",
+      "name": "Census Tract 185.12",
+      "medianRent": 2022,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 411200,
+      "medianHouseholdIncome": 53348,
+      "costBurdenedPct": 71.7
+    },
+    {
+      "tractId": "06073018515",
+      "name": "Census Tract 185.15",
+      "medianRent": 3067,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 790100,
+      "medianHouseholdIncome": 96250,
+      "costBurdenedPct": 63.9
+    },
+    {
+      "tractId": "06073018516",
+      "name": "Census Tract 185.16",
+      "medianRent": 2421,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 600700,
+      "medianHouseholdIncome": 99964,
+      "costBurdenedPct": 54.5
+    },
+    {
+      "tractId": "06073018517",
+      "name": "Census Tract 185.17",
+      "medianRent": 2119,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 482500,
+      "medianHouseholdIncome": 85464,
+      "costBurdenedPct": 49.1
+    },
+    {
+      "tractId": "06073018518",
+      "name": "Census Tract 185.18",
+      "medianRent": 2047,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 614000,
+      "medianHouseholdIncome": 99339,
+      "costBurdenedPct": 65.0
+    },
+    {
+      "tractId": "06073018519",
+      "name": "Census Tract 185.19",
+      "medianRent": 1900,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 594000,
+      "medianHouseholdIncome": 75201,
+      "costBurdenedPct": 59.7
+    },
+    {
+      "tractId": "06073018520",
+      "name": "Census Tract 185.20",
+      "medianRent": 2335,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 477600,
+      "medianHouseholdIncome": 86172,
+      "costBurdenedPct": 59.4
+    },
+    {
+      "tractId": "06073018521",
+      "name": "Census Tract 185.21",
+      "medianRent": 2795,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 627000,
+      "medianHouseholdIncome": 97436,
+      "costBurdenedPct": 59.3
+    },
+    {
+      "tractId": "06073018522",
+      "name": "Census Tract 185.22",
+      "medianRent": 2319,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 737200,
+      "medianHouseholdIncome": 107798,
+      "costBurdenedPct": 54.0
+    },
+    {
+      "tractId": "06073018523",
+      "name": "Census Tract 185.23",
+      "medianRent": 2362,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 620400,
+      "medianHouseholdIncome": 69030,
+      "costBurdenedPct": 64.3
+    },
+    {
+      "tractId": "06073018524",
+      "name": "Census Tract 185.24",
+      "medianRent": 2707,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 635000,
+      "medianHouseholdIncome": 98153,
+      "costBurdenedPct": 70.2
+    },
+    {
+      "tractId": "06073018525",
+      "name": "Census Tract 185.25",
+      "medianRent": 3501,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 707200,
+      "medianHouseholdIncome": 145750,
+      "costBurdenedPct": 78.6
+    },
+    {
+      "tractId": "06073018601",
+      "name": "Census Tract 186.01",
+      "medianRent": 2757,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 755900,
+      "medianHouseholdIncome": 137500,
+      "costBurdenedPct": 48.3
+    },
+    {
+      "tractId": "06073018608",
+      "name": "Census Tract 186.08",
+      "medianRent": 2661,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 603100,
+      "medianHouseholdIncome": 125160,
+      "costBurdenedPct": 51.6
+    },
+    {
+      "tractId": "06073018609",
+      "name": "Census Tract 186.09",
+      "medianRent": 1604,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 495500,
+      "medianHouseholdIncome": 71605,
+      "costBurdenedPct": 48.1
+    },
+    {
+      "tractId": "06073018612",
+      "name": "Census Tract 186.12",
+      "medianRent": 2432,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 631100,
+      "medianHouseholdIncome": 137857,
+      "costBurdenedPct": 29.0
+    },
+    {
+      "tractId": "06073018613",
+      "name": "Census Tract 186.13",
+      "medianRent": 2376,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 528300,
+      "medianHouseholdIncome": 86481,
+      "costBurdenedPct": 76.5
+    },
+    {
+      "tractId": "06073018615",
+      "name": "Census Tract 186.15",
+      "medianRent": 1486,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 458600,
+      "medianHouseholdIncome": 63514,
+      "costBurdenedPct": 60.4
+    },
+    {
+      "tractId": "06073018616",
+      "name": "Census Tract 186.16",
+      "medianRent": 1750,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 595400,
+      "medianHouseholdIncome": 53571,
+      "costBurdenedPct": 56.1
+    },
+    {
+      "tractId": "06073018617",
+      "name": "Census Tract 186.17",
+      "medianRent": 2877,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 704200,
+      "medianHouseholdIncome": 114500,
+      "costBurdenedPct": 63.8
+    },
+    {
+      "tractId": "06073018618",
+      "name": "Census Tract 186.18",
+      "medianRent": 1905,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 539200,
+      "medianHouseholdIncome": 87800,
+      "costBurdenedPct": 50.8
+    },
+    {
+      "tractId": "06073018619",
+      "name": "Census Tract 186.19",
+      "medianRent": 2946,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 890400,
+      "medianHouseholdIncome": 164035,
+      "costBurdenedPct": 42.3
+    },
+    {
+      "tractId": "06073018620",
+      "name": "Census Tract 186.20",
+      "medianRent": 2486,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 563200,
+      "medianHouseholdIncome": 86047,
+      "costBurdenedPct": 39.3
+    },
+    {
+      "tractId": "06073018621",
+      "name": "Census Tract 186.21",
+      "medianRent": 2439,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 523200,
+      "medianHouseholdIncome": 96923,
+      "costBurdenedPct": 47.9
+    },
+    {
+      "tractId": "06073018622",
+      "name": "Census Tract 186.22",
+      "medianRent": 2130,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 331900,
+      "medianHouseholdIncome": 70543,
+      "costBurdenedPct": 57.5
+    },
+    {
+      "tractId": "06073018700",
+      "name": "Census Tract 187",
+      "medianRent": 2855,
+      "medianRentPctIncome": null,
+      "medianHomeValue": null,
+      "medianHouseholdIncome": 60525,
+      "costBurdenedPct": 80.4
+    },
+    {
+      "tractId": "06073018803",
+      "name": "Census Tract 188.03",
+      "medianRent": 2089,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 834800,
+      "medianHouseholdIncome": 93821,
+      "costBurdenedPct": 68.7
+    },
+    {
+      "tractId": "06073019301",
+      "name": "Census Tract 193.01",
+      "medianRent": 3016,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 687400,
+      "medianHouseholdIncome": 110880,
+      "costBurdenedPct": 48.1
+    },
+    {
+      "tractId": "06073019303",
+      "name": "Census Tract 193.03",
+      "medianRent": 2045,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 726600,
+      "medianHouseholdIncome": 105742,
+      "costBurdenedPct": 60.3
+    },
+    {
+      "tractId": "06073019304",
+      "name": "Census Tract 193.04",
+      "medianRent": 2591,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 631700,
+      "medianHouseholdIncome": 89792,
+      "costBurdenedPct": 76.1
+    },
+    {
+      "tractId": "06073019305",
+      "name": "Census Tract 193.05",
+      "medianRent": 2209,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 553900,
+      "medianHouseholdIncome": 74634,
+      "costBurdenedPct": 63.3
+    },
+    {
+      "tractId": "06073019403",
+      "name": "Census Tract 194.03",
+      "medianRent": 2420,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 553800,
+      "medianHouseholdIncome": 110020,
+      "costBurdenedPct": 48.0
+    },
+    {
+      "tractId": "06073019404",
+      "name": "Census Tract 194.04",
+      "medianRent": 2003,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 555000,
+      "medianHouseholdIncome": 76944,
+      "costBurdenedPct": 57.6
+    },
+    {
+      "tractId": "06073019405",
+      "name": "Census Tract 194.05",
+      "medianRent": 2195,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 594000,
+      "medianHouseholdIncome": 77153,
+      "costBurdenedPct": 60.8
+    },
+    {
+      "tractId": "06073019406",
+      "name": "Census Tract 194.06",
+      "medianRent": 1866,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 586300,
+      "medianHouseholdIncome": 81743,
+      "costBurdenedPct": 61.6
+    },
+    {
+      "tractId": "06073019701",
+      "name": "Census Tract 197.01",
+      "medianRent": 2254,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 614900,
+      "medianHouseholdIncome": 86406,
+      "costBurdenedPct": 57.5
+    },
+    {
+      "tractId": "06073019803",
+      "name": "Census Tract 198.03",
+      "medianRent": 2416,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 719800,
+      "medianHouseholdIncome": 114020,
+      "costBurdenedPct": 58.9
+    },
+    {
+      "tractId": "06073019805",
+      "name": "Census Tract 198.05",
+      "medianRent": 2161,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 483400,
+      "medianHouseholdIncome": 71630,
+      "costBurdenedPct": 55.9
+    },
+    {
+      "tractId": "06073019808",
+      "name": "Census Tract 198.08",
+      "medianRent": 2363,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 742900,
+      "medianHouseholdIncome": 94779,
+      "costBurdenedPct": 30.8
+    },
+    {
+      "tractId": "06073019809",
+      "name": "Census Tract 198.09",
+      "medianRent": 3051,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 621200,
+      "medianHouseholdIncome": 111875,
+      "costBurdenedPct": 57.5
+    },
+    {
+      "tractId": "06073019810",
+      "name": "Census Tract 198.10",
+      "medianRent": 2613,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 729800,
+      "medianHouseholdIncome": 110893,
+      "costBurdenedPct": 61.1
+    },
+    {
+      "tractId": "06073019904",
+      "name": "Census Tract 199.04",
+      "medianRent": 2388,
+      "medianRentPctIncome": null,
+      "medianHomeValue": 739000,
+      "medianHouseholdIncome": 99636,
+      "costBurdenedPct": 46.2
+    },
+    {
+      "tractId": "06073990100",
+      "name": "Census Tract 9901",
+      "medianRent": null,
+      "medianRentPctIncome": null,
+      "medianHomeValue": null,
+      "medianHouseholdIncome": null,
+      "costBurdenedPct": null
+    }
+  ],
+  "citywide": {
+    "medianRent": 2256,
+    "medianHomeValue": 630000,
+    "costBurdenedPct": 58.0
+  },
+  "metrics": [
+    {
+      "key": "costBurdenedPct",
+      "label": "% Cost-Burdened",
+      "format": "pct",
+      "colorScale": "sequential"
+    },
+    {
+      "key": "medianRent",
+      "label": "Median Rent",
+      "format": "currency",
+      "colorScale": "sequential"
+    },
+    {
+      "key": "medianHomeValue",
+      "label": "Median Home Value",
+      "format": "currency",
+      "colorScale": "sequential"
+    },
+    {
+      "key": "medianHouseholdIncome",
+      "label": "Median Income",
+      "format": "currency",
+      "colorScale": "sequential"
+    },
+    {
+      "key": "medianRentPctIncome",
+      "label": "Rent % of Income",
+      "format": "pct",
+      "colorScale": "sequential"
+    }
+  ],
+  "metadata": {
+    "source": "U.S. Census Bureau, ACS 5-Year Estimates (2022)",
+    "notes": "Tract-level estimates. Cost-burdened = renters paying 30%+ of income on housing."
+  }
+}

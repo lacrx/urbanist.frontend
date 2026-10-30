@@ -1,0 +1,53 @@
+.container {
+  width: 100%;
+  overflow: hidden;
+}
+
+.container :global(svg) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  font-family: var(--sans);
+}
+
+.container :global([aria-label="y-axis tick label"]),
+.container :global([aria-label="x-axis tick label"]) {
+  font-size: 12px;
+}
+
+.container :global([aria-label="y-axis label"]),
+.container :global([aria-label="x-axis label"]) {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.chartTitle {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0 0 0.75rem;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.legendSwatch {
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}

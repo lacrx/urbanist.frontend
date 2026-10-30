@@ -1,0 +1,1276 @@
+{
+  "tracts": [
+    {
+      "tractId": "06073017801",
+      "name": "Census Tract 178.01",
+      "deedRestricted": 0,
+      "marketRate": 5,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 5
+      },
+      "byYear": {
+        "2022": 5
+      }
+    },
+    {
+      "tractId": "06073017901",
+      "name": "Census Tract 179.01",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073018000",
+      "name": "Census Tract 180",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073018101",
+      "name": "Census Tract 181.01",
+      "deedRestricted": 12,
+      "marketRate": 176,
+      "byTier": {
+        "veryLow": 9,
+        "low": 10,
+        "moderate": 64,
+        "aboveModerate": 105
+      },
+      "byYear": {
+        "2019": 6,
+        "2023": 11,
+        "2018": 22,
+        "2021": 19,
+        "2022": 70,
+        "2020": 6,
+        "2024": 45,
+        "2025": 9
+      }
+    },
+    {
+      "tractId": "06073018102",
+      "name": "Census Tract 181.02",
+      "deedRestricted": 6,
+      "marketRate": 199,
+      "byTier": {
+        "veryLow": 5,
+        "low": 8,
+        "moderate": 66,
+        "aboveModerate": 126
+      },
+      "byYear": {
+        "2019": 4,
+        "2023": 12,
+        "2018": 30,
+        "2021": 58,
+        "2022": 32,
+        "2020": 16,
+        "2024": 16,
+        "2025": 37
+      }
+    },
+    {
+      "tractId": "06073018201",
+      "name": "Census Tract 182.01",
+      "deedRestricted": 115,
+      "marketRate": 164,
+      "byTier": {
+        "veryLow": 57,
+        "low": 64,
+        "moderate": 42,
+        "aboveModerate": 116
+      },
+      "byYear": {
+        "2019": 25,
+        "2023": 6,
+        "2018": 18,
+        "2021": 65,
+        "2022": 10,
+        "2020": 2,
+        "2024": 64,
+        "2025": 89
+      }
+    },
+    {
+      "tractId": "06073018202",
+      "name": "Census Tract 182.02",
+      "deedRestricted": 4,
+      "marketRate": 111,
+      "byTier": {
+        "veryLow": 2,
+        "low": 9,
+        "moderate": 47,
+        "aboveModerate": 57
+      },
+      "byYear": {
+        "2019": 27,
+        "2023": 7,
+        "2018": 4,
+        "2021": 11,
+        "2022": 13,
+        "2020": 13,
+        "2024": 7,
+        "2025": 33
+      }
+    },
+    {
+      "tractId": "06073018301",
+      "name": "Census Tract 183.01",
+      "deedRestricted": 0,
+      "marketRate": 77,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 5,
+        "aboveModerate": 72
+      },
+      "byYear": {
+        "2019": 9,
+        "2023": 2,
+        "2018": 22,
+        "2021": 16,
+        "2022": 17,
+        "2020": 1,
+        "2024": 5,
+        "2025": 5
+      }
+    },
+    {
+      "tractId": "06073018302",
+      "name": "Census Tract 183.02",
+      "deedRestricted": 72,
+      "marketRate": 709,
+      "byTier": {
+        "veryLow": 0,
+        "low": 75,
+        "moderate": 7,
+        "aboveModerate": 699
+      },
+      "byYear": {
+        "2019": 4,
+        "2023": 219,
+        "2018": 6,
+        "2021": 11,
+        "2022": 3,
+        "2024": 528,
+        "2025": 10
+      }
+    },
+    {
+      "tractId": "06073018400",
+      "name": "Census Tract 184",
+      "deedRestricted": 407,
+      "marketRate": 3524,
+      "byTier": {
+        "veryLow": 93,
+        "low": 280,
+        "moderate": 72,
+        "aboveModerate": 3486
+      },
+      "byYear": {
+        "2019": 80,
+        "2023": 1067,
+        "2018": 62,
+        "2021": 452,
+        "2022": 1930,
+        "2020": 11,
+        "2024": 297,
+        "2025": 32
+      }
+    },
+    {
+      "tractId": "06073018504",
+      "name": "Census Tract 185.04",
+      "deedRestricted": 157,
+      "marketRate": 598,
+      "byTier": {
+        "veryLow": 59,
+        "low": 70,
+        "moderate": 166,
+        "aboveModerate": 460
+      },
+      "byYear": {
+        "2019": 13,
+        "2023": 40,
+        "2018": 11,
+        "2021": 369,
+        "2022": 76,
+        "2020": 7,
+        "2024": 204,
+        "2025": 35
+      }
+    },
+    {
+      "tractId": "06073018509",
+      "name": "Census Tract 185.09",
+      "deedRestricted": 161,
+      "marketRate": 536,
+      "byTier": {
+        "veryLow": 122,
+        "low": 38,
+        "moderate": 142,
+        "aboveModerate": 395
+      },
+      "byYear": {
+        "2019": 12,
+        "2023": 380,
+        "2018": 21,
+        "2021": 156,
+        "2022": 76,
+        "2020": 2,
+        "2024": 30,
+        "2025": 20
+      }
+    },
+    {
+      "tractId": "06073018510",
+      "name": "Census Tract 185.10",
+      "deedRestricted": 5,
+      "marketRate": 90,
+      "byTier": {
+        "veryLow": 0,
+        "low": 10,
+        "moderate": 26,
+        "aboveModerate": 59
+      },
+      "byYear": {
+        "2023": 6,
+        "2018": 29,
+        "2021": 7,
+        "2022": 5,
+        "2020": 1,
+        "2024": 7,
+        "2025": 40
+      }
+    },
+    {
+      "tractId": "06073018511",
+      "name": "Census Tract 185.11",
+      "deedRestricted": 30,
+      "marketRate": 734,
+      "byTier": {
+        "veryLow": 0,
+        "low": 37,
+        "moderate": 37,
+        "aboveModerate": 690
+      },
+      "byYear": {
+        "2019": 1,
+        "2023": 10,
+        "2018": 5,
+        "2021": 9,
+        "2022": 308,
+        "2020": 284,
+        "2024": 145,
+        "2025": 2
+      }
+    },
+    {
+      "tractId": "06073018512",
+      "name": "Census Tract 185.12",
+      "deedRestricted": 21,
+      "marketRate": 289,
+      "byTier": {
+        "veryLow": 8,
+        "low": 0,
+        "moderate": 16,
+        "aboveModerate": 286
+      },
+      "byYear": {
+        "2023": 79,
+        "2021": 137,
+        "2022": 1,
+        "2025": 93
+      }
+    },
+    {
+      "tractId": "06073018515",
+      "name": "Census Tract 185.15",
+      "deedRestricted": 0,
+      "marketRate": 50,
+      "byTier": {
+        "veryLow": 0,
+        "low": 3,
+        "moderate": 17,
+        "aboveModerate": 30
+      },
+      "byYear": {
+        "2019": 1,
+        "2023": 4,
+        "2021": 13,
+        "2022": 24,
+        "2024": 3,
+        "2025": 2,
+        "2018": 3
+      }
+    },
+    {
+      "tractId": "06073018516",
+      "name": "Census Tract 185.16",
+      "deedRestricted": 0,
+      "marketRate": 17,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 17,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 3,
+        "2021": 5,
+        "2022": 1,
+        "2024": 3,
+        "2025": 4,
+        "2020": 1
+      }
+    },
+    {
+      "tractId": "06073018517",
+      "name": "Census Tract 185.17",
+      "deedRestricted": 0,
+      "marketRate": 8,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 7,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2021": 1,
+        "2022": 2,
+        "2024": 1,
+        "2025": 4
+      }
+    },
+    {
+      "tractId": "06073018518",
+      "name": "Census Tract 185.18",
+      "deedRestricted": 0,
+      "marketRate": 14,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 12,
+        "aboveModerate": 1
+      },
+      "byYear": {
+        "2023": 4,
+        "2021": 2,
+        "2024": 6,
+        "2025": 1,
+        "2022": 1
+      }
+    },
+    {
+      "tractId": "06073018519",
+      "name": "Census Tract 185.19",
+      "deedRestricted": 394,
+      "marketRate": 16,
+      "byTier": {
+        "veryLow": 0,
+        "low": 315,
+        "moderate": 93,
+        "aboveModerate": 2
+      },
+      "byYear": {
+        "2023": 3,
+        "2018": 1,
+        "2021": 2,
+        "2022": 2,
+        "2024": 200,
+        "2025": 202
+      }
+    },
+    {
+      "tractId": "06073018520",
+      "name": "Census Tract 185.20",
+      "deedRestricted": 0,
+      "marketRate": 118,
+      "byTier": {
+        "veryLow": 11,
+        "low": 0,
+        "moderate": 8,
+        "aboveModerate": 99
+      },
+      "byYear": {
+        "2023": 2,
+        "2021": 107,
+        "2024": 1,
+        "2025": 8
+      }
+    },
+    {
+      "tractId": "06073018521",
+      "name": "Census Tract 185.21",
+      "deedRestricted": 0,
+      "marketRate": 835,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 14,
+        "aboveModerate": 820
+      },
+      "byYear": {
+        "2019": 53,
+        "2023": 3,
+        "2018": 165,
+        "2022": 25,
+        "2020": 2,
+        "2024": 354,
+        "2025": 233
+      }
+    },
+    {
+      "tractId": "06073018522",
+      "name": "Census Tract 185.22",
+      "deedRestricted": 0,
+      "marketRate": 535,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 2,
+        "aboveModerate": 533
+      },
+      "byYear": {
+        "2019": 385,
+        "2018": 148,
+        "2022": 1,
+        "2025": 1
+      }
+    },
+    {
+      "tractId": "06073018523",
+      "name": "Census Tract 185.23",
+      "deedRestricted": 0,
+      "marketRate": 1,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 1,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2025": 1
+      }
+    },
+    {
+      "tractId": "06073018524",
+      "name": "Census Tract 185.24",
+      "deedRestricted": 0,
+      "marketRate": 6,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 4,
+        "aboveModerate": 2
+      },
+      "byYear": {
+        "2019": 1,
+        "2023": 1,
+        "2022": 1,
+        "2020": 1,
+        "2024": 2
+      }
+    },
+    {
+      "tractId": "06073018525",
+      "name": "Census Tract 185.25",
+      "deedRestricted": 0,
+      "marketRate": 23,
+      "byTier": {
+        "veryLow": 0,
+        "low": 4,
+        "moderate": 19,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 5,
+        "2018": 1,
+        "2021": 2,
+        "2022": 4,
+        "2024": 6,
+        "2025": 5
+      }
+    },
+    {
+      "tractId": "06073018601",
+      "name": "Census Tract 186.01",
+      "deedRestricted": 1,
+      "marketRate": 53,
+      "byTier": {
+        "veryLow": 0,
+        "low": 9,
+        "moderate": 43,
+        "aboveModerate": 2
+      },
+      "byYear": {
+        "2019": 1,
+        "2023": 13,
+        "2018": 1,
+        "2021": 7,
+        "2022": 12,
+        "2020": 1,
+        "2024": 9,
+        "2025": 10
+      }
+    },
+    {
+      "tractId": "06073018608",
+      "name": "Census Tract 186.08",
+      "deedRestricted": 0,
+      "marketRate": 13,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 12,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 3,
+        "2018": 1,
+        "2021": 2,
+        "2022": 3,
+        "2020": 1,
+        "2024": 3
+      }
+    },
+    {
+      "tractId": "06073018609",
+      "name": "Census Tract 186.09",
+      "deedRestricted": 0,
+      "marketRate": 32,
+      "byTier": {
+        "veryLow": 0,
+        "low": 3,
+        "moderate": 29,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 6,
+        "2018": 1,
+        "2021": 4,
+        "2022": 9,
+        "2020": 2,
+        "2024": 5,
+        "2025": 5
+      }
+    },
+    {
+      "tractId": "06073018612",
+      "name": "Census Tract 186.12",
+      "deedRestricted": 0,
+      "marketRate": 1,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2025": 1
+      }
+    },
+    {
+      "tractId": "06073018613",
+      "name": "Census Tract 186.13",
+      "deedRestricted": 8,
+      "marketRate": 62,
+      "byTier": {
+        "veryLow": 0,
+        "low": 9,
+        "moderate": 15,
+        "aboveModerate": 46
+      },
+      "byYear": {
+        "2023": 2,
+        "2021": 56,
+        "2022": 7,
+        "2024": 3,
+        "2025": 1,
+        "2020": 1
+      }
+    },
+    {
+      "tractId": "06073018615",
+      "name": "Census Tract 186.15",
+      "deedRestricted": 0,
+      "marketRate": 67,
+      "byTier": {
+        "veryLow": 0,
+        "low": 7,
+        "moderate": 39,
+        "aboveModerate": 21
+      },
+      "byYear": {
+        "2019": 8,
+        "2023": 18,
+        "2018": 4,
+        "2021": 6,
+        "2022": 12,
+        "2020": 5,
+        "2024": 7,
+        "2025": 7
+      }
+    },
+    {
+      "tractId": "06073018616",
+      "name": "Census Tract 186.16",
+      "deedRestricted": 161,
+      "marketRate": 532,
+      "byTier": {
+        "veryLow": 0,
+        "low": 145,
+        "moderate": 37,
+        "aboveModerate": 511
+      },
+      "byYear": {
+        "2023": 5,
+        "2021": 1,
+        "2022": 4,
+        "2024": 4,
+        "2025": 679
+      }
+    },
+    {
+      "tractId": "06073018617",
+      "name": "Census Tract 186.17",
+      "deedRestricted": 0,
+      "marketRate": 14,
+      "byTier": {
+        "veryLow": 0,
+        "low": 2,
+        "moderate": 10,
+        "aboveModerate": 2
+      },
+      "byYear": {
+        "2019": 4,
+        "2023": 3,
+        "2021": 1,
+        "2022": 1,
+        "2024": 1,
+        "2025": 4
+      }
+    },
+    {
+      "tractId": "06073018618",
+      "name": "Census Tract 186.18",
+      "deedRestricted": 0,
+      "marketRate": 178,
+      "byTier": {
+        "veryLow": 0,
+        "low": 4,
+        "moderate": 10,
+        "aboveModerate": 164
+      },
+      "byYear": {
+        "2019": 2,
+        "2023": 2,
+        "2021": 2,
+        "2022": 166,
+        "2020": 2,
+        "2024": 3,
+        "2025": 1
+      }
+    },
+    {
+      "tractId": "06073018619",
+      "name": "Census Tract 186.19",
+      "deedRestricted": 66,
+      "marketRate": 119,
+      "byTier": {
+        "veryLow": 54,
+        "low": 33,
+        "moderate": 26,
+        "aboveModerate": 72
+      },
+      "byYear": {
+        "2019": 3,
+        "2023": 47,
+        "2018": 1,
+        "2021": 4,
+        "2022": 48,
+        "2020": 2,
+        "2024": 1,
+        "2025": 79
+      }
+    },
+    {
+      "tractId": "06073018620",
+      "name": "Census Tract 186.20",
+      "deedRestricted": 0,
+      "marketRate": 8,
+      "byTier": {
+        "veryLow": 0,
+        "low": 2,
+        "moderate": 6,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 1,
+        "2022": 2,
+        "2024": 3,
+        "2025": 1,
+        "2018": 1
+      }
+    },
+    {
+      "tractId": "06073018621",
+      "name": "Census Tract 186.21",
+      "deedRestricted": 0,
+      "marketRate": 10,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 9,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 4,
+        "2021": 1,
+        "2022": 1,
+        "2024": 2,
+        "2025": 2
+      }
+    },
+    {
+      "tractId": "06073018622",
+      "name": "Census Tract 186.22",
+      "deedRestricted": 0,
+      "marketRate": 20,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 19,
+        "aboveModerate": 1
+      },
+      "byYear": {
+        "2023": 2,
+        "2018": 8,
+        "2021": 1,
+        "2022": 5,
+        "2024": 2,
+        "2025": 2
+      }
+    },
+    {
+      "tractId": "06073018700",
+      "name": "Census Tract 187",
+      "deedRestricted": 0,
+      "marketRate": 309,
+      "byTier": {
+        "veryLow": 0,
+        "low": 26,
+        "moderate": 147,
+        "aboveModerate": 136
+      },
+      "byYear": {
+        "2019": 309
+      }
+    },
+    {
+      "tractId": "06073018803",
+      "name": "Census Tract 188.03",
+      "deedRestricted": 0,
+      "marketRate": 137,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 137,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2019": 137
+      }
+    },
+    {
+      "tractId": "06073019301",
+      "name": "Census Tract 193.01",
+      "deedRestricted": 0,
+      "marketRate": 24,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 24,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 7,
+        "2018": 1,
+        "2021": 4,
+        "2022": 2,
+        "2024": 6,
+        "2020": 1,
+        "2025": 3
+      }
+    },
+    {
+      "tractId": "06073019303",
+      "name": "Census Tract 193.03",
+      "deedRestricted": 4,
+      "marketRate": 324,
+      "byTier": {
+        "veryLow": 4,
+        "low": 1,
+        "moderate": 27,
+        "aboveModerate": 296
+      },
+      "byYear": {
+        "2023": 10,
+        "2018": 8,
+        "2021": 106,
+        "2022": 189,
+        "2020": 1,
+        "2024": 11,
+        "2025": 2,
+        "2019": 1
+      }
+    },
+    {
+      "tractId": "06073019304",
+      "name": "Census Tract 193.04",
+      "deedRestricted": 0,
+      "marketRate": 9,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 6,
+        "aboveModerate": 2
+      },
+      "byYear": {
+        "2022": 5,
+        "2020": 1,
+        "2024": 2,
+        "2025": 1
+      }
+    },
+    {
+      "tractId": "06073019305",
+      "name": "Census Tract 193.05",
+      "deedRestricted": 0,
+      "marketRate": 66,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 10,
+        "aboveModerate": 56
+      },
+      "byYear": {
+        "2023": 3,
+        "2021": 26,
+        "2022": 33,
+        "2024": 2,
+        "2025": 1,
+        "2020": 1
+      }
+    },
+    {
+      "tractId": "06073019403",
+      "name": "Census Tract 194.03",
+      "deedRestricted": 0,
+      "marketRate": 6,
+      "byTier": {
+        "veryLow": 0,
+        "low": 2,
+        "moderate": 4,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2021": 1,
+        "2024": 3,
+        "2023": 1,
+        "2022": 1
+      }
+    },
+    {
+      "tractId": "06073019404",
+      "name": "Census Tract 194.04",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019405",
+      "name": "Census Tract 194.05",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019406",
+      "name": "Census Tract 194.06",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019701",
+      "name": "Census Tract 197.01",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019803",
+      "name": "Census Tract 198.03",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019805",
+      "name": "Census Tract 198.05",
+      "deedRestricted": 29,
+      "marketRate": 170,
+      "byTier": {
+        "veryLow": 0,
+        "low": 30,
+        "moderate": 6,
+        "aboveModerate": 163
+      },
+      "byYear": {
+        "2023": 1,
+        "2024": 5,
+        "2025": 193
+      }
+    },
+    {
+      "tractId": "06073019808",
+      "name": "Census Tract 198.08",
+      "deedRestricted": 0,
+      "marketRate": 4,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 3,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2023": 1,
+        "2025": 3
+      }
+    },
+    {
+      "tractId": "06073019809",
+      "name": "Census Tract 198.09",
+      "deedRestricted": 0,
+      "marketRate": 20,
+      "byTier": {
+        "veryLow": 0,
+        "low": 1,
+        "moderate": 19,
+        "aboveModerate": 0
+      },
+      "byYear": {
+        "2019": 1,
+        "2023": 10,
+        "2018": 2,
+        "2021": 3,
+        "2022": 2,
+        "2025": 2
+      }
+    },
+    {
+      "tractId": "06073019810",
+      "name": "Census Tract 198.10",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    },
+    {
+      "tractId": "06073019904",
+      "name": "Census Tract 199.04",
+      "deedRestricted": 0,
+      "marketRate": 43,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 43
+      },
+      "byYear": {
+        "2022": 43
+      }
+    },
+    {
+      "tractId": "06073990100",
+      "name": "Census Tract 9901",
+      "deedRestricted": 0,
+      "marketRate": 0,
+      "byTier": {
+        "veryLow": 0,
+        "low": 0,
+        "moderate": 0,
+        "aboveModerate": 0
+      },
+      "byYear": {}
+    }
+  ],
+  "citywide": {
+    "deedRestricted": 1655,
+    "marketRate": 11292,
+    "percentAffordable": 12.8,
+    "byTier": {
+      "veryLow": 426,
+      "low": 1205,
+      "moderate": 1524,
+      "aboveModerate": 9792
+    }
+  },
+  "yearRange": [
+    2018,
+    2025
+  ],
+  "yearlyByTier": [
+    {
+      "year": 2018,
+      "tier": "veryLow",
+      "units": 0
+    },
+    {
+      "year": 2018,
+      "tier": "low",
+      "units": 0
+    },
+    {
+      "year": 2018,
+      "tier": "moderate",
+      "units": 76
+    },
+    {
+      "year": 2018,
+      "tier": "aboveModerate",
+      "units": 500
+    },
+    {
+      "year": 2019,
+      "tier": "veryLow",
+      "units": 0
+    },
+    {
+      "year": 2019,
+      "tier": "low",
+      "units": 40
+    },
+    {
+      "year": 2019,
+      "tier": "moderate",
+      "units": 312
+    },
+    {
+      "year": 2019,
+      "tier": "aboveModerate",
+      "units": 738
+    },
+    {
+      "year": 2020,
+      "tier": "veryLow",
+      "units": 0
+    },
+    {
+      "year": 2020,
+      "tier": "low",
+      "units": 0
+    },
+    {
+      "year": 2020,
+      "tier": "moderate",
+      "units": 46
+    },
+    {
+      "year": 2020,
+      "tier": "aboveModerate",
+      "units": 353
+    },
+    {
+      "year": 2021,
+      "tier": "veryLow",
+      "units": 132
+    },
+    {
+      "year": 2021,
+      "tier": "low",
+      "units": 20
+    },
+    {
+      "year": 2021,
+      "tier": "moderate",
+      "units": 262
+    },
+    {
+      "year": 2021,
+      "tier": "aboveModerate",
+      "units": 1284
+    },
+    {
+      "year": 2022,
+      "tier": "veryLow",
+      "units": 151
+    },
+    {
+      "year": 2022,
+      "tier": "low",
+      "units": 222
+    },
+    {
+      "year": 2022,
+      "tier": "moderate",
+      "units": 208
+    },
+    {
+      "year": 2022,
+      "tier": "aboveModerate",
+      "units": 2630
+    },
+    {
+      "year": 2023,
+      "tier": "veryLow",
+      "units": 52
+    },
+    {
+      "year": 2023,
+      "tier": "low",
+      "units": 190
+    },
+    {
+      "year": 2023,
+      "tier": "moderate",
+      "units": 173
+    },
+    {
+      "year": 2023,
+      "tier": "aboveModerate",
+      "units": 1589
+    },
+    {
+      "year": 2024,
+      "tier": "veryLow",
+      "units": 29
+    },
+    {
+      "year": 2024,
+      "tier": "low",
+      "units": 383
+    },
+    {
+      "year": 2024,
+      "tier": "moderate",
+      "units": 225
+    },
+    {
+      "year": 2024,
+      "tier": "aboveModerate",
+      "units": 1359
+    },
+    {
+      "year": 2025,
+      "tier": "veryLow",
+      "units": 62
+    },
+    {
+      "year": 2025,
+      "tier": "low",
+      "units": 350
+    },
+    {
+      "year": 2025,
+      "tier": "moderate",
+      "units": 222
+    },
+    {
+      "year": 2025,
+      "tier": "aboveModerate",
+      "units": 1339
+    }
+  ],
+  "rhnaPaceByTier": {
+    "veryLow": {
+      "target": 1268,
+      "achieved": 426,
+      "pct": 33.6
+    },
+    "low": {
+      "target": 718,
+      "achieved": 1165,
+      "pct": 162.3
+    },
+    "moderate": {
+      "target": 883,
+      "achieved": 1090,
+      "pct": 123.4
+    },
+    "aboveModerate": {
+      "target": 2574,
+      "achieved": 8201,
+      "pct": 318.6
+    }
+  },
+  "rhna": {
+    "veryLow": 1268,
+    "low": 718,
+    "moderate": 883,
+    "aboveModerate": 2574,
+    "total": 5443
+  },
+  "incomeTiers": [
+    "veryLow",
+    "low",
+    "moderate",
+    "aboveModerate"
+  ],
+  "metadata": {
+    "source": "HCD Annual Progress Report (APR) Table A",
+    "notes": "Deed-restricted = units with income restrictions recorded. Very Low includes acutely low, extremely low, and very low income categories."
+  }
+}

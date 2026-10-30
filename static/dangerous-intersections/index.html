@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Oceanside's Most Dangerous Intersections</title>
+<style>
+  @font-face {
+    font-family: 'Display';
+    src: local('Avenir Next Condensed'), local('AvenirNextCondensed-Bold'), local('Arial Narrow Bold');
+    font-weight: 700;
+  }
+
+  :root {
+    --bg: #f7f6f3;
+    --surface: #ffffff;
+    --text: #1a1a1a;
+    --text-secondary: #5a5a5a;
+    --accent: #c2362a;
+    --accent-light: #fdf0ee;
+    --border: #e2e0db;
+    --stripe: #fafaf8;
+    --severity-high: #c2362a;
+    --severity-med: #d48a1a;
+    --severity-low: #6b8a3d;
+    --badge-bg: #2a2a2a;
+    --badge-text: #ffffff;
+    --note-bg: #f0eeea;
+    --note-border: #d4d1cb;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141312;
+      --surface: #1e1d1b;
+      --text: #e8e6e1;
+      --text-secondary: #9a9890;
+      --accent: #e05a4f;
+      --accent-light: #2a1f1e;
+      --border: #2e2d2a;
+      --stripe: #1a1918;
+      --severity-high: #e05a4f;
+      --severity-med: #e0a832;
+      --severity-low: #8aad52;
+      --badge-bg: #e8e6e1;
+      --badge-text: #141312;
+      --note-bg: #1e1d1b;
+      --note-border: #3a3835;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: -apple-system, 'Segoe UI', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 4rem;
+  }
+
+  header {
+    margin-bottom: 2.5rem;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1.5rem;
+  }
+
+  .eyebrow {
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+
+  h1 {
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    line-height: 1.15;
+    text-wrap: balance;
+    color: var(--text);
+    margin-bottom: 0.6rem;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    max-width: 55ch;
+  }
+
+  .stats-bar {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    padding: 1rem 1.25rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .stat-value {
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 2rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+    font-size: 0.88rem;
+  }
+
+  thead th {
+    background: var(--surface);
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-align: left;
+    padding: 0.65rem 0.9rem;
+    border-bottom: 2px solid var(--border);
+    position: sticky;
+    top: 0;
+    white-space: nowrap;
+  }
+
+  thead th:first-child {
+    width: 2.5rem;
+    text-align: center;
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--stripe);
+  }
+
+  tbody tr:last-child {
+    border-bottom: none;
+  }
+
+  td {
+    padding: 0.6rem 0.9rem;
+    vertical-align: top;
+  }
+
+  td:first-child {
+    text-align: center;
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    color: var(--text-secondary);
+    font-size: 0.82rem;
+  }
+
+  .intersection-name {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.15rem 0.45rem;
+    border-radius: 3px;
+    margin-left: 0.4rem;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+  }
+
+  .badge-ped { background: var(--accent-light); color: var(--severity-high); }
+  .badge-bike { background: #eef3e6; color: var(--severity-low); }
+  .badge-moto { background: #fdf5e6; color: var(--severity-med); }
+
+  @media (prefers-color-scheme: dark) {
+    .badge-bike, .badge-moto {
+      background: var(--accent-light);
+    }
+  }
+
+  .corridor {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+  }
+
+  .crashes-col {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .note-section {
+    background: var(--note-bg);
+    border: 1px solid var(--note-border);
+    border-radius: 6px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .note-section h3 {
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+  }
+
+  .note-section p, .note-section li {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+
+  .note-section ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding-left: 0;
+  }
+
+  .note-section li::before {
+    content: "\00b7";
+    margin-right: 0.5rem;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .sources {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    border-top: 1px solid var(--border);
+    padding-top: 1.25rem;
+  }
+
+  .sources h3 {
+    font-family: 'Display', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  .sources a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .sources a:hover {
+    text-decoration: underline;
+  }
+
+  .sources ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  @media (max-width: 500px) {
+    .page { padding: 2rem 1rem 3rem; }
+    .stats-bar { gap: 1rem; }
+    table { font-size: 0.82rem; }
+    td, thead th { padding: 0.5rem 0.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+  <header>
+    <div class="eyebrow">Traffic Safety</div>
+    <h1>Oceanside's Most Dangerous Intersections</h1>
+    <p class="subtitle">Ranked by crash frequency using SWITRS collision data (2021-2024) and county-level studies. Includes vehicle, pedestrian, bicycle, and motorcycle incidents.</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat">
+      <span class="stat-value">20</span>
+      <span class="stat-label">Fatalities (2024)</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">~750</span>
+      <span class="stat-label">Crashes/Year</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">#1/62</span>
+      <span class="stat-label">OTS Alcohol Rank</span>
+    </div>
+    <div class="stat">
+      <span class="stat-value">2x</span>
+      <span class="stat-label">Fatality Growth (YoY)</span>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Intersection</th>
+          <th>Crashes</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="intersection-name">College Blvd &amp; Oceanside Blvd</span></td>
+          <td class="crashes-col">27 crashes, 31 injuries</td>
+          <td><span class="corridor">Ranked #2 in San Diego County</span></td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="intersection-name">College Blvd &amp; SR-76</span></td>
+          <td class="crashes-col">9 (2021)</td>
+          <td><span class="corridor">High-speed arterial junction</span></td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>
+            <span class="intersection-name">Coast Hwy &amp; Oceanside Blvd</span>
+            <span class="badge badge-ped">Ped</span>
+            <span class="badge badge-moto">Moto</span>
+          </td>
+          <td class="crashes-col">19+ ped, 23+ moto</td>
+          <td><span class="corridor">Highest pedestrian &amp; motorcycle crash corridor</span></td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="intersection-name">El Camino Real &amp; Oceanside Blvd</span></td>
+          <td class="crashes-col">8 (2021)</td>
+          <td><span class="corridor">Major east-west/north-south cross</span></td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="intersection-name">SR-78 WB &amp; I-5</span></td>
+          <td class="crashes-col">19 crashes</td>
+          <td><span class="corridor">Ranked #12 countywide. Infrastructure project planned.</span></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="intersection-name">Mission Ave &amp; I-5</span></td>
+          <td class="crashes-col">High (annual)</td>
+          <td><span class="corridor">Freeway merge conflicts, congestion</span></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="intersection-name">El Camino Real &amp; Mission Ave</span></td>
+          <td class="crashes-col">6 (2021)</td>
+          <td><span class="corridor">Five-way geometry</span></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="intersection-name">Civic Center Dr &amp; Coast Hwy</span></td>
+          <td class="crashes-col">5 (2021)</td>
+          <td><span class="corridor">Downtown core</span></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="intersection-name">Guajome Lake Rd &amp; Mission Ave</span></td>
+          <td class="crashes-col">5 (2021)</td>
+          <td><span class="corridor">East Oceanside corridor</span></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="intersection-name">Melrose Dr &amp; Oceanside Blvd</span></td>
+          <td class="crashes-col">5 (2021)</td>
+          <td><span class="corridor">Near Sprinter station</span></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>
+            <span class="intersection-name">Oceanside Blvd &amp; Vine St</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">5 (2021)</td>
+          <td><span class="corridor">Bicycle crash hotspot</span></td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td><span class="intersection-name">Oceanside Blvd &amp; Rancho Del Oro Dr</span></td>
+          <td class="crashes-col">5 (2021)</td>
+          <td><span class="corridor">Sprinter corridor</span></td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td><span class="intersection-name">I-5 &amp; Vista Way</span></td>
+          <td class="crashes-col">High</td>
+          <td><span class="corridor">Freeway on/off ramp conflicts</span></td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>
+            <span class="intersection-name">Clementine St &amp; Mission Ave</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Bicycle crash hotspot</span></td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>
+            <span class="intersection-name">Coast Hwy &amp; Eaton St</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Bicycle crash hotspot</span></td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>
+            <span class="intersection-name">Mission Ave &amp; Nevada St</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Bicycle crash hotspot</span></td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>
+            <span class="intersection-name">8th St &amp; Coast Hwy</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Coastal tourist area</span></td>
+        </tr>
+        <tr>
+          <td>18</td>
+          <td><span class="intersection-name">Vista Way &amp; Jefferson St</span></td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Retail access conflicts</span></td>
+        </tr>
+        <tr>
+          <td>19</td>
+          <td><span class="intersection-name">Mission Ave &amp; Douglas Dr</span></td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Residential connector</span></td>
+        </tr>
+        <tr>
+          <td>20</td>
+          <td>
+            <span class="intersection-name">Coast Hwy &amp; Cassidy St</span>
+            <span class="badge badge-ped">Ped</span>
+            <span class="badge badge-bike">Bike</span>
+          </td>
+          <td class="crashes-col">&mdash;</td>
+          <td><span class="corridor">Pedestrian &amp; bicycle hotspot</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="note-section">
+    <h3>Key Findings</h3>
+    <ul>
+      <li>Fatalities doubled year-over-year: 10 (2022) &rarr; 15 (2023) &rarr; 20 (2024)</li>
+      <li>Oceanside ranks #1 out of 62 comparable cities for alcohol-involved collisions (OTS 2023)</li>
+      <li>Also #1/62 for young drunk drivers (ages 21-34) and motorcycle collisions</li>
+      <li>Coast Highway is the most dangerous corridor for pedestrians and motorcyclists</li>
+      <li>Oceanside Blvd is the most dangerous east-west corridor across all crash types</li>
+      <li>12% of all intersection crashes in San Diego County occur in Oceanside</li>
+    </ul>
+  </div>
+
+  <div class="note-section">
+    <h3>Methodology Note</h3>
+    <p>Rankings 1-12 are based on reported crash counts from SWITRS data (2021-2024) and the Miller Steele San Diego County intersection study. Rankings 13-20 are identified hotspots from TIMS, OTS, and law enforcement data without precise countywide crash counts available. Entries marked with badges indicate documented pedestrian, bicycle, or motorcycle crash clusters at that location.</p>
+  </div>
+
+  <div class="sources">
+    <h3>Sources</h3>
+    <ul>
+      <li><a href="https://www.ots.ca.gov/?p=41405">California Office of Traffic Safety, Oceanside 2023 Rankings</a></li>
+      <li><a href="https://www.millersteelelaw.com/the-most-dangerous-intersections-in-san-diego-county">Miller Steele Law, Most Dangerous Intersections in San Diego County (SWITRS 2021-2024)</a></li>
+      <li><a href="https://petrovlawfirm.com/oceanside-car-accident-lawyer/statistics/">Petrov Law, Oceanside Car Accident Statistics (TIMS/SWITRS)</a></li>
+      <li><a href="https://tims.berkeley.edu/tools/safetyheatmap/">UC Berkeley TIMS Safety Heat Map</a></li>
+      <li><a href="https://opendata.sandag.org/Transportation/Safety-Collisions-SWITRS-2024/ta2f-7tx9">SANDAG Open Data Portal, SWITRS Collisions 2024</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

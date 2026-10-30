@@ -1,0 +1,8 @@
+:root {
+  --dash-accent: #2563eb;
+  --dash-positive: #16a34a;
+  --dash-negative: #dc2626;
+  --dash-neutral: #9ca3af;
+  --dash-surface: #f9fafb;
+  --dash-mono: "SF Mono", "Cascadia Code", ui-monospace, monospace;
+}

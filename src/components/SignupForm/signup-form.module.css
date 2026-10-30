@@ -1,0 +1,66 @@
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  width: 100%;
+  max-width: 28rem;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 0.6rem 0.75rem;
+  font-family: var(--sans);
+  font-size: 1rem;
+  border: 1px solid var(--rule);
+  border-right: none;
+  border-radius: 0.125rem 0 0 0.125rem;
+  background: transparent;
+  color: var(--text);
+  outline: none;
+
+  &::placeholder {
+    color: var(--text);
+    opacity: 0.5;
+  }
+
+  &:focus {
+    border-color: var(--accent);
+  }
+}
+
+.button {
+  box-sizing: border-box;
+  padding: 0.6rem 1.4rem;
+  font-family: var(--sans);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background: var(--accent-btn);
+  color: var(--btn-text);
+  border: 1px solid var(--accent-btn);
+  border-radius: 0 0.125rem 0.125rem 0;
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+}
+
+.message {
+  width: 100%;
+  font-family: var(--sans);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.success {
+  color: var(--text);
+}
+
+.error {
+  color: #c00;
+}

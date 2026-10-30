@@ -1,0 +1,59 @@
+.hero {
+  position: relative;
+  padding-top: 3rem;
+  padding-bottom: 5rem;
+
+  :global(.open) ~ & {
+    @media (max-width: 599px) {
+      padding-top: 0;
+    }
+  }
+
+  > :nth-child(n) {
+    max-width: 40rem;
+  }
+
+  > h1 {
+    font-family: var(--sans);
+    font-size: 2.25rem;
+    line-height: 2.75rem;
+    margin-bottom: 0.75rem;
+    color: var(--accent);
+  }
+
+  > p:nth-child(2) {
+    margin-top: 0.75rem;
+    font-style: italic;
+    font-size: 1.0625rem;
+    line-height: 1.5rem;
+  }
+
+  > a:nth-child(n) {
+    margin-top: 0.75rem;
+    display: inline-block;
+    text-decoration: underline;
+    color: var(--text);
+
+    > p {
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-weight: 400;
+      color: inherit;
+      text-decoration: inherit;
+    }
+  }
+}
+
+.hero.centered {
+  text-align: center;
+  padding-bottom: 0;
+
+  > :nth-child(n) {
+    max-width: none;
+  }
+
+  > p:nth-child(2) {
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+}

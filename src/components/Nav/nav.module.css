@@ -1,0 +1,124 @@
+.nav {
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 0.75rem 0;
+
+  > :first-child {
+    display: flex;
+    align-items: center;
+    height: 1.75rem;
+    font-family: var(--sans);
+    color: var(--accent);
+    margin-right: auto;
+
+    & div {
+      font-size: small;
+      font-weight: 700;
+      letter-spacing: .02em;
+    }
+  }
+
+  > :nth-child(2) {
+    display: flex;
+    justify-content: flex-end;
+
+    > button {
+      height: 1.75rem;
+      width: 2.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background: transparent;
+      color: var(--accent);
+    }
+  }
+
+  > :nth-child(3) {
+    padding-top: 0.75rem;
+  }
+
+  > :nth-child(n+3) {
+    width: 100%;
+    text-align: center;
+
+    > a {
+      padding: 1rem 0;
+
+      > span {
+        font-family: var(--sans);
+        font-weight: 600;
+        letter-spacing: .05em;
+        color: var(--accent);
+        font-size: 1rem;
+      }
+    }
+  }
+
+  > :last-child {
+    padding-bottom: 0.75rem;
+  }
+
+  @media (min-width: 600px) {
+    > :nth-child(2) {
+      display: none;
+    }
+
+    > :nth-child(n+3) {
+      width: auto;
+      padding-top: 0;
+      padding-left: 2rem;
+
+      > a {
+        padding: 0.5rem 0;
+
+        > span {
+          font-size: 0.75rem;
+        }
+      }
+    }
+
+    > :last-child {
+      padding-bottom: 0;
+    }
+  }
+}
+
+.loginBtn {
+  background: none;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  font-family: var(--sans);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.loginBtn:hover {
+  opacity: 0.7;
+}
+
+@media (min-width: 600px) {
+  .loginBtn {
+    font-size: 0.75rem;
+    min-width: auto;
+  }
+}
+
+.authOnly {
+  display: none;
+}
+
+:global(html.authed) .authOnly {
+  display: inline;
+}
+
+:global(html.authed) .noAuthOnly {
+  display: none;
+}

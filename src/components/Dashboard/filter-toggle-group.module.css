@@ -1,0 +1,47 @@
+.fieldset {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+.legend {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--light-grey);
+  margin-bottom: 0.35rem;
+}
+
+.group {
+  display: inline-flex;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.toggle {
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  background: #fff;
+  border: none;
+  border-right: 1px solid var(--rule);
+  color: var(--text);
+  cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+}
+
+.toggle:last-child {
+  border-right: none;
+}
+
+.toggle:hover {
+  background: var(--dash-surface);
+}
+
+.toggle.active {
+  background: var(--dash-accent);
+  color: #fff;
+}

@@ -1,0 +1,90 @@
+:root {
+  --serif: Georgia, "Times New Roman", Times, serif;
+  --sans: Helvetica, "Helvetica Neue", Arial, sans-serif;
+}
+
+:global(html) {
+  overflow-y: scroll;
+}
+
+:global(body) {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+:global(main) {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+  max-width: 55rem;
+
+  > :nth-child(n) {
+    width: 100%;
+  }
+
+  > :last-child {
+    margin-top: auto;
+  }
+}
+
+:global(.closed) {
+  > :nth-child(n+3) {
+    display: none;
+
+    @media (min-width: 600px) {
+      display: block;
+    }
+  }
+}
+
+:global(h1) {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 2rem;
+}
+
+:global(h2) {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  line-height: 1.375rem;
+}
+
+:global(p) {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.75rem;
+
+  > img {
+    max-width: 100%;
+  }
+}
+
+:global(button) {
+  background-color: white;
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+}
+
+:global(.ui-button) {
+  background-color: #fff;
+  border: 0;
+  border-radius: 2px;
+  box-shadow: 0 1px 4px -1px rgba(0, 0, 0, 0.3);
+  margin: 10px;
+  padding: 0 0.5em;
+  font: 400 18px Roboto, Arial, sans-serif;
+  overflow: hidden;
+  height: 40px;
+  cursor: pointer;
+
+  &:hover {
+    background: rgb(235, 235, 235);
+  }
+}

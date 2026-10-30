@@ -1,0 +1,49 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+}
+
+.splitPane {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.fullWidth {
+  grid-column: 1 / -1;
+}
+
+.exportRow {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.loading {
+  text-align: center;
+  padding: 4rem 0;
+  color: var(--light-grey);
+  font-size: 0.9rem;
+}
+
+.error {
+  text-align: center;
+  padding: 2rem;
+  color: var(--dash-negative);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 800px) {
+  .splitPane {
+    grid-template-columns: 1fr;
+  }
+}

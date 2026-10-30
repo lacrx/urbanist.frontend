@@ -1,0 +1,43 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tile {
+  text-align: center;
+  padding: 1.25rem 0.75rem;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.value {
+  font-family: var(--sans);
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--accent);
+  margin: 0;
+}
+
+.label {
+  font-family: var(--serif);
+  font-size: 0.9rem;
+  line-height: 1.3;
+  color: var(--text);
+  margin: 0.25rem 0 0;
+}
+
+.detail {
+  font-family: var(--serif);
+  font-size: 0.8rem;
+  color: #888;
+  margin: 0.15rem 0 0;
+}
