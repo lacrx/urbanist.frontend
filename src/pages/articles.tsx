@@ -8,7 +8,7 @@ import Pagination from "@/components/Pagination/pagination";
 import usePagination from "@/hooks/usePagination";
 
 const query = graphql`
-  query AllGatsbyArticle {
+  query ArticleListingPage {
     allGatsbyArticle(sort: { publishedAt: DESC }) {
       nodes {
         title

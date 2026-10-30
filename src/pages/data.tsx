@@ -12,7 +12,7 @@ interface DataQuery {
 }
 
 const query = graphql`
-  query AllGatsbyDataPage {
+  query DataListingPage {
     allGatsbyDataPage(sort: { sortOrder: ASC }) {
       nodes {
         title
