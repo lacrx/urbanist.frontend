@@ -12,6 +12,7 @@ type Artifact = {
   vizId: string;
   featuresFile: { publicURL: string | null } | null;
   featuresTilesFile: { publicURL: string | null } | null;
+  featuresTilesUrl: string | null;
   tilesLayer: string | null;
   camera: { center: number[]; zoom: number | null; pitch: number | null; bearing: number | null } | null;
   color: { field: string; domain: number[]; range: string[] } | null;
@@ -133,7 +134,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
     if (!containerRef.current) return;
     if (usePosterOnly) return;
     if (!artifact.camera || !artifact.color || !artifact.elevation) return;
-    const hasTiles = Boolean(artifact.featuresTilesFile?.publicURL);
+    const hasTiles = Boolean(artifact.featuresTilesFile?.publicURL || artifact.featuresTilesUrl);
     const hasGeojson = Boolean(artifact.featuresFile?.publicURL);
     if (!hasTiles && !hasGeojson) return;
 
@@ -316,7 +317,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
         // like /static/HASH/parcels.pmtiles, which when prefixed with
         // pmtiles:// becomes pmtiles:///static/... -- triple slash trips
         // up the protocol handler and the source never loads.
-        const rawUrl = artifact.featuresTilesFile!.publicURL!;
+        const rawUrl = artifact.featuresTilesFile?.publicURL ?? artifact.featuresTilesUrl!;
         const tilesUrl =
           typeof window !== "undefined" && rawUrl.startsWith("/")
             ? `${window.location.origin}${rawUrl}`

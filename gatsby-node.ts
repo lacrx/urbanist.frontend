@@ -623,6 +623,8 @@ export async function sourceNodes({
     const vizResult = await strapiGraphqlClient.request<VisualizationResponse>(getAllStrapiVisualizations);
     for (const viz of vizResult.visualizations) {
       strapiVizIds.add(viz.vizId);
+      const configObj =
+        viz.config && typeof viz.config === "object" ? (viz.config as Record<string, unknown>) : {};
       createNode({
         vizId: viz.vizId,
         type: viz.type,
@@ -630,6 +632,7 @@ export async function sourceNodes({
         source: viz.source,
         data: viz.data,
         config: viz.config,
+        ...configObj,
         id: createNodeId(`viz-${viz.vizId}`),
         internal: {
           type: "GatsbyVisualization",
@@ -1041,6 +1044,7 @@ export function createSchemaCustomization({
       config: JSON
       featuresFile: File @link(by: "name", from: "features")
       featuresTilesFile: File @link(by: "name", from: "featuresTiles")
+      featuresTilesUrl: String
       posterFile: File @link(by: "name", from: "posterFrame")
       posterFileMobile: File @link(by: "name", from: "posterFrameMobile")
       basemap: String
