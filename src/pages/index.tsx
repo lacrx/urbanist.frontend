@@ -1,5 +1,5 @@
 import { graphql, useStaticQuery } from "gatsby";
-import type { GatsbyArticle, GatsbyEvent } from "@/types";
+import type { GatsbyArticle, GatsbyEvent, GatsbyDataPage } from "@/types";
 import Layout from "@/components/Layout/layout";
 import Hero from "@/components/Hero/hero";
 import Content from "@/components/Content/content";
@@ -10,6 +10,7 @@ import config from "@/site/config";
 interface HomePageData {
   allGatsbyArticle: { nodes: GatsbyArticle[] };
   allGatsbyEvent: { nodes: GatsbyEvent[] };
+  allGatsbyDataPage: { nodes: GatsbyDataPage[] };
 }
 
 const query = graphql`
@@ -57,13 +58,34 @@ const query = graphql`
         }
       }
     }
+    allGatsbyDataPage(sort: { sortOrder: ASC }, limit: 1) {
+      nodes {
+        title
+        description
+        slug
+        image {
+          childImageSharp {
+            gatsbyImageData(
+              width: 150
+              height: 150
+              placeholder: BLURRED
+              formats: [AUTO, WEBP, AVIF]
+              transformOptions: { fit: COVER, cropFocus: ATTENTION }
+            )
+          }
+        }
+        dataUpdatedAt
+      }
+    }
   }
 `;
 
 export default function Home() {
-  const { allGatsbyArticle, allGatsbyEvent } = useStaticQuery<HomePageData>(query);
+  const { allGatsbyArticle, allGatsbyEvent, allGatsbyDataPage } =
+    useStaticQuery<HomePageData>(query);
   const article = allGatsbyArticle.nodes[0];
   const event = allGatsbyEvent.nodes[0];
+  const dataPage = allGatsbyDataPage.nodes[0];
 
   return (
     <Layout>
@@ -73,9 +95,9 @@ export default function Home() {
         cta={config.hero.cta}
         showBuddy={config.hero.showBuddy}
       />
-      <Content type="section">
-        <h2>Newest Article</h2>
-        {article && (
+      {article && (
+        <Content type="section">
+          <h2>Newest Article</h2>
           <Card
             link={`/articles/${article.slug}`}
             title={article.title}
@@ -84,8 +106,20 @@ export default function Home() {
             authorName={article.authorName}
             publishedAt={article.publishedAt}
           />
-        )}
-      </Content>
+        </Content>
+      )}
+      {dataPage && (
+        <Content type="section">
+          <h2>Latest Data</h2>
+          <Card
+            link={`/data/${dataPage.slug}`}
+            title={dataPage.title}
+            description={dataPage.description || ""}
+            image={dataPage.image}
+            publishedAt={dataPage.dataUpdatedAt}
+          />
+        </Content>
+      )}
       {event && (
         <Content type="section">
           <h2>Next Event</h2>
