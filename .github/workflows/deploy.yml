@@ -1,0 +1,205 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  repository_dispatch:
+    types: [cms-deploy]
+  schedule:
+    # Daily 09:00 UTC (~1-2am Pacific): pick up new Meetup events for stoside.
+    - cron: '0 9 * * *'
+  workflow_dispatch:
+    inputs:
+      site:
+        description: 'Site to deploy (blank = all)'
+        type: choice
+        options:
+          - ''
+          - ncyimby
+          - stoside
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  # Stoside daily event-change check (schedule trigger only)
+  check-events:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    environment: stoside
+    outputs:
+      changed: ${{ steps.diff.outputs.changed }}
+    steps:
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Check if Meetup events changed
+        id: diff
+        run: |
+          MEETUP_URL="https://www.meetup.com/north-county-urbanists/"
+          HASH_KEY="meetup-events-hash.txt"
+          BUCKET="${{ secrets.FRONTEND_S3_BUCKET }}"
+
+          CURRENT_HASH=$(curl -sf -A "Mozilla/5.0 (compatible; UrbanistBot/1.0)" "$MEETUP_URL" \
+            | grep -oP '(?<=type="application/ld\+json">).*?(?=</script>)' \
+            | sha256sum | cut -d' ' -f1)
+
+          PREVIOUS_HASH=$(aws s3 cp "s3://$BUCKET/$HASH_KEY" - 2>/dev/null || echo "")
+
+          if [ "$CURRENT_HASH" = "$PREVIOUS_HASH" ]; then
+            echo "Events unchanged -- skipping build"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "Events changed -- triggering build"
+            echo "$CURRENT_HASH" | aws s3 cp - "s3://$BUCKET/$HASH_KEY"
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+  # Determine which sites to deploy
+  prepare:
+    runs-on: ubuntu-latest
+    needs: [check-events]
+    if: always()
+    outputs:
+      matrix: ${{ steps.set.outputs.matrix }}
+    steps:
+      - name: Build site matrix
+        id: set
+        run: |
+          EVENT="${{ github.event_name }}"
+          INPUT_SITE="${{ inputs.site }}"
+
+          if [ "$EVENT" = "schedule" ]; then
+            CHANGED="${{ needs.check-events.outputs.changed }}"
+            if [ "$CHANGED" = "true" ]; then
+              echo 'matrix={"include":[{"site":"stoside"}]}' >> "$GITHUB_OUTPUT"
+            else
+              echo 'matrix={"include":[]}' >> "$GITHUB_OUTPUT"
+            fi
+          elif [ -n "$INPUT_SITE" ]; then
+            echo "matrix={\"include\":[{\"site\":\"$INPUT_SITE\"}]}" >> "$GITHUB_OUTPUT"
+          else
+            echo 'matrix={"include":[{"site":"ncyimby"},{"site":"stoside"}]}' >> "$GITHUB_OUTPUT"
+          fi
+
+  deploy:
+    needs: [prepare]
+    if: needs.prepare.outputs.matrix != '{"include":[]}'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.prepare.outputs.matrix) }}
+    environment: ${{ matrix.site }}
+    concurrency:
+      group: deploy-${{ matrix.site }}
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify Strapi is reachable
+        run: |
+          for i in $(seq 1 6); do
+            if curl -sf "$STRAPI_URL/api/articles" > /dev/null 2>&1; then
+              echo "Strapi is reachable"
+              exit 0
+            fi
+            echo "Attempt $i/6 -- waiting 10s..."
+            sleep 10
+          done
+          echo "::warning::Strapi unreachable at $STRAPI_URL -- building without articles"
+        env:
+          STRAPI_URL: ${{ vars.STRAPI_URL }}
+
+      - name: Build Gatsby site
+        run: npx gatsby build
+        env:
+          SITE: ${{ matrix.site }}
+          STRAPI_URL: ${{ vars.STRAPI_URL }}
+          GATSBY_STRAPI_URL: ${{ vars.GATSBY_STRAPI_URL }}
+          GATSBY_SUPABASE_URL: ${{ vars.GATSBY_SUPABASE_URL }}
+          GATSBY_SUPABASE_KEY: ${{ vars.GATSBY_SUPABASE_KEY }}
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: us-east-1
+
+      - name: Deploy CloudFront URL rewrite function
+        run: |
+          FUNC_NAME="${{ matrix.site }}-url-rewrite"
+
+          if aws cloudfront describe-function --name "$FUNC_NAME" 2>/dev/null; then
+            ETAG=$(aws cloudfront describe-function --name "$FUNC_NAME" \
+              --query 'ETag' --output text)
+            aws cloudfront update-function \
+              --name "$FUNC_NAME" \
+              --if-match "$ETAG" \
+              --function-config '{"Comment":"Rewrite clean URLs to index.html","Runtime":"cloudfront-js-2.0"}' \
+              --function-code fileb://infra/url-rewrite.js
+            ETAG=$(aws cloudfront describe-function --name "$FUNC_NAME" \
+              --query 'ETag' --output text)
+            aws cloudfront publish-function \
+              --name "$FUNC_NAME" \
+              --if-match "$ETAG"
+          else
+            aws cloudfront create-function \
+              --name "$FUNC_NAME" \
+              --function-config '{"Comment":"Rewrite clean URLs to index.html","Runtime":"cloudfront-js-2.0"}' \
+              --function-code fileb://infra/url-rewrite.js
+            ETAG=$(aws cloudfront describe-function --name "$FUNC_NAME" \
+              --query 'ETag' --output text)
+            aws cloudfront publish-function \
+              --name "$FUNC_NAME" \
+              --if-match "$ETAG"
+          fi
+
+          FUNC_ARN=$(aws cloudfront describe-function --name "$FUNC_NAME" \
+            --query 'FunctionSummary.FunctionMetadata.FunctionARN' --output text)
+          DIST_ID="${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}"
+
+          HAS_FUNC=$(aws cloudfront get-distribution-config --id "$DIST_ID" \
+            --query "DistributionConfig.DefaultCacheBehavior.FunctionAssociations.Items[?FunctionARN=='$FUNC_ARN']" \
+            --output text 2>/dev/null || true)
+
+          if [ -z "$HAS_FUNC" ] || [ "$HAS_FUNC" = "None" ]; then
+            echo "::warning::CloudFront Function created but not yet associated with distribution."
+            echo "Run once manually: associate function ARN $FUNC_ARN with the default cache behavior (viewer-request)."
+          else
+            echo "CloudFront Function already associated."
+          fi
+
+      - name: Deploy to S3 and invalidate CloudFront
+        run: |
+          aws s3 sync public/ s3://${{ secrets.FRONTEND_S3_BUCKET }} --delete \
+            --cache-control "public, max-age=31536000, immutable"
+
+          aws s3 cp public/ s3://${{ secrets.FRONTEND_S3_BUCKET }}/ \
+            --recursive \
+            --exclude "*" \
+            --include "*.html" \
+            --include "sw.js" \
+            --include "*.webmanifest" \
+            --include "page-data/*.json" \
+            --include "page-data/**/*.json" \
+            --metadata-directive REPLACE \
+            --cache-control "public, max-age=0, must-revalidate"
+
+          aws cloudfront create-invalidation \
+            --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} \
+            --paths "/*"
