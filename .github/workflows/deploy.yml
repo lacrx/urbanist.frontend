@@ -66,6 +66,7 @@ jobs:
     if: always()
     outputs:
       matrix: ${{ steps.set.outputs.matrix }}
+      has_sites: ${{ steps.set.outputs.has_sites }}
     steps:
       - name: Build site matrix
         id: set
@@ -77,18 +78,22 @@ jobs:
             CHANGED="${{ needs.check-events.outputs.changed }}"
             if [ "$CHANGED" = "true" ]; then
               echo 'matrix={"include":[{"site":"stoside"}]}' >> "$GITHUB_OUTPUT"
+              echo 'has_sites=true' >> "$GITHUB_OUTPUT"
             else
               echo 'matrix={"include":[]}' >> "$GITHUB_OUTPUT"
+              echo 'has_sites=false' >> "$GITHUB_OUTPUT"
             fi
           elif [ -n "$INPUT_SITE" ]; then
             echo "matrix={\"include\":[{\"site\":\"$INPUT_SITE\"}]}" >> "$GITHUB_OUTPUT"
+            echo 'has_sites=true' >> "$GITHUB_OUTPUT"
           else
             echo 'matrix={"include":[{"site":"ncyimby"},{"site":"stoside"}]}' >> "$GITHUB_OUTPUT"
+            echo 'has_sites=true' >> "$GITHUB_OUTPUT"
           fi
 
   deploy:
     needs: [prepare]
-    if: needs.prepare.outputs.matrix != '{"include":[]}'
+    if: needs.prepare.outputs.has_sites == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
