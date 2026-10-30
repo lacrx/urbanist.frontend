@@ -32,7 +32,7 @@ const config: SiteConfig = {
   build: {
     eventSource: "strapi",
     articleSort: true,
-    vizBlockNested: true,
+    vizBlockNested: false,
     coverFallbacks: {},
     substackSrcset: false,
     walkAudit: false,
