@@ -1082,15 +1082,6 @@ export function createSchemaCustomization({
       startDateDisplay: String!
       endDate: Date @dateformat
     }
-    type GatsbyDataPage implements Node {
-      title: String!
-      description: String
-      slug: String
-      dashboardType: String
-      image: File @link(by: "id")
-      dataUpdatedAt: Date @dateformat
-      sortOrder: Int
-    }
     type GatsbySiteSetting implements Node {
       instagramUrl: String
       meetupUrl: String
