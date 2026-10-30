@@ -59,7 +59,7 @@ export default function Hero({ title, cta, description, showBuddy = false, cente
       {showBuddy && config.hero.buddyImage && (
         <a href={instagramUrl} target="_blank" rel="noopener noreferrer" style={buddyStyle}>
           <img
-            src={require(`@/site/images/${config.hero.buddyImage}`).default}
+            src={`/${config.hero.buddyImage}`}
             width="60"
             height="60"
             alt={config.hero.buddyAlt || ""}

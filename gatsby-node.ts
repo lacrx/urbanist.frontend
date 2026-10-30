@@ -4,7 +4,6 @@ import { marked } from "marked";
 import { sanitize } from "isomorphic-dompurify";
 import { type GatsbyNode } from "gatsby";
 import { createRemoteFileNode } from "gatsby-source-filesystem";
-import TsconfigPathsPlugin from "tsconfig-paths-webpack-plugin";
 import { GraphQLClient } from "graphql-request";
 import { ordinal } from "./src/utils";
 import type { SiteConfig } from "./src/site-config";
@@ -59,15 +58,14 @@ if (siteConfig.build.substackSrcset) {
 
 export function onCreateWebpackConfig({
   actions,
+  getConfig,
 }: Parameters<NonNullable<GatsbyNode["onCreateWebpackConfig"]>>[0]) {
-  actions.setWebpackConfig({
-    resolve: {
-      plugins: [new TsconfigPathsPlugin()],
-      alias: {
-        "@/site": path.resolve(__dirname, `sites/${SITE}`),
-      },
-    },
-  });
+  const config = getConfig();
+  config.resolve = config.resolve || {};
+  config.resolve.alias = config.resolve.alias || {};
+  config.resolve.alias["@/site"] = path.resolve(__dirname, `sites/${SITE}`);
+  config.resolve.alias["@"] = path.resolve(__dirname, "src");
+  actions.replaceWebpackConfig(config);
 }
 
 // ---------------------------------------------------------------------------
