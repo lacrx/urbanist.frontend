@@ -13,7 +13,6 @@ export default function Pagination({ page, totalPages, onPrev, onNext }: Paginat
   const handleClick = (action: () => void) => (e: React.MouseEvent<HTMLButtonElement>) => {
     e.currentTarget.blur();
     action();
-    e.currentTarget.closest("section, main")?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
