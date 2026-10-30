@@ -14,6 +14,7 @@ const config: SiteConfig = {
 
   navLinks: [
     { label: "Articles", path: "/articles" },
+    { label: "Data", path: "/data" },
     { label: "Events", path: "/events" },
     { label: "About", path: "/about" },
   ],
@@ -36,7 +37,7 @@ const config: SiteConfig = {
     coverFallbacks: {},
     substackSrcset: false,
     walkAudit: false,
-    dataPages: false,
+    dataPages: true,
     pagination: { pageSize: 100 },
   },
 };
