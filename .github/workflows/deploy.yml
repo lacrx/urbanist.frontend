@@ -93,7 +93,7 @@ jobs:
 
   deploy:
     needs: [prepare]
-    if: needs.prepare.outputs.has_sites == 'true'
+    if: always() && needs.prepare.result == 'success' && needs.prepare.outputs.has_sites == 'true'
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
