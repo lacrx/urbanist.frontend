@@ -166,20 +166,13 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      // Minimal 538-adjacent style: white background, muted water, a pair
-      // of road weights, subtle buildings. No text labels (no glyphs URL
-      // dependency, no fonts to ship). Labels can be layered in later if
-      // they become editorially useful.
       style: {
         version: 8,
-        // Soften MapLibre's default directional light so fill-extrusion
-        // vertical faces don't render darker than the top face. Keeps
-        // the choropleth palette reading as flat colour.
         light: {
           anchor: "viewport",
-          color: "#ffffff",
-          intensity: 0.6,
-          position: [1.15, 210, 30],
+          color: "#ffeedd",
+          intensity: 0.45,
+          position: [1.5, 210, 30],
         },
         sources: {
           omt: {
@@ -193,21 +186,21 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
           {
             id: "background",
             type: "background",
-            paint: { "background-color": "#ffffff" },
+            paint: { "background-color": "#141422" },
           },
           {
             id: "landcover-park",
             type: "fill",
             source: "omt",
             "source-layer": "park",
-            paint: { "fill-color": "#e8efe0", "fill-opacity": 0.55 },
+            paint: { "fill-color": "#1a2a1a", "fill-opacity": 0.6 },
           },
           {
             id: "water",
             type: "fill",
             source: "omt",
             "source-layer": "water",
-            paint: { "fill-color": "#d3e2ec" },
+            paint: { "fill-color": "#0d1b2a" },
           },
           {
             id: "road-minor",
@@ -217,7 +210,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
             filter: ["!", ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary"]]]],
             minzoom: 12,
             paint: {
-              "line-color": "#e8e8e8",
+              "line-color": "#252538",
               "line-width": ["interpolate", ["linear"], ["zoom"], 12, 0.5, 16, 2],
             },
           },
@@ -228,7 +221,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
             "source-layer": "transportation",
             filter: ["in", ["get", "class"], ["literal", ["motorway", "trunk", "primary", "secondary"]]],
             paint: {
-              "line-color": "#d6d6d6",
+              "line-color": "#2a2a40",
               "line-width": ["interpolate", ["linear"], ["zoom"], 10, 0.8, 14, 2.5, 16, 4],
             },
           },
@@ -238,7 +231,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
             source: "omt",
             "source-layer": "building",
             minzoom: 14,
-            paint: { "fill-color": "#efefef", "fill-opacity": 0.6 },
+            paint: { "fill-color": "#1e1e30", "fill-opacity": 0.6 },
           },
         ],
       },
@@ -335,11 +328,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
           paint: {
             "fill-extrusion-color": buildStepColorExpression(color.field, color.domain, color.range) as any,
             "fill-extrusion-height": ["/", ["get", elevation.field], elevation.divisor ?? 1] as any,
-            // High opacity + light ambient (below, on the style) keeps
-            // extrusion colours crisp against the basemap instead of
-            // letting the pale-tan / pale-green basemap bleed through
-            // vertical faces and mute the palette.
-            "fill-extrusion-opacity": 0.95,
+            "fill-extrusion-opacity": 1,
           },
         });
 
