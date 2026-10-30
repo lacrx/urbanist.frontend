@@ -4,6 +4,8 @@ import Layout from "@/components/Layout/layout";
 import Hero from "@/components/Hero/hero";
 import Content from "@/components/Content/content";
 import Card from "@/components/Card/card";
+import Pagination from "@/components/Pagination/pagination";
+import usePagination from "@/hooks/usePagination";
 
 interface DataQuery {
   allGatsbyDataPage: { nodes: GatsbyDataPage[] };
@@ -37,12 +39,13 @@ const query = graphql`
 
 export default function Data() {
   const { allGatsbyDataPage } = useStaticQuery<DataQuery>(query);
+  const { items, page, totalPages, prev, next } = usePagination(allGatsbyDataPage.nodes);
 
   return (
     <Layout>
       <Hero title="Data" />
       <Content type="section" ruled>
-        {allGatsbyDataPage.nodes.map(({ slug, title, description, image, dataUpdatedAt }) => (
+        {items.map(({ slug, title, description, image, dataUpdatedAt }) => (
           <Card
             key={slug}
             link={`/data/${slug}`}
@@ -52,6 +55,7 @@ export default function Data() {
             publishedAt={dataUpdatedAt}
           />
         ))}
+        <Pagination page={page} totalPages={totalPages} onPrev={prev} onNext={next} />
       </Content>
     </Layout>
   );
