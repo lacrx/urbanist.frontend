@@ -4,3 +4,5 @@ public
 tmp-*
 .firecrawl/
 yarn-error.log
+.env*
+!.env.example
