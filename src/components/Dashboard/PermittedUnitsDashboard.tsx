@@ -411,6 +411,7 @@ export default function PermittedUnitsDashboard() {
           columns={[
             { key: "tractId", label: "Neighborhood ID" },
             { key: "name", label: "Neighborhood" },
+            { key: "tractLabel", label: "Census Tracts" },
             { key: "units", label: "Approved Units" },
           ]}
           filename={`oceanside-permitted-units-${activeRange[0]}-${activeRange[1]}${category !== "all" ? `-${category}` : ""}`}
