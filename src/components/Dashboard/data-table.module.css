@@ -6,6 +6,28 @@
   background: var(--dash-surface);
 }
 
+.searchRow {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.searchInput {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 3px;
+  font-family: var(--sans);
+  font-size: 0.8rem;
+  color: var(--text);
+  background: #fff;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: var(--dash-accent);
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -84,6 +106,28 @@
 .table td.center,
 .table th.center {
   text-align: center;
+}
+
+.rankUp {
+  color: var(--dash-positive);
+  font-size: 0.75rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rankDown {
+  color: var(--dash-negative);
+  font-size: 0.75rem;
+  font-family: var(--sans);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rankSame {
+  color: var(--dash-neutral);
+  font-size: 0.75rem;
+  font-family: var(--sans);
 }
 
 @media (max-width: 600px) {

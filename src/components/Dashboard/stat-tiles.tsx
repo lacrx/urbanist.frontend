@@ -1,10 +1,11 @@
+import type { ReactNode } from "react";
 import "./dashboard-tokens.module.css";
 import * as styles from "./stat-tiles.module.css";
 
 export type StatTile = {
   value: string | number;
-  label: string;
-  detail?: string;
+  label: ReactNode;
+  detail?: ReactNode;
   trend?: "positive" | "negative" | "neutral";
 };
 

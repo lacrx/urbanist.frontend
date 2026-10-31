@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import "./dashboard-tokens.module.css";
 import * as styles from "./data-table.module.css";
 import type { LinkedSelection } from "./types";
@@ -8,6 +8,7 @@ export type Column = {
   label: string;
   align?: "left" | "right" | "center";
   sortable?: boolean;
+  render?: (value: unknown, row: Record<string, unknown>) => React.ReactNode;
 };
 
 type Props = {
@@ -17,6 +18,8 @@ type Props = {
   defaultSort?: { key: string; direction: "asc" | "desc" };
   caption?: string;
   selection?: LinkedSelection;
+  searchable?: boolean;
+  searchKeys?: string[];
 };
 
 export default function DataTable({
@@ -26,14 +29,27 @@ export default function DataTable({
   defaultSort,
   caption,
   selection,
+  searchable,
+  searchKeys,
 }: Props) {
   const [sortKey, setSortKey] = useState(defaultSort?.key ?? null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">(
     defaultSort?.direction ?? "asc",
   );
+  const [query, setQuery] = useState("");
+
+  const keys = searchKeys ?? columns.map((c) => c.key);
+
+  const filtered = useMemo(() => {
+    if (!query.trim()) return rows;
+    const q = query.toLowerCase();
+    return rows.filter((row) =>
+      keys.some((k) => String(row[k] ?? "").toLowerCase().includes(q)),
+    );
+  }, [rows, query, keys]);
 
   const sorted = sortKey
-    ? [...rows].sort((a, b) => {
+    ? [...filtered].sort((a, b) => {
         const av = a[sortKey];
         const bv = b[sortKey];
         if (av == null && bv == null) return 0;
@@ -45,7 +61,7 @@ export default function DataTable({
             : String(av).localeCompare(String(bv));
         return sortDir === "asc" ? cmp : -cmp;
       })
-    : rows;
+    : filtered;
 
   const handleSort = useCallback(
     (col: Column) => {
@@ -62,6 +78,18 @@ export default function DataTable({
 
   return (
     <div className={styles.wrapper}>
+      {searchable && (
+        <div className={styles.searchRow}>
+          <input
+            type="search"
+            className={styles.searchInput}
+            placeholder="Search tracts…"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="Search table"
+          />
+        </div>
+      )}
       <table className={styles.table} role="grid">
         {caption && <caption>{caption}</caption>}
         <thead>
@@ -112,7 +140,9 @@ export default function DataTable({
                           : ""
                     }
                   >
-                    {row[col.key] ?? ""}
+                    {col.render
+                      ? col.render(row[col.key], row as Record<string, unknown>)
+                      : (row[col.key] ?? "")}
                   </td>
                 ))}
               </tr>
