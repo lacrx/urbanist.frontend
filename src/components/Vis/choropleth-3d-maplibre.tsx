@@ -188,9 +188,13 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
 
     const viewportWidth = window.innerWidth;
     const zoomOffset =
-      viewportWidth < 480 ? -0.6 :
-      viewportWidth < 768 ? -0.5 :
-      viewportWidth < 1024 ? -0.2 :
+      viewportWidth < 480 ? -1.5 :
+      viewportWidth < 768 ? -1.0 :
+      viewportWidth < 1024 ? -0.4 :
+      0;
+    const pitchOffset =
+      viewportWidth < 480 ? -20 :
+      viewportWidth < 768 ? -10 :
       0;
     const initialZoom = (camera.zoom ?? 11) + zoomOffset;
 
@@ -229,7 +233,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
       },
       center: [lng, lat],
       zoom: initialZoom,
-      pitch: effectivePitch,
+      pitch: Math.max(0, effectivePitch + pitchOffset),
       bearing: camera.bearing ?? 0,
       maxPitch: 85,
       minZoom: 10,
