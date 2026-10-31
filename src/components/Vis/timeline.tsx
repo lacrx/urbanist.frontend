@@ -16,7 +16,7 @@ export default function Timeline({ artifact }: Props) {
   const { entries } = (artifact.data ?? { entries: [] }) as TimelineData;
 
   return (
-    <ol className={styles.timeline}>
+    <ol className={styles.timeline} data-viz-ready="true">
       {entries.map((entry, i) => (
         <li key={i} className={`${styles.entry}${entry.highlight ? ` ${styles.highlight}` : ""}`}>
           <div className={styles.date}>{entry.date}</div>

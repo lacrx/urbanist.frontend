@@ -23,6 +23,7 @@ export default function StatTiles({ artifact }: Props) {
   return (
     <dl
       className={styles.grid}
+      data-viz-ready="true"
       style={columns !== 4 ? { gridTemplateColumns: `repeat(${columns}, 1fr)` } : undefined}
     >
       {tiles.map((tile, i) => (

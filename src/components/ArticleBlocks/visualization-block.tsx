@@ -1,5 +1,6 @@
 import { lazy, Suspense } from "react";
 import { graphql, useStaticQuery } from "gatsby";
+import { SKELETONS } from "@/components/Vis/skeletons";
 import * as styles from "./article-blocks.module.css";
 
 const Choropleth3DMaplibre = lazy(() => import("@/components/Vis/choropleth-3d-maplibre"));
@@ -143,11 +144,21 @@ export default function VisualizationBlock({ vizId, caption, height, align }: Vi
     );
   }
 
+  const Skeleton = SKELETONS[normalizedType];
+  const hasSkeleton = !!Skeleton;
+
   return (
     <figure className={`${styles.vizFigure} ${alignClass}`}>
-      <Suspense fallback={null}>
-        <Renderer artifact={artifact} height={height} />
-      </Suspense>
+      <div className={styles.vizStageContent}>
+        {Skeleton && (
+          <div className={styles.vizSkeleton}>
+            <Skeleton artifact={artifact} height={height} />
+          </div>
+        )}
+        <Suspense fallback={hasSkeleton ? null : <div style={{ height }} />}>
+          <Renderer artifact={artifact} height={height} />
+        </Suspense>
+      </div>
       {(caption || artifact.source) && (
         <figcaption className={styles.vizCaption}>
           {caption && <span>{caption}</span>}

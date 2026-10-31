@@ -53,7 +53,7 @@ export default function DataTable({ artifact }: Props) {
   }
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.wrapper} data-viz-ready="true">
       <table className={styles.table} role="grid">
         {cfg.caption && <caption>{cfg.caption}</caption>}
         <thead>

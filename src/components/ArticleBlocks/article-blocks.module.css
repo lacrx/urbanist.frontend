@@ -231,6 +231,21 @@
   opacity: 0;
 }
 
+.vizStageContent {
+  position: relative;
+}
+
+.vizSkeleton {
+  transition: opacity 300ms ease-out;
+}
+
+.vizStageContent:has([data-viz-ready="true"]) .vizSkeleton {
+  opacity: 0;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
 .vizCaption {
   margin-top: 0.75rem;
   font-size: 0.9rem;

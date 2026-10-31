@@ -95,7 +95,7 @@ export default function BarChart({ artifact, height }: Props) {
   }, [rows, cfg, height, palette, domain]);
 
   return (
-    <div>
+    <div data-viz-ready={rows.length ? "true" : undefined}>
       {cfg.title && <div className={styles.chartTitle}>{cfg.title}</div>}
       <div ref={containerRef} className={styles.container} />
       {domain && (

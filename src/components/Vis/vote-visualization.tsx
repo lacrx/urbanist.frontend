@@ -41,7 +41,7 @@ export default function VoteVisualization({ artifact }: Props) {
   const groupLabels: Record<string, string> = { yes: "Yes", no: "No", abstain: "Abstain", absent: "Absent" };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-viz-ready="true">
       {cfg.title && <div className={styles.voteTitle}>{cfg.title}</div>}
       <div className={styles.groups} role="list" aria-label="Vote breakdown">
         {groupOrder.map(key => {
