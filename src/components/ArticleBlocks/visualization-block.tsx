@@ -39,6 +39,7 @@ export type GatsbyVisualization = {
   featuresFile: { publicURL: string | null } | null;
   featuresTilesFile: { publicURL: string | null } | null;
   featuresTilesUrl: string | null;
+  basemap: string | null;
   posterFile: { publicURL: string | null } | null;
   posterFileMobile: { publicURL: string | null } | null;
   tilesLayer: string | null;
@@ -66,6 +67,7 @@ export default function VisualizationBlock({ vizId, caption, height, align }: Vi
           featuresFile { publicURL }
           featuresTilesFile { publicURL }
           featuresTilesUrl
+          basemap
           posterFile { publicURL }
           posterFileMobile { publicURL }
           tilesLayer

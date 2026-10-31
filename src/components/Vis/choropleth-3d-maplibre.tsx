@@ -10,6 +10,7 @@ import { mapRoot, ready as readyCls, attribution } from "./choropleth-3d-maplibr
 
 type Artifact = {
   vizId: string;
+  basemap: string | null;
   featuresFile: { publicURL: string | null } | null;
   featuresTilesFile: { publicURL: string | null } | null;
   featuresTilesUrl: string | null;
@@ -193,10 +194,15 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
       0;
     const initialZoom = (camera.zoom ?? 11) + zoomOffset;
 
+    const resolvedBasemap = artifact.basemap
+      || (artifact.featuresTilesUrl
+        ? artifact.featuresTilesUrl.replace(/-parcels\.pmtiles$/, ".pmtiles")
+        : null)
+      || BASEMAP_PMTILES_URL;
     const absoluteBasemapUrl =
-      typeof window !== "undefined" && BASEMAP_PMTILES_URL.startsWith("/")
-        ? `${window.location.origin}${BASEMAP_PMTILES_URL}`
-        : BASEMAP_PMTILES_URL;
+      typeof window !== "undefined" && resolvedBasemap.startsWith("/")
+        ? `${window.location.origin}${resolvedBasemap}`
+        : resolvedBasemap;
 
     // Start with empty sources so a missing/broken basemap PMTiles file
     // cannot block the load event. The basemap is added best-effort
