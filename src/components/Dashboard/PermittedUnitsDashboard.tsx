@@ -13,13 +13,14 @@ import MapLegend from "./MapLegend";
 import DataTable from "./data-table";
 import CsvExport from "./CsvExport";
 import { SEQUENTIAL_BLUES } from "./color-scales";
-import type { YearRange, TractId, ColorBreak } from "./types";
+import type { YearRange, TractId } from "./types";
 import * as layout from "./dashboard-layout.module.css";
+import * as sectionStyles from "./section-heading.module.css";
 
 function Tooltip({ text, children }: { text: string; children: React.ReactNode }) {
   return (
     <span
-      style={{ position: "relative", cursor: "help", borderBottom: "1px dotted var(--dash-neutral)" }}
+      style={{ cursor: "help", borderBottom: "1px dotted var(--dash-neutral)" }}
       title={text}
     >
       {children}
@@ -79,7 +80,7 @@ const TABLE_COLUMNS = [
     label: "YoY",
     align: "center" as const,
     sortable: true,
-    render: (v: unknown) => rankDelta(v as number),
+    render: (v: unknown) => rankDelta(typeof v === "number" ? v : 0),
   },
 ];
 
@@ -310,25 +311,9 @@ export default function PermittedUnitsDashboard() {
         />
       )}
 
-      <div>
-        <h3 style={{
-          fontFamily: "var(--sans)",
-          fontSize: "0.72rem",
-          fontWeight: 700,
-          color: "var(--dash-accent)",
-          textTransform: "uppercase",
-          letterSpacing: "0.03em",
-          margin: "0 0 0.15rem",
-        }}>
-          Geographic Distribution
-        </h3>
-        <p style={{
-          fontFamily: "var(--serif)",
-          fontSize: "0.88rem",
-          color: "var(--light-grey)",
-          margin: "0 0 0.75rem",
-          lineHeight: 1.3,
-        }}>
+      <div className={sectionStyles.section}>
+        <h3 className={sectionStyles.title}>Geographic Distribution</h3>
+        <p className={sectionStyles.subtitle}>
           {activeTractName
             ? `${activeTractName} · ${activeRange[0]}–${activeRange[1]}`
             : `By census tract · ${activeRange[0]}–${activeRange[1]}`}

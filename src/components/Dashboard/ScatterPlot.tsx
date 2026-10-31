@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
 import "./dashboard-tokens.module.css";
 import * as styles from "./scatter-plot.module.css";
+import * as sectionStyles from "./section-heading.module.css";
 import type { LinkedSelection } from "./types";
 
 export type ScatterPoint = {
@@ -35,7 +36,12 @@ export default function ScatterPlot({
   height = 300,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const scalesRef = useRef<{ x: (v: number) => number; y: (v: number) => number } | null>(null);
+  const scalesRef = useRef<{
+    xInv: (v: number) => number;
+    yInv: (v: number) => number;
+    xFwd: (v: number) => number;
+    yFwd: (v: number) => number;
+  } | null>(null);
   const dataRef = useRef(data);
   dataRef.current = data;
 
@@ -50,15 +56,15 @@ export default function ScatterPlot({
       const svg = container.querySelector("svg");
       if (!svg) return null;
       const rect = svg.getBoundingClientRect();
-      const cx = scales.x(clientX - rect.left);
-      const cy = scales.y(clientY - rect.top);
+      const px = clientX - rect.left;
+      const py = clientY - rect.top;
 
       let nearest: string | null = null;
       let minDist = Infinity;
 
       for (const pt of dataRef.current) {
-        const dx = pt.x - cx;
-        const dy = pt.y - cy;
+        const dx = scales.xFwd(pt.x) - px;
+        const dy = scales.yFwd(pt.y) - py;
         const dist = dx * dx + dy * dy;
         if (dist < minDist) {
           minDist = dist;
@@ -155,8 +161,10 @@ export default function ScatterPlot({
       const [yr0, yr1] = yScale.range as [number, number];
       const [yd0, yd1] = yScale.domain as [number, number];
       scalesRef.current = {
-        x: (px: number) => xd0 + ((px - xr0) / (xr1 - xr0)) * (xd1 - xd0),
-        y: (py: number) => yd0 + ((py - yr0) / (yr1 - yr0)) * (yd1 - yd0),
+        xInv: (px: number) => xd0 + ((px - xr0) / (xr1 - xr0)) * (xd1 - xd0),
+        yInv: (py: number) => yd0 + ((py - yr0) / (yr1 - yr0)) * (yd1 - yd0),
+        xFwd: (val: number) => xr0 + ((val - xd0) / (xd1 - xd0)) * (xr1 - xr0),
+        yFwd: (val: number) => yr0 + ((val - yd0) / (yd1 - yd0)) * (yr1 - yr0),
       };
     }
 
@@ -185,11 +193,11 @@ export default function ScatterPlot({
   }, [selection]);
 
   return (
-    <div className={styles.section}>
+    <div>
       {heading && (
-        <div className={styles.heading}>
-          <h3 className={styles.title}>{heading}</h3>
-          {subheading && <p className={styles.subtitle}>{subheading}</p>}
+        <div className={sectionStyles.section} style={{ marginBottom: "0.5rem" }}>
+          <h3 className={sectionStyles.title}>{heading}</h3>
+          {subheading && <p className={sectionStyles.subtitle}>{subheading}</p>}
         </div>
       )}
       <div

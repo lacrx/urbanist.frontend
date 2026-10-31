@@ -2,6 +2,7 @@ import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
 import "./dashboard-tokens.module.css";
 import * as styles from "./trend-line-chart.module.css";
+import * as sectionStyles from "./section-heading.module.css";
 import type { LinkedSelection } from "./types";
 
 export type TrendPoint = {
@@ -78,7 +79,7 @@ export default function TrendLineChart({
         x: "year",
         y: "value",
         z: "tractId",
-        stroke: "#9ca3af",
+        stroke: "var(--dash-neutral)",
         strokeWidth: 1,
         strokeOpacity: 0.3,
         curve: "catmull-rom",
@@ -100,7 +101,7 @@ export default function TrendLineChart({
           fill: "var(--dash-accent)",
           r: 3.5,
         }),
-        Plot.text(fg.filter((_, i, arr) => i === arr.length - 1), {
+        Plot.text([fg[fg.length - 1]], {
           x: "year",
           y: "value",
           text: (d: TrendPoint) => String(d.value),
@@ -170,11 +171,11 @@ export default function TrendLineChart({
   }, [selection]);
 
   return (
-    <div className={styles.section}>
+    <div>
       {heading && (
-        <div className={styles.heading}>
-          <h3 className={styles.title}>{heading}</h3>
-          {subheading && <p className={styles.subtitle}>{subheading}</p>}
+        <div className={sectionStyles.section} style={{ marginBottom: "0.5rem" }}>
+          <h3 className={sectionStyles.title}>{heading}</h3>
+          {subheading && <p className={sectionStyles.subtitle}>{subheading}</p>}
         </div>
       )}
       <div
