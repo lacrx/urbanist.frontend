@@ -82,7 +82,7 @@ export default function DataTable({
           <input
             type="search"
             className={styles.searchInput}
-            placeholder="Search tracts…"
+            placeholder="Search…"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             aria-label="Search table"

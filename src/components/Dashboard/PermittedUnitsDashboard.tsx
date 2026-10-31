@@ -14,6 +14,12 @@ import DataTable from "./data-table";
 import CsvExport from "./CsvExport";
 import { SEQUENTIAL_BLUES } from "./color-scales";
 import type { YearRange, TractId } from "./types";
+import {
+  OCEANSIDE,
+  groupByNeighborhood,
+  buildTractToGroupMap,
+  buildGroupToTractsMap,
+} from "./neighborhood-mapping";
 import * as layout from "./dashboard-layout.module.css";
 import * as sectionStyles from "./section-heading.module.css";
 
@@ -73,7 +79,21 @@ function rankDelta(delta: number): React.ReactNode {
 }
 
 const TABLE_COLUMNS = [
-  { key: "name", label: "Tract", sortable: true },
+  {
+    key: "name",
+    label: "Neighborhood",
+    sortable: true,
+    render: (v: unknown, row: Record<string, unknown>) => (
+      <>
+        <span>{v as string}</span>
+        {row.tractLabel && (
+          <span style={{ display: "block", fontSize: "0.72rem", opacity: 0.55, marginTop: "1px" }}>
+            {row.tractLabel as string}
+          </span>
+        )}
+      </>
+    ),
+  },
   { key: "units", label: "Approved Units", align: "right" as const, sortable: true },
   {
     key: "rankChange",
@@ -84,11 +104,18 @@ const TABLE_COLUMNS = [
   },
 ];
 
+type FilteredRow = {
+  tractId: string;
+  name: string;
+  units: number;
+  tractLabel?: string;
+};
+
 function filterTracts(
-  tracts: TractRow[],
+  tracts: Array<TractRow & { tractLabel?: string }>,
   yearRange: YearRange,
   category: string,
-): Array<{ tractId: string; name: string; units: number }> {
+): FilteredRow[] {
   return tracts.map((t) => {
     let units = 0;
     for (let y = yearRange[0]; y <= yearRange[1]; y++) {
@@ -99,24 +126,40 @@ function filterTracts(
         units += t.byYearCategory?.[yr]?.[category] ?? 0;
       }
     }
-    return { tractId: t.tractId, name: t.name, units };
+    return { tractId: t.tractId, name: t.name, units, tractLabel: t.tractLabel };
   });
 }
 
 function mergeGeoJSON(
   geojson: GeoJSONFC,
-  filteredTracts: Array<{ tractId: string; units: number }>,
+  filteredData: FilteredRow[],
+  groupToTracts: Map<string, string[]>,
+  excludeSet: Set<string>,
 ): GeoJSONFC {
-  const tractMap = new Map(filteredTracts.map((t) => [t.tractId, t.units]));
+  const unitsMap = new Map<string, number>();
+  for (const d of filteredData) {
+    const tracts = groupToTracts.get(d.tractId);
+    if (tracts) {
+      for (const t of tracts) unitsMap.set(t, d.units);
+    } else {
+      unitsMap.set(d.tractId, d.units);
+    }
+  }
+
   return {
     ...geojson,
-    features: geojson.features.map((f) => ({
-      ...f,
-      properties: {
-        ...f.properties,
-        units: tractMap.get(f.properties?.GEOID ?? f.id as string) ?? 0,
-      },
-    })),
+    features: geojson.features
+      .filter((f) => {
+        const id = f.properties?.GEOID ?? (f.id as string);
+        return !excludeSet.has(id);
+      })
+      .map((f) => ({
+        ...f,
+        properties: {
+          ...f.properties,
+          units: unitsMap.get(f.properties?.GEOID ?? (f.id as string)) ?? 0,
+        },
+      })),
   };
 }
 
@@ -128,40 +171,51 @@ export default function PermittedUnitsDashboard() {
   const [yearRange, setYearRange] = useState<YearRange | null>(null);
   const [category, setCategory] = useState("all");
 
+  const mapping = OCEANSIDE;
+
+  const neighborhoods = useMemo(() => {
+    if (!data.data) return [];
+    return groupByNeighborhood(data.data.tracts, mapping);
+  }, [data.data, mapping]);
+
+  const tractToGroup = useMemo(() => buildTractToGroupMap(mapping), [mapping]);
+  const groupToTracts = useMemo(() => buildGroupToTractsMap(mapping), [mapping]);
+  const excludeSet = useMemo(() => new Set(mapping.exclude), [mapping]);
+
   const activeRange: YearRange = yearRange ?? (data.data?.yearRange ?? [2018, 2025]);
 
   const filtered = useMemo(() => {
-    if (!data.data) return [];
-    return filterTracts(data.data.tracts, activeRange, category);
-  }, [data.data, activeRange, category]);
+    if (!neighborhoods.length) return [];
+    return filterTracts(neighborhoods, activeRange, category);
+  }, [neighborhoods, activeRange, category]);
 
   const mergedGeo = useMemo(() => {
     if (!geo.data || !filtered.length) return null;
-    return mergeGeoJSON(geo.data, filtered);
-  }, [geo.data, filtered]);
+    return mergeGeoJSON(geo.data, filtered, groupToTracts, excludeSet);
+  }, [geo.data, filtered, groupToTracts, excludeSet]);
 
   const yoyYears = useMemo((): [number, number] | null => {
-    if (!data.data) return null;
+    if (!neighborhoods.length) return null;
     for (let y = activeRange[1]; y > activeRange[0]; y--) {
       const yr = String(y);
-      const hasData = data.data.tracts.some((t) =>
+      const hasData = neighborhoods.some((t) =>
         category === "all" ? (t.byYear[yr] ?? 0) > 0 : (t.byYearCategory?.[yr]?.[category] ?? 0) > 0,
       );
       if (hasData) return [y - 1, y];
     }
     return null;
-  }, [data.data, activeRange, category]);
+  }, [neighborhoods, activeRange, category]);
 
   const latestYearFiltered = useMemo(() => {
-    if (!data.data || !yoyYears) return [];
-    return filterTracts(data.data.tracts, [yoyYears[1], yoyYears[1]], category);
-  }, [data.data, yoyYears, category]);
+    if (!neighborhoods.length || !yoyYears) return [];
+    return filterTracts(neighborhoods, [yoyYears[1], yoyYears[1]], category);
+  }, [neighborhoods, yoyYears, category]);
 
   const priorFiltered = useMemo(() => {
-    if (!data.data || !yoyYears) return [];
+    if (!neighborhoods.length || !yoyYears || !data.data) return [];
     if (yoyYears[0] < data.data.yearRange[0]) return [];
-    return filterTracts(data.data.tracts, [yoyYears[0], yoyYears[0]], category);
-  }, [data.data, yoyYears, category]);
+    return filterTracts(neighborhoods, [yoyYears[0], yoyYears[0]], category);
+  }, [neighborhoods, yoyYears, data.data, category]);
 
   const filteredWithRank = useMemo(() => {
     const currentRanked = [...latestYearFiltered].sort((a, b) => b.units - a.units);
@@ -187,10 +241,10 @@ export default function PermittedUnitsDashboard() {
   );
 
   const trendData = useMemo((): TrendPoint[] => {
-    if (!data.data) return [];
+    if (!neighborhoods.length) return [];
     const points: TrendPoint[] = [];
     const [lo, hi] = activeRange;
-    for (const t of data.data.tracts) {
+    for (const t of neighborhoods) {
       for (let y = lo; y <= hi; y++) {
         const yr = String(y);
         const value =
@@ -201,19 +255,19 @@ export default function PermittedUnitsDashboard() {
       }
     }
     return points;
-  }, [data.data, activeRange, category]);
+  }, [neighborhoods, activeRange, category]);
 
   const activeTractName = useMemo(() => {
-    if (!selection.activeUnit || !data.data) return null;
-    return data.data.tracts.find((t) => t.tractId === selection.activeUnit)?.name ?? null;
-  }, [selection.activeUnit, data.data]);
+    if (!selection.activeUnit || !neighborhoods.length) return null;
+    return neighborhoods.find((t) => t.tractId === selection.activeUnit)?.name ?? null;
+  }, [selection.activeUnit, neighborhoods]);
 
   const scatterData = useMemo((): { points: ScatterPoint[]; avgX: number } => {
-    if (!data.data || !yoyYears) return { points: [], avgX: 0 };
+    if (!neighborhoods.length || !yoyYears) return { points: [], avgX: 0 };
     const years = activeRange[1] - activeRange[0] + 1;
     const points: ScatterPoint[] = [];
 
-    for (const t of data.data.tracts) {
+    for (const t of neighborhoods) {
       let total = 0;
       for (let y = activeRange[0]; y <= activeRange[1]; y++) {
         const yr = String(y);
@@ -237,7 +291,7 @@ export default function PermittedUnitsDashboard() {
 
     const avgX = points.length ? points.reduce((s, p) => s + p.x, 0) / points.length : 0;
     return { points, avgX: Math.round(avgX * 10) / 10 };
-  }, [data.data, activeRange, category, yoyYears]);
+  }, [neighborhoods, activeRange, category, yoyYears]);
 
   if (data.status === "loading" || geo.status === "loading") {
     return <div className={layout.loading}>Loading permitted units data...</div>;
@@ -294,7 +348,7 @@ export default function PermittedUnitsDashboard() {
         subheading={
           activeTractName
             ? `${activeTractName} · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
-            : `All tracts · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
+            : `All neighborhoods · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
         }
       />
 
@@ -316,7 +370,7 @@ export default function PermittedUnitsDashboard() {
         <p className={sectionStyles.subtitle}>
           {activeTractName
             ? `${activeTractName} · ${activeRange[0]}–${activeRange[1]}`
-            : `By census tract · ${activeRange[0]}–${activeRange[1]}`}
+            : `By neighborhood · ${activeRange[0]}–${activeRange[1]}`}
         </p>
       </div>
 
@@ -329,6 +383,7 @@ export default function PermittedUnitsDashboard() {
               colorField="units"
               colorBreaks={SEQUENTIAL_BLUES}
               selection={selection}
+              featureGroupMap={tractToGroup}
             />
           )}
           <MapLegend
@@ -345,7 +400,7 @@ export default function PermittedUnitsDashboard() {
             defaultSort={{ key: "units", direction: "desc" }}
             selection={selection}
             searchable
-            searchKeys={["name"]}
+            searchKeys={["name", "tractLabel"]}
           />
         </div>
       </div>
@@ -354,8 +409,8 @@ export default function PermittedUnitsDashboard() {
         <CsvExport
           rows={filtered}
           columns={[
-            { key: "tractId", label: "GEOID" },
-            { key: "name", label: "Tract" },
+            { key: "tractId", label: "Neighborhood ID" },
+            { key: "name", label: "Neighborhood" },
             { key: "units", label: "Approved Units" },
           ]}
           filename={`oceanside-permitted-units-${activeRange[0]}-${activeRange[1]}${category !== "all" ? `-${category}` : ""}`}

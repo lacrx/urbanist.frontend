@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import maplibregl from "maplibre-gl";
 import { Protocol } from "pmtiles";
 import "maplibre-gl/dist/maplibre-gl.css";
@@ -17,6 +17,7 @@ type Props = {
   center?: [number, number];
   zoom?: number;
   basemapUrl?: string;
+  featureGroupMap?: Record<string, string>;
 };
 
 let pmtilesRegistered = false;
@@ -42,6 +43,7 @@ export default function ChoroplethMap({
   center = [-117.3795, 33.197],
   zoom = 11.5,
   basemapUrl,
+  featureGroupMap,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
@@ -49,6 +51,23 @@ export default function ChoroplethMap({
   const hoveredRef = useRef<string | number | null>(null);
   const selectionRef = useRef(selection);
   selectionRef.current = selection;
+
+  const featureGroupMapRef = useRef(featureGroupMap);
+  featureGroupMapRef.current = featureGroupMap;
+
+  const groupToFeatures = useMemo(() => {
+    if (!featureGroupMap) return new Map<string, string[]>();
+    const reverse = new Map<string, string[]>();
+    for (const [featureId, groupId] of Object.entries(featureGroupMap)) {
+      const list = reverse.get(groupId) ?? [];
+      list.push(featureId);
+      reverse.set(groupId, list);
+    }
+    return reverse;
+  }, [featureGroupMap]);
+
+  const groupToFeaturesRef = useRef(groupToFeatures);
+  groupToFeaturesRef.current = groupToFeatures;
 
   const onMapHover = useCallback((id: string | number | null) => {
     selectionRef.current?.onHover(id != null ? String(id) : null);
@@ -194,7 +213,9 @@ export default function ChoroplethMap({
         hoveredRef.current = id ?? null;
         if (id != null) {
           map.setFeatureState({ source: "tracts", id }, { hover: true });
-          onMapHover(id);
+          const gm = featureGroupMapRef.current;
+          const resolved = gm?.[String(id)] ?? String(id);
+          onMapHover(resolved);
         }
         map.getCanvas().style.cursor = "pointer";
       });
@@ -213,7 +234,10 @@ export default function ChoroplethMap({
 
       map.on("click", "tracts-fill", (e) => {
         if (!e.features?.length) return;
-        onMapSelect(e.features[0].id ?? null);
+        const rawId = e.features[0].id;
+        const gm = featureGroupMapRef.current;
+        const resolved = rawId != null ? (gm?.[String(rawId)] ?? String(rawId)) : null;
+        onMapSelect(resolved);
       });
 
       map.once("idle", () => setReady(true));
@@ -256,12 +280,21 @@ export default function ChoroplethMap({
     if (!source) return;
 
     const features = map.querySourceFeatures("tracts");
+    const activeIds = new Set<string>();
+    if (selection?.activeUnit) {
+      const members = groupToFeaturesRef.current.get(selection.activeUnit);
+      if (members) {
+        for (const m of members) activeIds.add(m);
+      } else {
+        activeIds.add(selection.activeUnit);
+      }
+    }
+
     for (const f of features) {
       if (f.id == null) continue;
-      const isActive = String(f.id) === selection?.activeUnit;
       map.setFeatureState(
         { source: "tracts", id: f.id },
-        { active: isActive },
+        { active: activeIds.has(String(f.id)) },
       );
     }
   }, [selection?.activeUnit]);
