@@ -108,6 +108,12 @@ export default function Home() {
           />
         </Content>
       )}
+      {event && (
+        <Content type="section">
+          <h2>Next Event</h2>
+          <EventCard e={event} />
+        </Content>
+      )}
       {dataPage && (
         <Content type="section">
           <h2>Latest Data</h2>
@@ -118,12 +124,6 @@ export default function Home() {
             image={dataPage.image}
             publishedAt={dataPage.dataUpdatedAt}
           />
-        </Content>
-      )}
-      {event && (
-        <Content type="section">
-          <h2>Next Event</h2>
-          <EventCard e={event} />
         </Content>
       )}
     </Layout>
