@@ -188,14 +188,18 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
 
     const viewportWidth = window.innerWidth;
     const zoomOffset =
-      viewportWidth < 480 ? -1.5 :
-      viewportWidth < 768 ? -1.0 :
-      viewportWidth < 1024 ? -0.4 :
+      viewportWidth < 480 ? -2.5 :
+      viewportWidth < 768 ? -1.5 :
+      viewportWidth < 1024 ? -0.5 :
       0;
-    const pitchOffset =
-      viewportWidth < 480 ? -20 :
-      viewportWidth < 768 ? -10 :
-      0;
+    const maxPitchForWidth =
+      viewportWidth < 480 ? 35 :
+      viewportWidth < 768 ? 45 :
+      85;
+    const elevationScale =
+      viewportWidth < 480 ? 0.4 :
+      viewportWidth < 768 ? 0.65 :
+      1;
     const initialZoom = (camera.zoom ?? 11) + zoomOffset;
 
     const resolvedBasemap = artifact.basemap
@@ -233,7 +237,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
       },
       center: [lng, lat],
       zoom: initialZoom,
-      pitch: Math.max(0, effectivePitch + pitchOffset),
+      pitch: Math.min(effectivePitch, maxPitchForWidth),
       bearing: camera.bearing ?? 0,
       maxPitch: 85,
       minZoom: 10,
@@ -320,7 +324,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
           "source-layer": sourceLayer,
           paint: {
             "fill-extrusion-color": buildStepColorExpression(color.field, color.domain, color.range) as any,
-            "fill-extrusion-height": ["/", ["get", elevation.field], elevation.divisor ?? 1] as any,
+            "fill-extrusion-height": ["*", ["/", ["get", elevation.field], elevation.divisor ?? 1], elevationScale] as any,
             "fill-extrusion-opacity": 1,
           },
         });
@@ -354,7 +358,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
               getFillColor: (f: Feature) =>
                 [...colorScale(f.properties?.[color.field] ?? 0), 220] as [number, number, number, number],
               getElevation: (f: Feature) =>
-                (f.properties?.[elevation.field] ?? 0) / divisor,
+                ((f.properties?.[elevation.field] ?? 0) / divisor) * elevationScale,
               loadOptions: {
                 fetch: { signal: abortController.signal },
                 worker: true,
