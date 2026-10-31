@@ -38,15 +38,14 @@ export default function DataTable({
   );
   const [query, setQuery] = useState("");
 
-  const keys = searchKeys ?? columns.map((c) => c.key);
-
   const filtered = useMemo(() => {
     if (!query.trim()) return rows;
+    const keys = searchKeys ?? columns.map((c) => c.key);
     const q = query.toLowerCase();
     return rows.filter((row) =>
       keys.some((k) => String(row[k] ?? "").toLowerCase().includes(q)),
     );
-  }, [rows, query, keys]);
+  }, [rows, query, searchKeys, columns]);
 
   const sorted = sortKey
     ? [...filtered].sort((a, b) => {
