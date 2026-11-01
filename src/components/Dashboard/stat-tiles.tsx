@@ -20,7 +20,7 @@ export default function StatTiles({ tiles, columns }: Props) {
   return (
     <dl
       className={styles.grid}
-      style={cols !== 4 ? { gridTemplateColumns: `repeat(${cols}, 1fr)` } : undefined}
+      style={{ "--tile-cols": cols } as React.CSSProperties}
     >
       {tiles.map((tile, i) => (
         <div key={i} className={styles.tile}>
