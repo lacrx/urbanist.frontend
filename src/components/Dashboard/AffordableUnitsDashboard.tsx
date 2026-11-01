@@ -231,6 +231,9 @@ export default function AffordableUnitsDashboard() {
             rowKey="tractId"
             defaultSort={{ key: "total", direction: "desc" }}
             selection={selection}
+            searchable
+            searchKeys={["name"]}
+            pageSize={8}
           />
         </div>
       </div>

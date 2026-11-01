@@ -112,12 +112,13 @@ export default function TrendLineChart({
       );
     }
 
+    const ml = 40;
     const plot = Plot.plot({
       width,
       height: Math.max(height, 180),
-      marginBottom: 30,
-      marginLeft: 50,
-      marginRight: 40,
+      marginBottom: 40,
+      marginLeft: ml,
+      marginRight: 0,
       x: {
         label: null,
         tickFormat: (d: unknown) => String(d),
@@ -128,8 +129,22 @@ export default function TrendLineChart({
         grid: true,
       },
       marks,
-      style: { fontFamily: "var(--sans)", fontSize: "12px" },
     });
+
+    const tickLabelGroup = plot.querySelector(
+      '[aria-label="y-axis tick label"]',
+    );
+    if (tickLabelGroup) {
+      tickLabelGroup.setAttribute("text-anchor", "start");
+      tickLabelGroup.setAttribute("transform", `translate(${-ml},0)`);
+    }
+    const axisLabelGroup = plot.querySelector('[aria-label="y-axis label"]');
+    if (axisLabelGroup) {
+      const prev = axisLabelGroup.getAttribute("transform") ?? "";
+      const yMatch = prev.match(/translate\([^,]+,\s*([^)]+)\)/);
+      const y = yMatch ? yMatch[1] : "0";
+      axisLabelGroup.setAttribute("transform", `translate(${-ml},${y})`);
+    }
 
     const xScale = plot.scale("x");
     const yScale = plot.scale("y");
