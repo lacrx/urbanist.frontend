@@ -48,7 +48,6 @@ type PermittedData = {
   citywide: {
     totalApproved: number;
     rhnaPace: number;
-    ytd: number;
     byYear: Record<string, number>;
     byCategory: Record<string, number>;
   };
@@ -331,10 +330,6 @@ export default function PermittedUnitsDashboard() {
             label: <Tooltip text="Regional Housing Needs Allocation: state-mandated housing production targets for each jurisdiction">RHNA Pace</Tooltip>,
             detail: `${d.rhna.total.toLocaleString()} unit target (6th cycle)`,
             trend: d.citywide.rhnaPace >= 50 ? "positive" : "negative",
-          },
-          {
-            value: d.citywide.ytd.toLocaleString(),
-            label: `${d.yearRange[1]} YTD`,
           },
         ]}
       />
