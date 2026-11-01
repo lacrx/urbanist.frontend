@@ -1,4 +1,4 @@
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback, useMemo, useEffect } from "react";
 import "./dashboard-tokens.module.css";
 import * as styles from "./data-table.module.css";
 import type { LinkedSelection } from "./types";
@@ -20,6 +20,7 @@ type Props = {
   selection?: LinkedSelection;
   searchable?: boolean;
   searchKeys?: string[];
+  pageSize?: number;
 };
 
 export default function DataTable({
@@ -31,12 +32,14 @@ export default function DataTable({
   selection,
   searchable,
   searchKeys,
+  pageSize,
 }: Props) {
   const [sortKey, setSortKey] = useState(defaultSort?.key ?? null);
   const [sortDir, setSortDir] = useState<"asc" | "desc">(
     defaultSort?.direction ?? "asc",
   );
   const [query, setQuery] = useState("");
+  const [page, setPage] = useState(0);
 
   const filtered = useMemo(() => {
     if (!query.trim()) return rows;
@@ -61,6 +64,15 @@ export default function DataTable({
         return sortDir === "asc" ? cmp : -cmp;
       })
     : filtered;
+
+  const totalPages = pageSize ? Math.max(1, Math.ceil(sorted.length / pageSize)) : 1;
+  const safePage = Math.min(page, totalPages - 1);
+  const paged = pageSize ? sorted.slice(safePage * pageSize, (safePage + 1) * pageSize) : sorted;
+
+  const prevPage = useCallback(() => setPage((p) => Math.max(0, p - 1)), []);
+  const nextPage = useCallback(() => setPage((p) => Math.min(totalPages - 1, p + 1)), [totalPages]);
+
+  useEffect(() => setPage(0), [rows, query]);
 
   const handleSort = useCallback(
     (col: Column) => {
@@ -117,7 +129,7 @@ export default function DataTable({
           </tr>
         </thead>
         <tbody>
-          {sorted.map((row) => {
+          {paged.map((row) => {
             const id = String(row[rowKey] ?? "");
             const active = selection?.activeUnit === id;
             return (
@@ -149,6 +161,29 @@ export default function DataTable({
           })}
         </tbody>
       </table>
+      {pageSize && totalPages > 1 && (
+        <div className={styles.pagination}>
+          <button
+            className={styles.pageBtn}
+            onClick={prevPage}
+            disabled={safePage === 0}
+            aria-label="Previous page"
+          >
+            ‹
+          </button>
+          <span className={styles.pageInfo}>
+            {safePage + 1} / {totalPages}
+          </span>
+          <button
+            className={styles.pageBtn}
+            onClick={nextPage}
+            disabled={safePage >= totalPages - 1}
+            aria-label="Next page"
+          >
+            ›
+          </button>
+        </div>
+      )}
     </div>
   );
 }

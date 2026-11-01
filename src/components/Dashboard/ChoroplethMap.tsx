@@ -240,6 +240,28 @@ export default function ChoroplethMap({
         onMapSelect(resolved);
       });
 
+      const bounds = new maplibregl.LngLatBounds();
+      const fc = geojson as GeoJSON.FeatureCollection;
+      if (fc.features) {
+        for (const f of fc.features) {
+          const geom = f.geometry;
+          if (geom.type === "Polygon") {
+            for (const ring of geom.coordinates) {
+              for (const coord of ring) bounds.extend(coord as [number, number]);
+            }
+          } else if (geom.type === "MultiPolygon") {
+            for (const poly of geom.coordinates) {
+              for (const ring of poly) {
+                for (const coord of ring) bounds.extend(coord as [number, number]);
+              }
+            }
+          }
+        }
+      }
+      if (!bounds.isEmpty()) {
+        map.fitBounds(bounds, { padding: 20, duration: 0 });
+      }
+
       map.once("idle", () => setReady(true));
     });
 
@@ -271,32 +293,36 @@ export default function ChoroplethMap({
     map.setPaintProperty("tracts-fill", "fill-color", colorExpr);
   }, [colorField, colorBreaks]);
 
-  // Sync active selection state to map features
+  const prevActiveIdsRef = useRef<Set<string>>(new Set());
+
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !map.isStyleLoaded()) return;
 
-    const source = map.getSource("tracts") as maplibregl.GeoJSONSource | undefined;
-    if (!source) return;
-
-    const features = map.querySourceFeatures("tracts");
-    const activeIds = new Set<string>();
+    const nextIds = new Set<string>();
     if (selection?.activeUnit) {
       const members = groupToFeaturesRef.current.get(selection.activeUnit);
       if (members) {
-        for (const m of members) activeIds.add(m);
+        for (const m of members) nextIds.add(m);
       } else {
-        activeIds.add(selection.activeUnit);
+        nextIds.add(selection.activeUnit);
       }
     }
 
-    for (const f of features) {
-      if (f.id == null) continue;
-      map.setFeatureState(
-        { source: "tracts", id: f.id },
-        { active: activeIds.has(String(f.id)) },
-      );
+    const prev = prevActiveIdsRef.current;
+
+    for (const id of prev) {
+      if (!nextIds.has(id)) {
+        map.setFeatureState({ source: "tracts", id }, { active: false });
+      }
     }
+    for (const id of nextIds) {
+      if (!prev.has(id)) {
+        map.setFeatureState({ source: "tracts", id }, { active: true });
+      }
+    }
+
+    prevActiveIdsRef.current = nextIds;
   }, [selection?.activeUnit]);
 
   return (

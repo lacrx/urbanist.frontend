@@ -7,9 +7,8 @@
 
 .controls {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  align-items: flex-end;
 }
 
 .splitPane {
@@ -29,10 +28,60 @@
 }
 
 .loading {
-  text-align: center;
-  padding: 4rem 0;
-  color: var(--light-grey);
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.skeleton {
+  background: linear-gradient(90deg, var(--dash-surface) 25%, #e5e7eb 50%, var(--dash-surface) 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+  border-radius: 4px;
+}
+
+.skelRow {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.skelTile {
+  composes: skeleton;
+  height: 92px;
+  border: 1px solid var(--rule);
+}
+
+.skelSlider {
+  composes: skeleton;
+  height: 72px;
+}
+
+.skelChart {
+  composes: skeleton;
+  height: 290px;
+}
+
+.skelSplit {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 1.5rem;
+}
+
+.skelMap {
+  composes: skeleton;
+  aspect-ratio: 4 / 3;
+}
+
+.skelTable {
+  composes: skeleton;
+  height: 400px;
 }
 
 .error {

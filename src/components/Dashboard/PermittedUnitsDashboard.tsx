@@ -240,10 +240,12 @@ export default function PermittedUnitsDashboard() {
     [filtered],
   );
 
+  const fullRange: YearRange = data.data?.yearRange ?? [2018, 2025];
+
   const trendData = useMemo((): TrendPoint[] => {
     if (!neighborhoods.length) return [];
     const points: TrendPoint[] = [];
-    const [lo, hi] = activeRange;
+    const [lo, hi] = fullRange;
     for (const t of neighborhoods) {
       for (let y = lo; y <= hi; y++) {
         const yr = String(y);
@@ -255,7 +257,7 @@ export default function PermittedUnitsDashboard() {
       }
     }
     return points;
-  }, [neighborhoods, activeRange, category]);
+  }, [neighborhoods, fullRange, category]);
 
   const activeTractName = useMemo(() => {
     if (!selection.activeUnit || !neighborhoods.length) return null;
@@ -294,7 +296,21 @@ export default function PermittedUnitsDashboard() {
   }, [neighborhoods, activeRange, category, yoyYears]);
 
   if (data.status === "loading" || geo.status === "loading") {
-    return <div className={layout.loading}>Loading permitted units data...</div>;
+    return (
+      <div className={layout.loading}>
+        <div className={layout.skelRow}>
+          <div className={layout.skelTile} />
+          <div className={layout.skelTile} />
+          <div className={layout.skelTile} />
+        </div>
+        <div className={layout.skelSlider} />
+        <div className={layout.skelChart} />
+        <div className={layout.skelSplit}>
+          <div className={layout.skelMap} />
+          <div className={layout.skelTable} />
+        </div>
+      </div>
+    );
   }
 
   if (data.status === "error" || geo.status === "error") {
@@ -347,11 +363,12 @@ export default function PermittedUnitsDashboard() {
         heading="Permitting Trends"
         subheading={
           activeTractName
-            ? `${activeTractName} · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
-            : `All neighborhoods · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
+            ? `${activeTractName} · ${category !== "all" ? category + " · " : ""}${fullRange[0]}–${fullRange[1]}`
+            : `All neighborhoods · ${category !== "all" ? category + " · " : ""}${fullRange[0]}–${fullRange[1]}`
         }
       />
 
+      {/* Pace vs. Momentum scatter plot: data pipeline preserved, hidden until dataset has meaningful YoY signal
       {scatterData.points.length > 0 && yoyYears && (
         <ScatterPlot
           data={scatterData.points}
@@ -364,6 +381,7 @@ export default function PermittedUnitsDashboard() {
           yRef={0}
         />
       )}
+      */}
 
       <div className={sectionStyles.section}>
         <h3 className={sectionStyles.title}>Geographic Distribution</h3>
@@ -401,6 +419,7 @@ export default function PermittedUnitsDashboard() {
             selection={selection}
             searchable
             searchKeys={["name", "tractLabel"]}
+            pageSize={8}
           />
         </div>
       </div>
