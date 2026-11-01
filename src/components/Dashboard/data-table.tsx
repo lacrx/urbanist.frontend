@@ -1,5 +1,6 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import * as styles from "./data-table.module.css";
+import Pagination from "../Pagination/pagination";
 import type { LinkedSelection } from "./types";
 
 export type Column = {
@@ -160,28 +161,13 @@ export default function DataTable({
           })}
         </tbody>
       </table>
-      {pageSize && totalPages > 1 && (
-        <div className={styles.pagination}>
-          <button
-            className={styles.pageBtn}
-            onClick={prevPage}
-            disabled={safePage === 0}
-            aria-label="Previous page"
-          >
-            ‹
-          </button>
-          <span className={styles.pageInfo}>
-            {safePage + 1} / {totalPages}
-          </span>
-          <button
-            className={styles.pageBtn}
-            onClick={nextPage}
-            disabled={safePage >= totalPages - 1}
-            aria-label="Next page"
-          >
-            ›
-          </button>
-        </div>
+      {pageSize && (
+        <Pagination
+          page={safePage + 1}
+          totalPages={totalPages}
+          onPrev={prevPage}
+          onNext={nextPage}
+        />
       )}
     </div>
   );
