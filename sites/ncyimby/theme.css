@@ -4,6 +4,9 @@
 
 :root {
   --color-warm-100: #ffe8cc; /** Cream background */
+  --color-warm-200: #f5deb3; /** Warm surface hover */
+  --color-warm-500: #a07850; /** Muted warm brown */
+  --color-warm-600: #7a4e20; /** Secondary warm brown */
   --color-warm-800: #5b2800; /** Deep brown */
   --color-warm-900: #a63d00; /** Burnt orange accent */
   --color-neutral-200: #d4b896; /** Warm tan rule/border */
@@ -28,7 +31,10 @@
   --font-display: var(--font-serif); /** Headlines, article titles */
   --font-body: var(--font-sans); /** Body text, UI elements */
   --bg-primary: var(--color-warm-100); /** Page background (cream) */
+  --bg-surface: var(--color-warm-200); /** Hover, card surface */
   --text-primary: var(--color-warm-800); /** Body text (deep brown) */
+  --text-secondary: var(--color-warm-600); /** Secondary text */
+  --text-muted: var(--color-warm-500); /** Captions, placeholders */
   --accent-primary: var(--color-warm-900); /** Buttons, links (burnt orange) */
   --btn-text: var(--color-warm-100); /** Button label on accent bg */
   --border-default: var(--color-neutral-200); /** Rules, dividers (warm tan) */
@@ -40,6 +46,9 @@
   --accent: var(--accent-primary);
   --accent-btn: var(--accent-primary);
   --rule: var(--border-default);
+  --black: var(--text-primary);
+  --grey: var(--text-secondary);
+  --light-grey: var(--text-muted);
   --serif: var(--font-display);
   --sans: var(--font-body);
 }

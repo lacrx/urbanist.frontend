@@ -117,7 +117,7 @@
 .statDetail {
   font-family: var(--serif);
   font-size: 0.8rem;
-  color: #888;
+  color: var(--light-grey, #888);
   margin: 0.15rem 0 0;
 }
 
@@ -244,7 +244,7 @@
   font-weight: 600;
   padding: 0.3rem 0.75rem;
   border-radius: 100px;
-  color: #fff;
+  color: var(--bg, #fff);
 }
 
 .voteResult {

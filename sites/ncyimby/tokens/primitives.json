@@ -3,6 +3,9 @@
     "$type": "color",
     "warm": {
       "100": { "$value": "#FFE8CC", "$description": "Cream background" },
+      "200": { "$value": "#F5DEB3", "$description": "Warm surface hover" },
+      "500": { "$value": "#A07850", "$description": "Muted warm brown" },
+      "600": { "$value": "#7A4E20", "$description": "Secondary warm brown" },
       "800": { "$value": "#5B2800", "$description": "Deep brown" },
       "900": { "$value": "#A63D00", "$description": "Burnt orange accent" }
     },

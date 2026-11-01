@@ -160,7 +160,7 @@
 .vizStage {
   position: relative;
   width: 100%;
-  background: #ffffff;
+  background: var(--bg-primary);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -249,13 +249,13 @@
 .vizCaption {
   margin-top: 0.75rem;
   font-size: 0.9rem;
-  color: #555;
+  color: var(--text-muted);
   line-height: 1.4;
 }
 
 .vizMissing {
   padding: 1rem;
-  border: 1px dashed #c0392b;
-  color: #c0392b;
+  border: 1px dashed var(--status-error);
+  color: var(--status-error);
   font-size: 0.9rem;
 }

@@ -1,11 +1,14 @@
 {
   "bg": {
     "$type": "color",
-    "primary":   { "$value": "{color.warm.100}", "$description": "Page background (cream)" }
+    "primary":   { "$value": "{color.warm.100}", "$description": "Page background (cream)" },
+    "surface":   { "$value": "{color.warm.200}", "$description": "Hover, card surface" }
   },
   "text": {
     "$type": "color",
-    "primary":   { "$value": "{color.warm.800}", "$description": "Body text (deep brown)" }
+    "primary":   { "$value": "{color.warm.800}", "$description": "Body text (deep brown)" },
+    "secondary": { "$value": "{color.warm.600}", "$description": "Secondary text" },
+    "muted":     { "$value": "{color.warm.500}", "$description": "Captions, placeholders" }
   },
   "accent": {
     "$type": "color",

@@ -4,6 +4,9 @@
   "accent": "accent-primary",
   "accent-btn": "accent-primary",
   "rule": "border-default",
+  "black": "text-primary",
+  "grey": "text-secondary",
+  "light-grey": "text-muted",
   "serif": "font-display",
   "sans": "font-body"
 }

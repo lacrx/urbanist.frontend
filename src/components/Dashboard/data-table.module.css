@@ -19,13 +19,13 @@
   font-family: var(--sans);
   font-size: 0.8rem;
   color: var(--text);
-  background: #fff;
+  background: var(--bg-primary);
   outline: none;
 }
 
 .searchInput:focus {
   border-color: var(--dash-accent);
-  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--dash-accent) 12%, transparent);
 }
 
 .table {
@@ -91,7 +91,7 @@
 
 .table tbody tr.active,
 .table tbody tr:hover {
-  background: rgba(37, 99, 235, 0.08);
+  background: color-mix(in srgb, var(--dash-accent) 8%, transparent);
 }
 
 .table tbody tr {

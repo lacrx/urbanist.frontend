@@ -10,10 +10,5 @@
   "dark-grey": "text-secondary",
   "serif": "font-display",
   "sans": "font-body",
-  "dash-accent": "dash-accent",
-  "dash-positive": "dash-positive",
-  "dash-negative": "dash-negative",
-  "dash-neutral": "dash-neutral",
-  "dash-surface": "dash-surface",
   "dash-mono": "font-mono"
 }

@@ -50,11 +50,11 @@
 .error {
   font-family: var(--sans);
   font-size: 0.8125rem;
-  color: #c44020;
+  color: var(--status-error-text);
   margin: 0 0 1rem;
   padding: 0.5rem 0.75rem;
-  background: #fef3f2;
-  border: 1px solid #fecaca;
+  background: var(--status-error-surface);
+  border: 1px solid var(--status-error-border);
   border-radius: 0.125rem;
 }
 
@@ -67,7 +67,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   background: var(--black);
-  color: white;
+  color: var(--bg-primary);
   border: none;
   border-radius: 0.125rem;
   cursor: pointer;
