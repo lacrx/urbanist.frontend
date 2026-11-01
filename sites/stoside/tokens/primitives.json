@@ -9,8 +9,24 @@
       "neutral":  { "$value": "#9CA3AF" },
       "surface":  { "$value": "#F9FAFB" }
     },
+    "severity": {
+      "$description": "Walk audit severity scale",
+      "safe":     { "$value": "#2A8A6A" },
+      "caution":  { "$value": "#B07820" },
+      "danger":   { "$value": "#C44020" },
+      "connected":{ "$value": "#3DB893" }
+    },
+    "status": {
+      "$description": "UI status colors",
+      "error":         { "$value": "#CC0000" },
+      "error-surface": { "$value": "#FEF3F2" },
+      "error-border":  { "$value": "#FECACA" },
+      "error-text":    { "$value": "#991B1B" },
+      "warning":       { "$value": "#E8A020" }
+    },
     "neutral": {
       "0":   { "$value": "#FFFFFF", "$description": "White" },
+      "100": { "$value": "#F3F4F6", "$description": "Surface hover" },
       "200": { "$value": "#E2E2E2", "$description": "Light gray border" },
       "500": { "$value": "#767676", "$description": "Muted text" },
       "700": { "$value": "#333333", "$description": "Secondary text" },

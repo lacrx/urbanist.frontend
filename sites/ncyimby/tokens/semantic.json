@@ -19,6 +19,10 @@
     "$type": "color",
     "default":   { "$value": "{color.neutral.200}", "$description": "Rules, dividers (warm tan)" }
   },
+  "status": {
+    "$type": "color",
+    "error": { "$value": "{color.status.error}", "$description": "Error messages" }
+  },
   "font": {
     "display":   { "$value": "{font.serif}", "$description": "Headlines, article titles" },
     "body":      { "$value": "{font.sans}", "$description": "Body text, UI elements" }

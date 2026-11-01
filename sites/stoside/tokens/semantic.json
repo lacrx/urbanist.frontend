@@ -1,7 +1,8 @@
 {
   "bg": {
     "$type": "color",
-    "primary":   { "$value": "{color.neutral.0}", "$description": "Page background (white)" }
+    "primary":   { "$value": "{color.neutral.0}", "$description": "Page background (white)" },
+    "surface":   { "$value": "{color.neutral.100}", "$description": "Hover, card surface (light gray)" }
   },
   "text": {
     "$type": "color",
@@ -24,6 +25,22 @@
   "font": {
     "display":   { "$value": "{font.serif}", "$description": "Headlines, article titles" },
     "body":      { "$value": "{font.sans}", "$description": "Body text, UI elements" }
+  },
+  "severity": {
+    "$type": "color",
+    "$description": "Walk audit severity indicators",
+    "safe":      { "$value": "{color.severity.safe}", "$description": "Good/safe conditions" },
+    "caution":   { "$value": "{color.severity.caution}", "$description": "Concerns/moderate issues" },
+    "danger":    { "$value": "{color.severity.danger}", "$description": "Unsafe/poor conditions" },
+    "connected": { "$value": "{color.severity.connected}", "$description": "Connected/active indicator" }
+  },
+  "status": {
+    "$type": "color",
+    "error":         { "$value": "{color.status.error}", "$description": "Error messages, destructive actions" },
+    "error-surface": { "$value": "{color.status.error-surface}", "$description": "Error background" },
+    "error-border":  { "$value": "{color.status.error-border}", "$description": "Error container border" },
+    "error-text":    { "$value": "{color.status.error-text}", "$description": "Error body text" },
+    "warning":       { "$value": "{color.status.warning}", "$description": "Warning toasts" }
   },
   "dash": {
     "$type": "color",

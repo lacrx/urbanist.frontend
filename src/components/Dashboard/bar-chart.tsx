@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import * as Plot from "@observablehq/plot";
-import "./dashboard-tokens.module.css";
 import * as styles from "./bar-chart.module.css";
+import { CATEGORICAL } from "./palette";
 
 type BarChartConfig = {
   mode: "stacked" | "grouped";
@@ -18,16 +18,7 @@ type BarChartConfig = {
   title?: string;
 };
 
-const FALLBACK_PALETTE = [
-  "#2563eb",
-  "#16a34a",
-  "#f59e0b",
-  "#dc2626",
-  "#8b5cf6",
-  "#06b6d4",
-  "#ec4899",
-  "#84cc16",
-];
+const FALLBACK_PALETTE = [...CATEGORICAL];
 
 type Props = {
   rows: Array<Record<string, string | number>>;

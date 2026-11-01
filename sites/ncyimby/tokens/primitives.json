@@ -8,6 +8,9 @@
     },
     "neutral": {
       "200": { "$value": "#D4B896", "$description": "Warm tan rule/border" }
+    },
+    "status": {
+      "error": { "$value": "#CC0000" }
     }
   },
   "space": {

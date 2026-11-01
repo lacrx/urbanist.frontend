@@ -1,4 +1,3 @@
-import "./dashboard-tokens.module.css";
 import * as styles from "./filter-toggle-group.module.css";
 import type { FilterOption } from "./types";
 

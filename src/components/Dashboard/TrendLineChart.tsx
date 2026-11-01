@@ -1,6 +1,5 @@
 import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
-import "./dashboard-tokens.module.css";
 import * as styles from "./trend-line-chart.module.css";
 import * as sectionStyles from "./section-heading.module.css";
 import type { LinkedSelection } from "./types";

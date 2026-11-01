@@ -1,5 +1,4 @@
 import { useCallback, useRef } from "react";
-import "./dashboard-tokens.module.css";
 import * as styles from "./year-range-slider.module.css";
 import type { YearRange } from "./types";
 

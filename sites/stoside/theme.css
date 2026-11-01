@@ -8,7 +8,17 @@
   --color-dash-negative: #dc2626;
   --color-dash-neutral: #9ca3af;
   --color-dash-surface: #f9fafb;
+  --color-severity-safe: #2a8a6a;
+  --color-severity-caution: #b07820;
+  --color-severity-danger: #c44020;
+  --color-severity-connected: #3db893;
+  --color-status-error: #cc0000;
+  --color-status-error-surface: #fef3f2;
+  --color-status-error-border: #fecaca;
+  --color-status-error-text: #991b1b;
+  --color-status-warning: #e8a020;
   --color-neutral-0: #ffffff; /** White */
+  --color-neutral-100: #f3f4f6; /** Surface hover */
   --color-neutral-200: #e2e2e2; /** Light gray border */
   --color-neutral-500: #767676; /** Muted text */
   --color-neutral-700: #333333; /** Secondary text */
@@ -34,12 +44,22 @@
   --font-display: var(--font-serif); /** Headlines, article titles */
   --font-body: var(--font-sans); /** Body text, UI elements */
   --bg-primary: var(--color-neutral-0); /** Page background (white) */
+  --bg-surface: var(--color-neutral-100); /** Hover, card surface (light gray) */
   --text-primary: var(--color-neutral-900); /** Body text (near-black) */
   --text-secondary: var(--color-neutral-700); /** Secondary text */
   --text-muted: var(--color-neutral-500); /** Captions, placeholders */
   --accent-primary: var(--color-neutral-900); /** Buttons, links (monochrome) */
   --btn-text: var(--color-neutral-0); /** Button label on dark bg */
   --border-default: var(--color-neutral-200); /** Rules, dividers */
+  --severity-safe: var(--color-severity-safe); /** Good/safe conditions */
+  --severity-caution: var(--color-severity-caution); /** Concerns/moderate issues */
+  --severity-danger: var(--color-severity-danger); /** Unsafe/poor conditions */
+  --severity-connected: var(--color-severity-connected); /** Connected/active indicator */
+  --status-error: var(--color-status-error); /** Error messages, destructive actions */
+  --status-error-surface: var(--color-status-error-surface); /** Error background */
+  --status-error-border: var(--color-status-error-border); /** Error container border */
+  --status-error-text: var(--color-status-error-text); /** Error body text */
+  --status-warning: var(--color-status-warning); /** Warning toasts */
   --dash-accent: var(--color-dash-accent); /** Primary chart color, interactive */
   --dash-positive: var(--color-dash-positive); /** Good/increase indicators */
   --dash-negative: var(--color-dash-negative); /** Bad/decrease indicators */

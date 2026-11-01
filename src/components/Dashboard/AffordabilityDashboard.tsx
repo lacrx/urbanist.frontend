@@ -8,6 +8,7 @@ import MapLegend from "./MapLegend";
 import DataTable from "./data-table";
 import CsvExport from "./CsvExport";
 import { geometricBreaks } from "./color-scales";
+import { BLUE_RAMP } from "./palette";
 import type { TractId, ColorBreak } from "./types";
 import * as layout from "./dashboard-layout.module.css";
 
@@ -64,64 +65,63 @@ function buildBreaks(tracts: TractRow[], metric: string): ColorBreak[] {
     .map((t) => (t as Record<string, unknown>)[metric] as number | null)
     .filter((v): v is number => v != null && v > 0);
 
-  if (!values.length) return [{ value: 0, color: "#eff6ff" }];
+  if (!values.length) return [{ value: 0, color: BLUE_RAMP[0] }];
 
   const min = Math.min(...values);
   const max = Math.max(...values);
 
   if (metric === "costBurdenedPct") {
     return [
-      { value: 0, color: "#eff6ff", label: "0%" },
-      { value: 20, color: "#bfdbfe", label: "20%" },
-      { value: 30, color: "#93c5fd", label: "30%" },
-      { value: 40, color: "#60a5fa", label: "40%" },
-      { value: 50, color: "#3b82f6", label: "50%" },
-      { value: 60, color: "#2563eb", label: "60%" },
-      { value: 75, color: "#1d4ed8", label: "75%+" },
+      { value: 0, color: BLUE_RAMP[0], label: "0%" },
+      { value: 20, color: BLUE_RAMP[1], label: "20%" },
+      { value: 30, color: BLUE_RAMP[2], label: "30%" },
+      { value: 40, color: BLUE_RAMP[3], label: "40%" },
+      { value: 50, color: BLUE_RAMP[4], label: "50%" },
+      { value: 60, color: BLUE_RAMP[5], label: "60%" },
+      { value: 75, color: BLUE_RAMP[6], label: "75%+" },
     ];
   }
 
   if (metric === "medianRent") {
     return [
-      { value: 0, color: "#eff6ff", label: "$0" },
-      { value: 1500, color: "#bfdbfe", label: "$1,500" },
-      { value: 1800, color: "#93c5fd", label: "$1,800" },
-      { value: 2100, color: "#60a5fa", label: "$2,100" },
-      { value: 2400, color: "#3b82f6", label: "$2,400" },
-      { value: 2800, color: "#2563eb", label: "$2,800" },
-      { value: 3500, color: "#1d4ed8", label: "$3,500+" },
+      { value: 0, color: BLUE_RAMP[0], label: "$0" },
+      { value: 1500, color: BLUE_RAMP[1], label: "$1,500" },
+      { value: 1800, color: BLUE_RAMP[2], label: "$1,800" },
+      { value: 2100, color: BLUE_RAMP[3], label: "$2,100" },
+      { value: 2400, color: BLUE_RAMP[4], label: "$2,400" },
+      { value: 2800, color: BLUE_RAMP[5], label: "$2,800" },
+      { value: 3500, color: BLUE_RAMP[6], label: "$3,500+" },
     ];
   }
 
   if (metric === "medianHomeValue") {
     return [
-      { value: 0, color: "#eff6ff", label: "$0" },
-      { value: 400000, color: "#bfdbfe", label: "$400K" },
-      { value: 550000, color: "#93c5fd", label: "$550K" },
-      { value: 700000, color: "#60a5fa", label: "$700K" },
-      { value: 900000, color: "#3b82f6", label: "$900K" },
-      { value: 1200000, color: "#2563eb", label: "$1.2M" },
-      { value: 1500000, color: "#1d4ed8", label: "$1.5M+" },
+      { value: 0, color: BLUE_RAMP[0], label: "$0" },
+      { value: 400000, color: BLUE_RAMP[1], label: "$400K" },
+      { value: 550000, color: BLUE_RAMP[2], label: "$550K" },
+      { value: 700000, color: BLUE_RAMP[3], label: "$700K" },
+      { value: 900000, color: BLUE_RAMP[4], label: "$900K" },
+      { value: 1200000, color: BLUE_RAMP[5], label: "$1.2M" },
+      { value: 1500000, color: BLUE_RAMP[6], label: "$1.5M+" },
     ];
   }
 
   if (metric === "medianHouseholdIncome") {
     return [
-      { value: 0, color: "#eff6ff", label: "$0" },
-      { value: 40000, color: "#bfdbfe", label: "$40K" },
-      { value: 60000, color: "#93c5fd", label: "$60K" },
-      { value: 80000, color: "#60a5fa", label: "$80K" },
-      { value: 100000, color: "#3b82f6", label: "$100K" },
-      { value: 130000, color: "#2563eb", label: "$130K" },
-      { value: 175000, color: "#1d4ed8", label: "$175K+" },
+      { value: 0, color: BLUE_RAMP[0], label: "$0" },
+      { value: 40000, color: BLUE_RAMP[1], label: "$40K" },
+      { value: 60000, color: BLUE_RAMP[2], label: "$60K" },
+      { value: 80000, color: BLUE_RAMP[3], label: "$80K" },
+      { value: 100000, color: BLUE_RAMP[4], label: "$100K" },
+      { value: 130000, color: BLUE_RAMP[5], label: "$130K" },
+      { value: 175000, color: BLUE_RAMP[6], label: "$175K+" },
     ];
   }
 
   const breaks = geometricBreaks(min || 1, max, 6);
-  const palette = ["#eff6ff", "#bfdbfe", "#93c5fd", "#60a5fa", "#3b82f6", "#2563eb", "#1d4ed8"];
-  return [{ value: 0, color: palette[0] }, ...breaks.map((b, i) => ({
+  return [{ value: 0, color: BLUE_RAMP[0] }, ...breaks.map((b, i) => ({
     value: b,
-    color: palette[i + 1] ?? palette[palette.length - 1],
+    color: BLUE_RAMP[i + 1] ?? BLUE_RAMP[BLUE_RAMP.length - 1],
   }))];
 }
 

@@ -54,14 +54,14 @@
 
 .dotConnected {
   composes: dot;
-  background: #3db893;
+  background: var(--severity-connected);
 }
 
 .segment {
   width: 100%;
   padding: 0.625rem 1rem;
   margin-bottom: 0.375rem;
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   color: var(--black);
@@ -83,7 +83,7 @@
   gap: 0.5rem;
   width: 100%;
   padding: 0.5rem 0.75rem;
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   font-family: var(--sans);
@@ -138,13 +138,13 @@
   font-size: 0.8rem;
   border: none;
   cursor: pointer;
-  background: white;
+  background: var(--bg-primary);
   color: var(--grey);
 }
 
 .mapToggleActive {
   background: var(--black);
-  color: white;
+  color: var(--bg-primary);
 }
 
 .mapEmbed {
@@ -172,7 +172,7 @@
   width: 100%;
   margin-top: 0.375rem;
   padding: 0.5rem;
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   font-family: var(--sans);
@@ -188,13 +188,13 @@
 .gpsDenied {
   margin-top: 0.5rem;
   padding: 0.75rem 1rem;
-  background: #fef3f2;
-  border: 1px solid #fecaca;
+  background: var(--status-error-surface);
+  border: 1px solid var(--status-error-border);
   border-radius: 0.125rem;
   font-family: var(--sans);
   font-size: 0.8125rem;
   line-height: 1.5;
-  color: #991b1b;
+  color: var(--status-error-text);
 }
 
 .gpsDenied ol {
@@ -218,7 +218,7 @@
 .tab {
   flex: 1;
   padding: 0.7rem;
-  background: white;
+  background: var(--bg-primary);
   border: none;
   border-radius: 0;
   color: var(--light-grey);
@@ -231,7 +231,7 @@
 .tabActive {
   composes: tab;
   background: var(--black);
-  color: white;
+  color: var(--bg-primary);
 }
 
 .card {
@@ -302,7 +302,7 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0.5rem 0.625rem;
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   color: var(--black);
@@ -325,7 +325,7 @@
   padding: 0.625rem 0.875rem;
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
-  background: white;
+  background: var(--bg-primary);
   color: var(--grey);
   font-family: var(--sans);
   font-size: 0.85rem;
@@ -356,7 +356,7 @@
   width: 100%;
   max-height: 15rem;
   overflow-y: auto;
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--grey);
   border-top: none;
   border-radius: 0 0 0.125rem 0.125rem;
@@ -380,7 +380,7 @@
 
 .typeaheadItemActive {
   composes: typeaheadItem;
-  background: #f3f4f6;
+  background: var(--bg-surface);
 }
 
 .typeaheadItemActive + .typeaheadItem,
@@ -417,7 +417,7 @@
   padding: 0.5rem 0.875rem;
   border-radius: 0.125rem;
   border: 1px solid var(--rule);
-  background: white;
+  background: var(--bg-primary);
   color: var(--grey);
   font-family: var(--sans);
   font-size: 0.85rem;
@@ -444,65 +444,65 @@
 
 .pillGreen {
   composes: pill;
-  border-color: #2a8a6a;
-  color: #2a8a6a;
+  border-color: var(--severity-safe);
+  color: var(--severity-safe);
 }
 
 .pillGreen:hover {
-  border-color: #2a8a6a;
-  color: #2a8a6a;
+  border-color: var(--severity-safe);
+  color: var(--severity-safe);
 }
 
 .pillYellow {
   composes: pill;
-  border-color: #b07820;
-  color: #b07820;
+  border-color: var(--severity-caution);
+  color: var(--severity-caution);
 }
 
 .pillYellow:hover {
-  border-color: #b07820;
-  color: #b07820;
+  border-color: var(--severity-caution);
+  color: var(--severity-caution);
 }
 
 .pillRed {
   composes: pill;
-  border-color: #c44020;
-  color: #c44020;
+  border-color: var(--severity-danger);
+  color: var(--severity-danger);
 }
 
 .pillRed:hover {
-  border-color: #c44020;
-  color: #c44020;
+  border-color: var(--severity-danger);
+  color: var(--severity-danger);
 }
 
 .pillGreenMuted {
   composes: pill;
-  color: #2a8a6a;
+  color: var(--severity-safe);
 }
 
 .pillGreenMuted:hover {
-  border-color: #2a8a6a;
-  color: #2a8a6a;
+  border-color: var(--severity-safe);
+  color: var(--severity-safe);
 }
 
 .pillYellowMuted {
   composes: pill;
-  color: #b07820;
+  color: var(--severity-caution);
 }
 
 .pillYellowMuted:hover {
-  border-color: #b07820;
-  color: #b07820;
+  border-color: var(--severity-caution);
+  color: var(--severity-caution);
 }
 
 .pillRedMuted {
   composes: pill;
-  color: #c44020;
+  color: var(--severity-danger);
 }
 
 .pillRedMuted:hover {
-  border-color: #c44020;
-  color: #c44020;
+  border-color: var(--severity-danger);
+  color: var(--severity-danger);
 }
 
 .flagRow {
@@ -557,7 +557,7 @@
   border-radius: 50%;
   background: rgba(0, 0, 0, 0.5);
   border: none;
-  color: white;
+  color: var(--bg-primary);
   font-size: 1rem;
   cursor: pointer;
   display: flex;
@@ -572,7 +572,7 @@
   padding: 0.625rem 1rem;
   border: 1px dashed var(--rule);
   border-radius: 0.125rem;
-  background: white;
+  background: var(--bg-primary);
   color: var(--grey);
   font-family: var(--sans);
   font-size: 0.85rem;
@@ -591,7 +591,7 @@
   border: none;
   border-radius: 0.125rem;
   background: var(--black);
-  color: white;
+  color: var(--bg-primary);
   font-family: var(--sans);
   font-size: 0.875rem;
   font-weight: 600;
@@ -626,7 +626,7 @@
   padding: 0.5rem 1rem;
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
-  background: white;
+  background: var(--bg-primary);
   color: var(--grey);
   font-family: var(--sans);
   font-size: 0.8rem;
@@ -647,7 +647,7 @@
 }
 
 .entry {
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   padding: 1rem;
@@ -697,17 +697,17 @@
   font-weight: 600;
 }
 
-.badgeSafe { background: rgba(61, 184, 147, 0.12); color: #2a8a6a; }
-.badgeConcerns { background: rgba(240, 160, 48, 0.12); color: #b07820; }
-.badgeUnsafe { background: rgba(232, 97, 58, 0.1); color: #c44020; }
-.badgeFlag { background: rgba(232, 97, 58, 0.1); color: #c44020; }
-.badgeGood { background: rgba(61, 184, 147, 0.08); color: #2a8a6a; }
-.badgeFair { background: rgba(240, 160, 48, 0.08); color: #b07820; }
-.badgePoor { background: rgba(232, 97, 58, 0.08); color: #c44020; }
+.badgeSafe { background: color-mix(in srgb, var(--severity-safe) 12%, transparent); color: var(--severity-safe); }
+.badgeConcerns { background: color-mix(in srgb, var(--severity-caution) 12%, transparent); color: var(--severity-caution); }
+.badgeUnsafe { background: color-mix(in srgb, var(--severity-danger) 10%, transparent); color: var(--severity-danger); }
+.badgeFlag { background: color-mix(in srgb, var(--severity-danger) 10%, transparent); color: var(--severity-danger); }
+.badgeGood { background: color-mix(in srgb, var(--severity-safe) 8%, transparent); color: var(--severity-safe); }
+.badgeFair { background: color-mix(in srgb, var(--severity-caution) 8%, transparent); color: var(--severity-caution); }
+.badgePoor { background: color-mix(in srgb, var(--severity-danger) 8%, transparent); color: var(--severity-danger); }
 .badgeNone { background: rgba(122, 141, 160, 0.1); color: var(--light-grey); }
-.badgeLow { background: rgba(61, 184, 147, 0.08); color: #2a8a6a; }
-.badgeModerate { background: rgba(240, 160, 48, 0.08); color: #b07820; }
-.badgeHigh { background: rgba(232, 97, 58, 0.08); color: #c44020; }
+.badgeLow { background: color-mix(in srgb, var(--severity-safe) 8%, transparent); color: var(--severity-safe); }
+.badgeModerate { background: color-mix(in srgb, var(--severity-caution) 8%, transparent); color: var(--severity-caution); }
+.badgeHigh { background: color-mix(in srgb, var(--severity-danger) 8%, transparent); color: var(--severity-danger); }
 
 .entryPhoto {
   margin-top: 0.5rem;
@@ -749,15 +749,15 @@
   padding: 0.3rem 0.75rem;
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
-  background: white;
-  color: #c44;
+  background: var(--bg-primary);
+  color: var(--status-error);
   font-family: var(--sans);
   font-size: 0.75rem;
   cursor: pointer;
 }
 
 .btnDelete:hover {
-  border-color: #c44;
+  border-color: var(--status-error);
 }
 
 .toast {
@@ -771,7 +771,7 @@
   font-size: 0.875rem;
   font-weight: 600;
   background: var(--black);
-  color: #fff;
+  color: var(--bg-primary);
   opacity: 0;
   transition: opacity 0.25s, transform 0.25s;
   z-index: 200;
@@ -785,8 +785,8 @@
 }
 
 .toastWarn {
-  background: #e8a020;
-  color: #1a1a1a;
+  background: var(--status-warning);
+  color: var(--text-primary);
 }
 
 /* Results page (completed audits) */
@@ -803,7 +803,7 @@
 }
 
 .stat {
-  background: white;
+  background: var(--bg-primary);
   border: 1px solid var(--rule);
   border-radius: 0.125rem;
   padding: 1rem;
@@ -875,8 +875,8 @@
   font-weight: 700;
   padding: 0.2rem 0.6rem;
   border-radius: 0.125rem;
-  background: rgba(61, 184, 147, 0.12);
-  color: #2a8a6a;
+  background: color-mix(in srgb, var(--severity-safe) 12%, transparent);
+  color: var(--severity-safe);
   margin-left: 0.5rem;
   vertical-align: middle;
 }

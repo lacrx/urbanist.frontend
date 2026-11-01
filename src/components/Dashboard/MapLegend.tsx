@@ -1,4 +1,3 @@
-import "./dashboard-tokens.module.css";
 import * as styles from "./map-legend.module.css";
 import type { ColorBreak } from "./types";
 

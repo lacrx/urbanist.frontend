@@ -62,5 +62,5 @@
 }
 
 .error {
-  color: #c00;
+  color: var(--status-error);
 }

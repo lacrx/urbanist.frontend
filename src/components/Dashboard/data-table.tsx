@@ -1,5 +1,4 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
-import "./dashboard-tokens.module.css";
 import * as styles from "./data-table.module.css";
 import type { LinkedSelection } from "./types";
 
