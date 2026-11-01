@@ -20,5 +20,18 @@
   "border": {
     "$type": "color",
     "default":   { "$value": "{color.neutral.200}", "$description": "Rules, dividers" }
+  },
+  "font": {
+    "display":   { "$value": "{font.serif}", "$description": "Headlines, article titles" },
+    "body":      { "$value": "{font.sans}", "$description": "Body text, UI elements" }
+  },
+  "dash": {
+    "$type": "color",
+    "$description": "Dashboard semantic colors for data visualization",
+    "accent":    { "$value": "{color.dash.accent}", "$description": "Primary chart color, interactive" },
+    "positive":  { "$value": "{color.dash.positive}", "$description": "Good/increase indicators" },
+    "negative":  { "$value": "{color.dash.negative}", "$description": "Bad/decrease indicators" },
+    "neutral":   { "$value": "{color.dash.neutral}", "$description": "Inactive, baseline" },
+    "surface":   { "$value": "{color.dash.surface}", "$description": "Dashboard card backgrounds" }
   }
 }

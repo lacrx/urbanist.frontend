@@ -20,8 +20,12 @@
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
   --font-size-3xl: 2.5rem;
+  --font-serif: Georgia, 'Times New Roman', Times, serif;
+  --font-sans: Helvetica, 'Helvetica Neue', Arial, sans-serif;
   --radius-sm: 4px;
   --radius-md: 8px;
+  --font-display: var(--font-serif); /** Headlines, article titles */
+  --font-body: var(--font-sans); /** Body text, UI elements */
   --bg-primary: var(--color-warm-100); /** Page background (cream) */
   --text-primary: var(--color-warm-800); /** Body text (deep brown) */
   --accent-primary: var(--color-warm-900); /** Buttons, links (burnt orange) */
@@ -34,4 +38,6 @@
   --accent: var(--accent-primary);
   --accent-btn: var(--accent-primary);
   --rule: var(--border-default);
+  --serif: var(--font-display);
+  --sans: var(--font-body);
 }

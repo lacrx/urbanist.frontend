@@ -3,5 +3,7 @@
   "text": "text-primary",
   "accent": "accent-primary",
   "accent-btn": "accent-primary",
-  "rule": "border-default"
+  "rule": "border-default",
+  "serif": "font-display",
+  "sans": "font-body"
 }

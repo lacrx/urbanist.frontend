@@ -18,5 +18,9 @@
   "border": {
     "$type": "color",
     "default":   { "$value": "{color.neutral.200}", "$description": "Rules, dividers (warm tan)" }
+  },
+  "font": {
+    "display":   { "$value": "{font.serif}", "$description": "Headlines, article titles" },
+    "body":      { "$value": "{font.sans}", "$description": "Body text, UI elements" }
   }
 }

@@ -3,6 +3,11 @@
  */
 
 :root {
+  --color-dash-accent: #2563eb;
+  --color-dash-positive: #16a34a;
+  --color-dash-negative: #dc2626;
+  --color-dash-neutral: #9ca3af;
+  --color-dash-surface: #f9fafb;
   --color-neutral-0: #ffffff; /** White */
   --color-neutral-200: #e2e2e2; /** Light gray border */
   --color-neutral-500: #767676; /** Muted text */
@@ -21,8 +26,13 @@
   --font-size-xl: 1.5rem;
   --font-size-2xl: 2rem;
   --font-size-3xl: 2.5rem;
+  --font-serif: Georgia, 'Times New Roman', Times, serif;
+  --font-sans: Helvetica, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'SF Mono', 'Cascadia Code', ui-monospace, monospace;
   --radius-sm: 4px;
   --radius-md: 8px;
+  --font-display: var(--font-serif); /** Headlines, article titles */
+  --font-body: var(--font-sans); /** Body text, UI elements */
   --bg-primary: var(--color-neutral-0); /** Page background (white) */
   --text-primary: var(--color-neutral-900); /** Body text (near-black) */
   --text-secondary: var(--color-neutral-700); /** Secondary text */
@@ -30,6 +40,11 @@
   --accent-primary: var(--color-neutral-900); /** Buttons, links (monochrome) */
   --btn-text: var(--color-neutral-0); /** Button label on dark bg */
   --border-default: var(--color-neutral-200); /** Rules, dividers */
+  --dash-accent: var(--color-dash-accent); /** Primary chart color, interactive */
+  --dash-positive: var(--color-dash-positive); /** Good/increase indicators */
+  --dash-negative: var(--color-dash-negative); /** Bad/decrease indicators */
+  --dash-neutral: var(--color-dash-neutral); /** Inactive, baseline */
+  --dash-surface: var(--color-dash-surface); /** Dashboard card backgrounds */
 
   /* Legacy aliases (remove after migration) */
   --bg: var(--bg-primary);
@@ -40,4 +55,8 @@
   --black: var(--color-neutral-900);
   --grey: var(--color-neutral-700);
   --light-grey: var(--color-neutral-500);
+  --dark-grey: var(--text-secondary);
+  --serif: var(--font-display);
+  --sans: var(--font-body);
+  --dash-mono: var(--font-mono);
 }

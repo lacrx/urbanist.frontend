@@ -25,8 +25,10 @@ All UI uses the design token system. Read the active site's `DESIGN.md` for visu
 ### Rules
 - All colors via CSS custom properties from `sites/<SITE>/theme.css`. Never hardcode hex, rgb, hsl, or named CSS colors.
 - All spacing via `--space-*` tokens. Never use arbitrary px/rem values for margin, padding, or gap.
-- All font sizes via `--fontSize-*` tokens.
+- All font sizes via `--font-size-*` tokens.
+- All font families via `--font-display`, `--font-body`, `--font-mono` tokens.
 - All border radii via `--radius-*` tokens.
+- Dashboard data viz colors via `--dash-*` tokens (accent, positive, negative, neutral, surface). Stoside only.
 - Use semantic token names (`--bg-primary`, `--text-primary`, `--accent-primary`) in new code, not legacy names (`--bg`, `--text`, `--accent`) or primitive names (`--color-warm-100`).
 - Read existing components before creating new ones.
 - New components follow existing patterns (same file structure, same prop conventions, same naming).

@@ -14,7 +14,7 @@ Warm palette built on burnt orange and cream. Deep brown (`--text-primary`) on p
 
 # Typography
 
-Headlines should carry civic weight without stiffness. Body text clean and readable. Generous line height for long-form articles. All font sizes from the `--fontSize-*` scale.
+Display: Georgia (`--font-display`) for headlines and article titles. Classic, civic, carries weight without stiffness. Body: Helvetica/Arial (`--font-body`) for all running text and UI. Clean and neutral. Generous line height for long-form articles. All font sizes from the `--font-size-*` scale.
 
 # Layout
 

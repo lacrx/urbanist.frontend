@@ -29,6 +29,11 @@
     "2xl":  { "$value": "2rem" },
     "3xl":  { "$value": "2.5rem" }
   },
+  "font": {
+    "$type": "fontFamily",
+    "serif": { "$value": "Georgia, 'Times New Roman', Times, serif" },
+    "sans": { "$value": "Helvetica, 'Helvetica Neue', Arial, sans-serif" }
+  },
   "radius": {
     "$type": "dimension",
     "sm": { "$value": "4px" },

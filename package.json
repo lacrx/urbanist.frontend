@@ -4,8 +4,8 @@
   "author": "Thomas LaCroix",
   "license": "MIT",
   "scripts": {
-    "dev": "gatsby develop",
-    "build": "gatsby build",
+    "dev": "npm run build:tokens && gatsby develop",
+    "build": "npm run build:tokens && gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "generate:css": "tcm -p 'src/**/*.module.css' .",

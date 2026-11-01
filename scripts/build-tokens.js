@@ -39,7 +39,8 @@ for (const site of sites) {
     );
 
     writeFileSync(themePath, css);
-    console.log(`  Added ${Object.keys(aliases).length} legacy aliases`);
+    const filtered = Object.entries(aliases).filter(([o, n]) => o !== n);
+    console.log(`  Added ${filtered.length} legacy aliases`);
   }
 }
 

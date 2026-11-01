@@ -1,6 +1,14 @@
 {
   "color": {
     "$type": "color",
+    "dash": {
+      "$description": "Dashboard data visualization palette",
+      "accent":   { "$value": "#2563EB" },
+      "positive": { "$value": "#16A34A" },
+      "negative": { "$value": "#DC2626" },
+      "neutral":  { "$value": "#9CA3AF" },
+      "surface":  { "$value": "#F9FAFB" }
+    },
     "neutral": {
       "0":   { "$value": "#FFFFFF", "$description": "White" },
       "200": { "$value": "#E2E2E2", "$description": "Light gray border" },
@@ -27,6 +35,12 @@
     "xl":   { "$value": "1.5rem" },
     "2xl":  { "$value": "2rem" },
     "3xl":  { "$value": "2.5rem" }
+  },
+  "font": {
+    "$type": "fontFamily",
+    "serif": { "$value": "Georgia, 'Times New Roman', Times, serif" },
+    "sans": { "$value": "Helvetica, 'Helvetica Neue', Arial, sans-serif" },
+    "mono": { "$value": "'SF Mono', 'Cascadia Code', ui-monospace, monospace" }
   },
   "radius": {
     "$type": "dimension",
