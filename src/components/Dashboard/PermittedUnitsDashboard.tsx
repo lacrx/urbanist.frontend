@@ -240,12 +240,10 @@ export default function PermittedUnitsDashboard() {
     [filtered],
   );
 
-  const fullRange: YearRange = data.data?.yearRange ?? [2018, 2025];
-
   const trendData = useMemo((): TrendPoint[] => {
     if (!neighborhoods.length) return [];
     const points: TrendPoint[] = [];
-    const [lo, hi] = fullRange;
+    const [lo, hi] = activeRange;
     for (const t of neighborhoods) {
       for (let y = lo; y <= hi; y++) {
         const yr = String(y);
@@ -257,7 +255,7 @@ export default function PermittedUnitsDashboard() {
       }
     }
     return points;
-  }, [neighborhoods, fullRange, category]);
+  }, [neighborhoods, activeRange, category]);
 
   const activeTractName = useMemo(() => {
     if (!selection.activeUnit || !neighborhoods.length) return null;
@@ -363,8 +361,8 @@ export default function PermittedUnitsDashboard() {
         heading="Permitting Trends"
         subheading={
           activeTractName
-            ? `${activeTractName} · ${category !== "all" ? category + " · " : ""}${fullRange[0]}–${fullRange[1]}`
-            : `All neighborhoods · ${category !== "all" ? category + " · " : ""}${fullRange[0]}–${fullRange[1]}`
+            ? `${activeTractName} · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
+            : `All neighborhoods · ${category !== "all" ? category + " · " : ""}${activeRange[0]}–${activeRange[1]}`
         }
       />
 
