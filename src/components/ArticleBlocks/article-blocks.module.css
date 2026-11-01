@@ -13,11 +13,11 @@
 }
 
 .richText :global(h3) {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.5rem;
-  color: var(--black);
+  color: var(--text-primary);
   letter-spacing: normal;
 }
 
@@ -28,10 +28,10 @@
 
 .richText :global(ul),
 .richText :global(ol) {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 1rem;
   line-height: 1.75;
-  color: var(--grey);
+  color: var(--text-secondary);
   margin: 1.25em 0;
   padding-left: 1.5em;
 }
@@ -62,7 +62,7 @@
   margin: 0 auto 2em;
   font-size: 0.9rem;
   font-style: italic;
-  color: var(--grey);
+  color: var(--text-secondary);
 }
 
 .richText :global(em) {
@@ -70,12 +70,12 @@
 }
 
 .richText :global(a) {
-  color: var(--grey);
+  color: var(--text-secondary);
   text-decoration: underline;
 }
 
 .richText :global(a:hover) {
-  color: var(--black);
+  color: var(--text-primary);
 }
 
 .richText :global(table) {
@@ -83,31 +83,31 @@
   overflow-x: auto;
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 0.88rem;
   line-height: 1.45;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 4px;
   margin: 1.5em 0;
 }
 
 .richText :global(th) {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--accent);
+  color: var(--accent-primary);
   padding: 0.6rem 0.75rem;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--border-default);
   text-align: left;
   white-space: nowrap;
 }
 
 .richText :global(td) {
   padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid var(--rule);
-  color: var(--text);
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-primary);
   vertical-align: top;
 }
 
@@ -116,7 +116,7 @@
 }
 
 .richText :global(tbody tr:nth-child(even)) {
-  background: color-mix(in srgb, var(--rule) 15%, transparent);
+  background: color-mix(in srgb, var(--border-default) 15%, transparent);
 }
 
 @media (max-width: 600px) {

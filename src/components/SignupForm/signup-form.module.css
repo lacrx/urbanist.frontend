@@ -11,36 +11,36 @@
   min-width: 0;
   box-sizing: border-box;
   padding: 0.6rem 0.75rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 1rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-right: none;
   border-radius: 0.125rem 0 0 0.125rem;
   background: transparent;
-  color: var(--text);
+  color: var(--text-primary);
   outline: none;
 
   &::placeholder {
-    color: var(--text);
+    color: var(--text-primary);
     opacity: 0.5;
   }
 
   &:focus {
-    border-color: var(--accent);
+    border-color: var(--accent-primary);
   }
 }
 
 .button {
   box-sizing: border-box;
   padding: 0.6rem 1.4rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  background: var(--accent-btn);
+  background: var(--accent-primary);
   color: var(--btn-text);
-  border: 1px solid var(--accent-btn);
+  border: 1px solid var(--accent-primary);
   border-radius: 0 0.125rem 0.125rem 0;
   cursor: pointer;
 
@@ -52,13 +52,13 @@
 
 .message {
   width: 100%;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   margin-top: 0.5rem;
 }
 
 .success {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .error {

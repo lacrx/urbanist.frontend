@@ -11,7 +11,8 @@
     "generate:css": "tcm -p 'src/**/*.module.css' .",
     "build:viz-tiles": "echo 'no viz tiles yet'",
     "build:viz-poster": "echo 'no viz posters yet'",
-    "build:tokens": "node scripts/build-tokens.js"
+    "build:tokens": "node scripts/build-tokens.js",
+    "lint:css": "stylelint 'src/**/*.css'"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -44,6 +45,8 @@
     "isomorphic-dompurify": "^3.8.0",
     "marked": "^18.0.0",
     "puppeteer": "^24.42.0",
+    "stylelint": "^17.16.0",
+    "stylelint-declaration-strict-value": "^1.12.1",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
     "typed-css-modules": "^0.9.1",
     "typescript": "^5.9.3",

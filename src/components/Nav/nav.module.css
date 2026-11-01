@@ -9,8 +9,8 @@
     display: flex;
     align-items: center;
     height: 1.75rem;
-    font-family: var(--sans);
-    color: var(--accent);
+    font-family: var(--font-body);
+    color: var(--accent-primary);
     margin-right: auto;
 
     & div {
@@ -32,7 +32,7 @@
       justify-content: center;
       border: none;
       background: transparent;
-      color: var(--accent);
+      color: var(--accent-primary);
     }
   }
 
@@ -48,10 +48,10 @@
       padding: 1rem 0;
 
       > span {
-        font-family: var(--sans);
+        font-family: var(--font-body);
         font-weight: 600;
         letter-spacing: .05em;
-        color: var(--accent);
+        color: var(--accent-primary);
         font-size: 1rem;
       }
     }
@@ -88,13 +88,13 @@
 
 .loginBtn {
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 2px;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: 0.05em;
-  color: var(--accent);
+  color: var(--accent-primary);
   padding: 0.5rem 1rem;
   cursor: pointer;
   white-space: nowrap;

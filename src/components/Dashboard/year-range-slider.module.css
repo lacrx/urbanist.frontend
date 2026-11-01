@@ -35,7 +35,7 @@
 .track {
   position: relative;
   height: 6px;
-  background: var(--rule);
+  background: var(--border-default);
   border-radius: 3px;
   cursor: pointer;
 }
@@ -75,9 +75,9 @@
   display: flex;
   justify-content: space-between;
   margin-top: 4px;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.65rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }
 
 .tick {

@@ -1,0 +1,33 @@
+{
+  "extends": "@lacrx/design-system/lint/stylelint.config.cjs",
+  "rules": {
+    "scale-unlimited/declaration-strict-value": [
+      [
+        "color",
+        "background-color",
+        "border-color",
+        "outline-color",
+        "text-decoration-color",
+        "fill",
+        "stroke"
+      ],
+      {
+        "ignoreValues": [
+          "transparent",
+          "inherit",
+          "currentColor",
+          "none",
+          "initial",
+          "unset"
+        ],
+        "disableFix": true,
+        "message": "Use a design token (CSS custom property) instead of a hardcoded value for {{ property }}"
+      }
+    ]
+  },
+  "ignoreFiles": [
+    "sites/*/theme.css",
+    "src/components/Vis/skeletons/**",
+    "src/components/Vis/choropleth-3d-maplibre.module.css"
+  ]
+}

@@ -7,7 +7,7 @@
   display: block;
   max-width: 100%;
   height: auto;
-  font-family: var(--sans);
+  font-family: var(--font-body);
 }
 
 .container :global([aria-label="y-axis tick label"]),
@@ -22,10 +22,10 @@
 }
 
 .chartTitle {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-primary);
   margin: 0 0 0.75rem;
 }
 
@@ -34,9 +34,9 @@
   flex-wrap: wrap;
   gap: 0.75rem;
   margin-top: 0.5rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .legendItem {

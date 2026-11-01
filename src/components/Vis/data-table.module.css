@@ -1,7 +1,7 @@
 .wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 4px;
   background: rgba(255, 255, 255, 0.35);
 }
@@ -9,30 +9,30 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 0.88rem;
   line-height: 1.45;
 }
 
 .table caption {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 400;
   text-align: left;
   padding: 0.75rem 0.75rem 0;
-  color: var(--text);
+  color: var(--text-primary);
   opacity: 0.72;
 }
 
 .table th {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--accent);
+  color: var(--accent-primary);
   padding: 0.6rem 0.75rem;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--border-default);
   text-align: left;
   white-space: nowrap;
   cursor: default;
@@ -44,7 +44,7 @@
 }
 
 .table th.sortable:hover {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .sortIndicator {
@@ -54,8 +54,8 @@
 
 .table td {
   padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid var(--rule);
-  color: var(--text);
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-primary);
   vertical-align: top;
 }
 

@@ -5,10 +5,10 @@
 }
 
 .voteTitle {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 1.0625rem;
   font-weight: 700;
-  color: var(--text);
+  color: var(--text-primary);
   margin: 0;
   text-align: left;
 }
@@ -29,7 +29,7 @@
 }
 
 .groupLabel {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -44,7 +44,7 @@
 }
 
 .pill {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.85rem;
   font-weight: 600;
   padding: 0.3rem 0.75rem;
@@ -60,10 +60,10 @@
 }
 
 .result {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 700;
   text-align: left;
-  color: var(--text);
+  color: var(--text-primary);
   margin: 0;
 }

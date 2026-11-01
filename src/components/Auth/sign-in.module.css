@@ -15,18 +15,18 @@
 
 .subtitle {
   font-size: 0.875rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   margin: 0 0 1.5rem;
   line-height: 1.4;
 }
 
 .label {
   display: block;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--black);
+  color: var(--text-primary);
   margin-bottom: 0.25rem;
 }
 
@@ -34,9 +34,9 @@
   display: block;
   width: 100%;
   padding: 0.5rem 0.625rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 1rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   margin-bottom: 1rem;
   box-sizing: border-box;
@@ -44,11 +44,11 @@
 
 .input:focus {
   outline: none;
-  border-color: var(--grey);
+  border-color: var(--text-secondary);
 }
 
 .error {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   color: var(--status-error-text);
   margin: 0 0 1rem;
@@ -63,10 +63,10 @@
   width: 100%;
   box-sizing: border-box;
   padding: 0.625rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--black);
+  background: var(--accent-primary);
   color: var(--bg-primary);
   border: none;
   border-radius: 0.125rem;
@@ -74,7 +74,7 @@
 }
 
 .btnPrimary:hover {
-  background: var(--grey);
+  background: var(--text-secondary);
 }
 
 .btnPrimary:disabled {
@@ -88,15 +88,15 @@
   box-sizing: border-box;
   padding: 0.625rem;
   margin-top: 0.5rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   background: none;
-  color: var(--grey);
-  border: 1px solid var(--rule);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   cursor: pointer;
 }
 
 .btnSecondary:hover {
-  border-color: var(--grey);
+  border-color: var(--text-secondary);
 }

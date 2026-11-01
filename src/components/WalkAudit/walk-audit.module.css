@@ -12,7 +12,7 @@
   font-style: italic;
   font-size: 0.9375rem;
   line-height: 1.375rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   margin: 0 0 1.5rem;
 }
 
@@ -24,11 +24,11 @@
 }
 
 .controls label {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--black);
+  color: var(--text-primary);
 }
 
 .syncBadge {
@@ -36,12 +36,12 @@
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.65rem;
   display: flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }
 
 .dot {
@@ -49,7 +49,7 @@
   height: 0.5rem;
   border-radius: 50%;
   display: inline-block;
-  background: var(--light-grey);
+  background: var(--text-muted);
 }
 
 .dotConnected {
@@ -62,10 +62,10 @@
   padding: 0.625rem 1rem;
   margin-bottom: 0.375rem;
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
-  color: var(--black);
-  font-family: var(--sans);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   font-size: 1rem;
 }
 
@@ -84,19 +84,19 @@
   width: 100%;
   padding: 0.5rem 0.75rem;
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   cursor: pointer;
   text-align: left;
 }
 
 .segmentBtnActive {
-  color: var(--black);
+  color: var(--text-primary);
   font-weight: 600;
-  border-color: var(--black);
+  border-color: var(--text-primary);
 }
 
 .segmentDot {
@@ -114,9 +114,9 @@
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   text-decoration: underline;
   padding: 0.4rem 0;
   cursor: pointer;
@@ -126,7 +126,7 @@
   display: flex;
   border-radius: 0.125rem;
   overflow: hidden;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   margin-top: 0.5rem;
 }
 
@@ -134,23 +134,23 @@
 .mapToggleActive {
   flex: 1;
   padding: 0.375rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   border: none;
   cursor: pointer;
   background: var(--bg-primary);
-  color: var(--grey);
+  color: var(--text-secondary);
 }
 
 .mapToggleActive {
-  background: var(--black);
+  background: var(--accent-primary);
   color: var(--bg-primary);
 }
 
 .mapEmbed {
   width: 100%;
   height: 300px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   margin-top: 0.5rem;
 }
@@ -162,7 +162,7 @@
 .pinMap {
   width: 100%;
   height: 250px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   z-index: 0;
 }
@@ -173,16 +173,16 @@
   margin-top: 0.375rem;
   padding: 0.5rem;
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
 .btnGps:active {
-  background: var(--rule);
+  background: var(--border-default);
 }
 
 .gpsDenied {
@@ -191,7 +191,7 @@
   background: var(--status-error-surface);
   border: 1px solid var(--status-error-border);
   border-radius: 0.125rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--status-error-text);
@@ -211,7 +211,7 @@
   display: flex;
   border-radius: 0.125rem;
   overflow: hidden;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   margin-bottom: 0;
 }
 
@@ -221,8 +221,8 @@
   background: var(--bg-primary);
   border: none;
   border-radius: 0;
-  color: var(--light-grey);
-  font-family: var(--sans);
+  color: var(--text-muted);
+  font-family: var(--font-body);
   font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
@@ -230,7 +230,7 @@
 
 .tabActive {
   composes: tab;
-  background: var(--black);
+  background: var(--accent-primary);
   color: var(--bg-primary);
 }
 
@@ -247,28 +247,28 @@
 }
 
 .card h3 {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
-  color: var(--black);
+  color: var(--text-primary);
   margin-bottom: 0.125rem;
 }
 
 .hint {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   margin-bottom: 0.875rem;
   line-height: 1.4;
 }
 
 .fieldLabel {
   display: block;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.03em;
-  color: var(--black);
+  color: var(--text-primary);
   margin: 1rem 0 0.25rem;
 }
 
@@ -290,10 +290,10 @@
 .btnClear {
   padding: 0 0.75rem;
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   font-size: 0.875rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -303,17 +303,17 @@
   box-sizing: border-box;
   padding: 0.5rem 0.625rem;
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
-  color: var(--black);
-  font-family: var(--sans);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   font-size: 1rem;
 }
 
 .textInput:focus,
 .textarea:focus {
   outline: none;
-  border-color: var(--grey);
+  border-color: var(--text-secondary);
 }
 
 .textarea {
@@ -323,18 +323,18 @@
 
 .btnPin {
   padding: 0.625rem 0.875rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   background: var(--bg-primary);
-  color: var(--grey);
-  font-family: var(--sans);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
   font-size: 0.85rem;
   cursor: pointer;
   white-space: nowrap;
 }
 
 .btnPin:hover {
-  border-color: var(--grey);
+  border-color: var(--text-secondary);
 }
 
 .typeaheadWrap {
@@ -357,7 +357,7 @@
   max-height: 15rem;
   overflow-y: auto;
   background: var(--bg-primary);
-  border: 1px solid var(--grey);
+  border: 1px solid var(--text-secondary);
   border-top: none;
   border-radius: 0 0 0.125rem 0.125rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -366,16 +366,16 @@
 .typeaheadItem {
   padding: 0.625rem 0.75rem;
   cursor: pointer;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.9rem;
-  color: var(--black);
+  color: var(--text-primary);
   display: flex;
   flex-direction: column;
   gap: 0.125rem;
 }
 
 .typeaheadItem + .typeaheadItem {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--border-default);
 }
 
 .typeaheadItemActive {
@@ -385,7 +385,7 @@
 
 .typeaheadItemActive + .typeaheadItem,
 .typeaheadItem + .typeaheadItemActive {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--border-default);
 }
 
 .typeaheadLabel {
@@ -395,15 +395,15 @@
 
 .typeaheadDetail {
   font-size: 0.75rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   line-height: 1.2;
 }
 
 .typeaheadLoading {
   padding: 0.625rem 0.75rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }
 
 
@@ -416,30 +416,30 @@
 .pill {
   padding: 0.5rem 0.875rem;
   border-radius: 0.125rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   background: var(--bg-primary);
-  color: var(--grey);
-  font-family: var(--sans);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
   font-size: 0.85rem;
   cursor: pointer;
   transition: border-color 0.12s, color 0.12s;
 }
 
 .pill:hover {
-  border-color: var(--light-grey);
-  color: var(--light-grey);
+  border-color: var(--text-muted);
+  color: var(--text-muted);
 }
 
 .pillSelected {
   composes: pill;
-  border-color: var(--black);
-  color: var(--black);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
   font-weight: 600;
 }
 
 .pillSelected:hover {
-  border-color: var(--black);
-  color: var(--black);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
 }
 
 .pillGreen {
@@ -512,20 +512,20 @@
   margin-top: 1.25rem;
   padding: 0.75rem;
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
 }
 
 .flagRow input[type="checkbox"] {
   width: 1.25rem;
   height: 1.25rem;
-  accent-color: var(--black);
+  accent-color: var(--text-primary);
 }
 
 .flagRow label {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.9rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   cursor: pointer;
 }
 
@@ -570,18 +570,18 @@
   align-items: center;
   gap: 0.4rem;
   padding: 0.625rem 1rem;
-  border: 1px dashed var(--rule);
+  border: 1px dashed var(--border-default);
   border-radius: 0.125rem;
   background: var(--bg-primary);
-  color: var(--grey);
-  font-family: var(--sans);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
   font-size: 0.85rem;
   cursor: pointer;
 }
 
 .btnPhoto:hover {
-  border-color: var(--light-grey);
-  color: var(--grey);
+  border-color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .btnSave {
@@ -590,9 +590,9 @@
   padding: 0.625rem;
   border: none;
   border-radius: 0.125rem;
-  background: var(--black);
+  background: var(--accent-primary);
   color: var(--bg-primary);
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 600;
   cursor: pointer;
@@ -602,7 +602,7 @@
 }
 
 .btnSave:hover {
-  background: var(--grey);
+  background: var(--text-secondary);
 }
 
 .btnSave:active {
@@ -617,38 +617,38 @@
 }
 
 .entriesLabel {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.85rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }
 
 .btnExport {
   padding: 0.5rem 1rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   background: var(--bg-primary);
-  color: var(--grey);
-  font-family: var(--sans);
+  color: var(--text-secondary);
+  font-family: var(--font-body);
   font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
 }
 
 .btnExport:hover {
-  border-color: var(--grey);
+  border-color: var(--text-secondary);
 }
 
 .empty {
   text-align: center;
-  color: var(--light-grey);
-  font-family: var(--sans);
+  color: var(--text-muted);
+  font-family: var(--font-body);
   padding: 3rem 1rem;
   font-size: 0.9rem;
 }
 
 .entry {
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   padding: 1rem;
   margin-bottom: 0.625rem;
@@ -662,23 +662,23 @@
 }
 
 .entryLocation {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 0.95rem;
-  color: var(--black);
+  color: var(--text-primary);
 }
 
 .entryTime {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
 .entryMeta {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   margin-top: 0.125rem;
 }
 
@@ -690,7 +690,7 @@
 }
 
 .badge {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.7rem;
   padding: 0.15rem 0.55rem;
   border-radius: 0.125rem;
@@ -704,7 +704,7 @@
 .badgeGood { background: color-mix(in srgb, var(--severity-safe) 8%, transparent); color: var(--severity-safe); }
 .badgeFair { background: color-mix(in srgb, var(--severity-caution) 8%, transparent); color: var(--severity-caution); }
 .badgePoor { background: color-mix(in srgb, var(--severity-danger) 8%, transparent); color: var(--severity-danger); }
-.badgeNone { background: rgba(122, 141, 160, 0.1); color: var(--light-grey); }
+.badgeNone { background: rgba(122, 141, 160, 0.1); color: var(--text-muted); }
 .badgeLow { background: color-mix(in srgb, var(--severity-safe) 8%, transparent); color: var(--severity-safe); }
 .badgeModerate { background: color-mix(in srgb, var(--severity-caution) 8%, transparent); color: var(--severity-caution); }
 .badgeHigh { background: color-mix(in srgb, var(--severity-danger) 8%, transparent); color: var(--severity-danger); }
@@ -723,9 +723,9 @@
 }
 
 .entryNotes {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 0.85rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   margin-top: 0.5rem;
   font-style: italic;
 }
@@ -736,22 +736,22 @@
   align-items: center;
   margin-top: 0.625rem;
   padding-top: 0.5rem;
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--border-default);
 }
 
 .entryObserver {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }
 
 .btnDelete {
   padding: 0.3rem 0.75rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   background: var(--bg-primary);
   color: var(--status-error);
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
   cursor: pointer;
 }
@@ -767,10 +767,10 @@
   transform: translateX(-50%) translateY(1rem);
   padding: 0.65rem 1.25rem;
   border-radius: 0.125rem;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.875rem;
   font-weight: 600;
-  background: var(--black);
+  background: var(--accent-primary);
   color: var(--bg-primary);
   opacity: 0;
   transition: opacity 0.25s, transform 0.25s;
@@ -804,27 +804,27 @@
 
 .stat {
   background: var(--bg-primary);
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 0.125rem;
   padding: 1rem;
   text-align: center;
 }
 
 .statNumber {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 1.75rem;
   font-weight: 700;
-  color: var(--black);
+  color: var(--text-primary);
   line-height: 1;
 }
 
 .statLabel {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  color: var(--light-grey);
+  color: var(--text-muted);
   margin-top: 0.375rem;
 }
 
@@ -835,7 +835,7 @@
 }
 
 .auditCard + .auditCard {
-  border-top: 1px solid var(--rule);
+  border-top: 1px solid var(--border-default);
 }
 
 .auditCardHeader {
@@ -846,31 +846,31 @@
 }
 
 .auditCardTitle {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.0625rem;
-  color: var(--black);
+  color: var(--text-primary);
   text-decoration: underline;
 }
 
 .auditCardDate {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
 .auditCardDesc {
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 0.9375rem;
-  color: var(--grey);
+  color: var(--text-secondary);
   margin-top: 0.25rem;
   line-height: 1.5;
 }
 
 .activeBadge {
   display: inline-block;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.7rem;
   font-weight: 700;
   padding: 0.2rem 0.6rem;

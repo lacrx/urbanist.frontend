@@ -1,7 +1,7 @@
 .legend {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .title {
@@ -9,7 +9,7 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--light-grey);
+  color: var(--text-muted);
   margin-bottom: 0.35rem;
 }
 
@@ -42,7 +42,7 @@
 .label {
   margin-top: 2px;
   font-size: 0.65rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
@@ -62,5 +62,5 @@
   justify-content: space-between;
   margin-top: 2px;
   font-size: 0.65rem;
-  color: var(--light-grey);
+  color: var(--text-muted);
 }

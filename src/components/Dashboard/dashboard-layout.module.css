@@ -56,7 +56,7 @@
 .skelTile {
   composes: skeleton;
   height: 92px;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
 }
 
 .skelSlider {

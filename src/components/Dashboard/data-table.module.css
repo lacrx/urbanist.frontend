@@ -1,24 +1,24 @@
 .wrapper {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 4px;
   background: var(--dash-surface);
 }
 
 .searchRow {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--rule);
+  border-bottom: 1px solid var(--border-default);
 }
 
 .searchInput {
   width: 100%;
   padding: 0.4rem 0.6rem;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 3px;
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.8rem;
-  color: var(--text);
+  color: var(--text-primary);
   background: var(--bg-primary);
   outline: none;
 }
@@ -31,30 +31,30 @@
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--serif);
+  font-family: var(--font-display);
   font-size: 0.88rem;
   line-height: 1.45;
 }
 
 .table caption {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.82rem;
   font-weight: 400;
   text-align: left;
   padding: 0.75rem 0.75rem 0;
-  color: var(--text);
+  color: var(--text-primary);
   opacity: 0.72;
 }
 
 .table th {
-  font-family: var(--sans);
+  font-family: var(--font-body);
   font-size: 0.72rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--dash-accent);
   padding: 0.6rem 0.75rem;
-  border-bottom: 2px solid var(--rule);
+  border-bottom: 2px solid var(--border-default);
   text-align: left;
   white-space: nowrap;
   cursor: default;
@@ -66,7 +66,7 @@
 }
 
 .table th.sortable:hover {
-  color: var(--text);
+  color: var(--text-primary);
 }
 
 .sortIndicator {
@@ -76,8 +76,8 @@
 
 .table td {
   padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid var(--rule);
-  color: var(--text);
+  border-bottom: 1px solid var(--border-default);
+  color: var(--text-primary);
   vertical-align: top;
 }
 
@@ -114,19 +114,19 @@
   justify-content: center;
   gap: 0.75rem;
   padding: 0.5rem 0.75rem;
-  border-top: 1px solid var(--rule);
-  font-family: var(--sans);
+  border-top: 1px solid var(--border-default);
+  font-family: var(--font-body);
   font-size: 0.78rem;
 }
 
 .pageBtn {
   background: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--border-default);
   border-radius: 3px;
   padding: 0.25rem 0.5rem;
   font-size: 0.85rem;
   cursor: pointer;
-  color: var(--text);
+  color: var(--text-primary);
   line-height: 1;
 }
 
@@ -140,7 +140,7 @@
 }
 
 .pageInfo {
-  color: var(--light-grey);
+  color: var(--text-muted);
   font-variant-numeric: tabular-nums;
 }
 
