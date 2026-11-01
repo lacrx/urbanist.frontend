@@ -1,6 +1,7 @@
 import { useState, useRef, useCallback, useEffect, type ChangeEvent } from "react";
 import * as s from "./walk-audit.module.css";
-import PinMap, { forwardGeocode, type PinMapHandle } from "./pin-map";
+import PinMap, { type PinMapHandle } from "./pin-map";
+import AddressTypeahead from "./address-typeahead";
 import { useAuth } from "@/components/Auth/auth-context";
 
 type WalkAuditFormProps = {
@@ -158,8 +159,7 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
   const fileRef = useRef<HTMLInputElement>(null);
   const formTopRef = useRef<HTMLDivElement>(null);
   const pinMapRef = useRef<PinMapHandle>(null);
-  const geocodeTimer = useRef<ReturnType<typeof setTimeout>>();
-  const toastTimer = useRef<ReturnType<typeof setTimeout>>();
+  const toastTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
   const syncingRef = useRef(false);
 
   const persist = useCallback((updated: Entry[]) => {
@@ -257,19 +257,11 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
     setForm(prev => ({ ...prev, [field]: prev[field] === value ? null : value }));
   };
 
-  const handleLocationChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setForm(prev => ({ ...prev, location: value }));
-    if (geocodeTimer.current) clearTimeout(geocodeTimer.current);
-    if (value.trim().length < 3) return;
-    geocodeTimer.current = setTimeout(async () => {
-      const result = await forwardGeocode(value.trim());
-      if (!result) return;
-      setForm(prev => ({ ...prev, lat: result.lat, lng: result.lng }));
-      setGeoStatus({ text: `📍 ${result.lat.toFixed(5)}, ${result.lng.toFixed(5)}`, cls: s.geoOk });
-      pinMapRef.current?.setPin(result.lat, result.lng);
-    }, 800);
-  };
+  const handleAddressSelect = useCallback((lat: number, lng: number, label: string) => {
+    setForm(prev => ({ ...prev, lat, lng, location: label }));
+    setGeoStatus({ text: `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`, cls: s.geoOk });
+    pinMapRef.current?.setPin(lat, lng);
+  }, []);
 
   const handlePhoto = async (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -370,10 +362,12 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
             <h3>Location</h3>
             <p className={s.hint}>Where did you see the issue? Type an address, tap the map, or enable location.</p>
             <span className={s.fieldLabelFirst}>Address or intersection</span>
-            <div className={s.inputRow}>
-              <input className={s.textInput} type="text" value={form.location} onChange={handleLocationChange} placeholder="Mission Ave & Cleveland St" />
-              {form.location && <button type="button" className={s.btnClear} onClick={() => { setForm(prev => ({ ...prev, location: "", lat: null, lng: null })); setGeoStatus({ text: "", cls: "" }); pinMapRef.current?.clearPin(); }}>✕</button>}
-            </div>
+            <AddressTypeahead
+              value={form.location}
+              onChange={(v) => setForm(prev => ({ ...prev, location: v }))}
+              onSelect={handleAddressSelect}
+              onClear={() => { setForm(prev => ({ ...prev, location: "", lat: null, lng: null })); setGeoStatus({ text: "", cls: "" }); pinMapRef.current?.clearPin(); }}
+            />
             <div className={`${s.geoStatus} ${geoStatus.cls}`}>{geoStatus.text}</div>
             <PinMap
               ref={pinMapRef}

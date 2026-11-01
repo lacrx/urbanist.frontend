@@ -33,6 +33,14 @@ declare const styles: {
   readonly textarea: string;
   readonly btnClear: string;
   readonly btnPin: string;
+  readonly typeaheadWrap: string;
+  readonly typeaheadMenu: string;
+  readonly typeaheadMenuOpen: string;
+  readonly typeaheadItem: string;
+  readonly typeaheadItemActive: string;
+  readonly typeaheadLabel: string;
+  readonly typeaheadDetail: string;
+  readonly typeaheadLoading: string;
   readonly geoStatus: string;
   readonly geoOk: string;
   readonly geoFail: string;
