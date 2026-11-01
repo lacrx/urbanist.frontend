@@ -406,20 +406,6 @@
   color: var(--light-grey);
 }
 
-.geoStatus {
-  font-family: var(--sans);
-  font-size: 0.8rem;
-  color: var(--light-grey);
-  min-height: 1.25rem;
-}
-
-.geoOk {
-  color: #3db893;
-}
-
-.geoFail {
-  color: #c44;
-}
 
 .pills {
   display: flex;

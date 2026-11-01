@@ -151,7 +151,6 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
       ? localStorage.getItem(`${LS}_observer`) || ""
       : ""
   );
-  const [geoStatus, setGeoStatus] = useState<{ text: string; cls: string }>({ text: "", cls: "" });
   const [synced, setSynced] = useState<boolean | null>(null);
   const [toast, setToast] = useState<{ text: string; cls: string } | null>(null);
 
@@ -259,7 +258,6 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
 
   const handleAddressSelect = useCallback((lat: number, lng: number, label: string) => {
     setForm(prev => ({ ...prev, lat, lng, location: label }));
-    setGeoStatus({ text: `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`, cls: s.geoOk });
     pinMapRef.current?.setPin(lat, lng);
   }, []);
 
@@ -307,7 +305,6 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
     doSync();
 
     setForm({ ...EMPTY_FORM });
-    setGeoStatus({ text: "", cls: "" });
     if (fileRef.current) fileRef.current.value = "";
     formTopRef.current?.scrollIntoView({ behavior: "smooth" });
     showToast("Report submitted");
@@ -366,9 +363,8 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
               value={form.location}
               onChange={(v) => setForm(prev => ({ ...prev, location: v }))}
               onSelect={handleAddressSelect}
-              onClear={() => { setForm(prev => ({ ...prev, location: "", lat: null, lng: null })); setGeoStatus({ text: "", cls: "" }); pinMapRef.current?.clearPin(); }}
+              onClear={() => { setForm(prev => ({ ...prev, location: "", lat: null, lng: null })); pinMapRef.current?.clearPin(); }}
             />
-            <div className={`${s.geoStatus} ${geoStatus.cls}`}>{geoStatus.text}</div>
             <PinMap
               ref={pinMapRef}
               lat={form.lat}
@@ -376,7 +372,6 @@ export default function WalkAuditForm({ auditSlug }: WalkAuditFormProps) {
               routeSegments={null}
               onPin={(lat, lng, label) => {
                 setForm(prev => ({ ...prev, lat, lng, location: label || prev.location }));
-                setGeoStatus({ text: `📍 ${lat.toFixed(5)}, ${lng.toFixed(5)}`, cls: s.geoOk });
               }}
             />
           </div>

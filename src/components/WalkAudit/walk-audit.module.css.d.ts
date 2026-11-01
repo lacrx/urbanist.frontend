@@ -41,9 +41,6 @@ declare const styles: {
   readonly typeaheadLabel: string;
   readonly typeaheadDetail: string;
   readonly typeaheadLoading: string;
-  readonly geoStatus: string;
-  readonly geoOk: string;
-  readonly geoFail: string;
   readonly pills: string;
   readonly pill: string;
   readonly pillSelected: string;
