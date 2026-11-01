@@ -1,0 +1,22 @@
+{
+  "bg": {
+    "$type": "color",
+    "primary":   { "$value": "{color.warm.100}", "$description": "Page background (cream)" }
+  },
+  "text": {
+    "$type": "color",
+    "primary":   { "$value": "{color.warm.800}", "$description": "Body text (deep brown)" }
+  },
+  "accent": {
+    "$type": "color",
+    "primary":   { "$value": "{color.warm.900}", "$description": "Buttons, links (burnt orange)" }
+  },
+  "btn": {
+    "$type": "color",
+    "text":      { "$value": "{color.warm.100}", "$description": "Button label on accent bg" }
+  },
+  "border": {
+    "$type": "color",
+    "default":   { "$value": "{color.neutral.200}", "$description": "Rules, dividers (warm tan)" }
+  }
+}

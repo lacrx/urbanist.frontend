@@ -1,11 +1,43 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
 :root {
-  --bg: #fff;
-  --text: #121212;
-  --accent: #121212;
-  --accent-btn: #121212;
-  --btn-text: #fff;
-  --rule: #e2e2e2;
-  --black: #121212;
-  --grey: #333;
-  --light-grey: #767676;
+  --color-neutral-0: #ffffff; /** White */
+  --color-neutral-200: #e2e2e2; /** Light gray border */
+  --color-neutral-500: #767676; /** Muted text */
+  --color-neutral-700: #333333; /** Secondary text */
+  --color-neutral-900: #121212; /** Near-black */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --bg-primary: var(--color-neutral-0); /** Page background (white) */
+  --text-primary: var(--color-neutral-900); /** Body text (near-black) */
+  --text-secondary: var(--color-neutral-700); /** Secondary text */
+  --text-muted: var(--color-neutral-500); /** Captions, placeholders */
+  --accent-primary: var(--color-neutral-900); /** Buttons, links (monochrome) */
+  --btn-text: var(--color-neutral-0); /** Button label on dark bg */
+  --border-default: var(--color-neutral-200); /** Rules, dividers */
+
+  /* Legacy aliases (remove after migration) */
+  --bg: var(--bg-primary);
+  --text: var(--text-primary);
+  --accent: var(--accent-primary);
+  --accent-btn: var(--accent-primary);
+  --rule: var(--border-default);
+  --black: var(--color-neutral-900);
+  --grey: var(--color-neutral-700);
+  --light-grey: var(--color-neutral-500);
 }

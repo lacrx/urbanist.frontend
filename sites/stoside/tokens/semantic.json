@@ -1,0 +1,24 @@
+{
+  "bg": {
+    "$type": "color",
+    "primary":   { "$value": "{color.neutral.0}", "$description": "Page background (white)" }
+  },
+  "text": {
+    "$type": "color",
+    "primary":   { "$value": "{color.neutral.900}", "$description": "Body text (near-black)" },
+    "secondary": { "$value": "{color.neutral.700}", "$description": "Secondary text" },
+    "muted":     { "$value": "{color.neutral.500}", "$description": "Captions, placeholders" }
+  },
+  "accent": {
+    "$type": "color",
+    "primary":   { "$value": "{color.neutral.900}", "$description": "Buttons, links (monochrome)" }
+  },
+  "btn": {
+    "$type": "color",
+    "text":      { "$value": "{color.neutral.0}", "$description": "Button label on dark bg" }
+  },
+  "border": {
+    "$type": "color",
+    "default":   { "$value": "{color.neutral.200}", "$description": "Rules, dividers" }
+  }
+}

@@ -10,7 +10,8 @@
     "clean": "gatsby clean",
     "generate:css": "tcm -p 'src/**/*.module.css' .",
     "build:viz-tiles": "echo 'no viz tiles yet'",
-    "build:viz-poster": "echo 'no viz posters yet'"
+    "build:viz-poster": "echo 'no viz posters yet'",
+    "build:tokens": "node scripts/build-tokens.js"
   },
   "engines": {
     "node": ">=22.0.0"
@@ -36,6 +37,7 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@lacrx/design-system": "file:../design-system",
     "@types/d3-scale": "^4.0.9",
     "better-sqlite3": "^12.9.0",
     "geojson-vt": "^4.0.2",

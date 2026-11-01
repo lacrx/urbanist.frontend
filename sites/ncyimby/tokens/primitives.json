@@ -1,0 +1,37 @@
+{
+  "color": {
+    "$type": "color",
+    "warm": {
+      "100": { "$value": "#FFE8CC", "$description": "Cream background" },
+      "800": { "$value": "#5B2800", "$description": "Deep brown" },
+      "900": { "$value": "#A63D00", "$description": "Burnt orange accent" }
+    },
+    "neutral": {
+      "200": { "$value": "#D4B896", "$description": "Warm tan rule/border" }
+    }
+  },
+  "space": {
+    "$type": "dimension",
+    "xs":  { "$value": "4px" },
+    "sm":  { "$value": "8px" },
+    "md":  { "$value": "16px" },
+    "lg":  { "$value": "24px" },
+    "xl":  { "$value": "32px" },
+    "2xl": { "$value": "48px" },
+    "3xl": { "$value": "64px" }
+  },
+  "fontSize": {
+    "$type": "dimension",
+    "sm":   { "$value": "0.875rem" },
+    "base": { "$value": "1rem" },
+    "lg":   { "$value": "1.25rem" },
+    "xl":   { "$value": "1.5rem" },
+    "2xl":  { "$value": "2rem" },
+    "3xl":  { "$value": "2.5rem" }
+  },
+  "radius": {
+    "$type": "dimension",
+    "sm": { "$value": "4px" },
+    "md": { "$value": "8px" }
+  }
+}

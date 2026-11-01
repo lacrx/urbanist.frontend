@@ -1,8 +1,37 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
 :root {
-  --bg: #FFE8CC;
-  --text: #5B2800;
-  --accent: #A63D00;
-  --accent-btn: #A63D00;
-  --btn-text: #FFE8CC;
-  --rule: #D4B896;
+  --color-warm-100: #ffe8cc; /** Cream background */
+  --color-warm-800: #5b2800; /** Deep brown */
+  --color-warm-900: #a63d00; /** Burnt orange accent */
+  --color-neutral-200: #d4b896; /** Warm tan rule/border */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+  --space-3xl: 64px;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-2xl: 2rem;
+  --font-size-3xl: 2.5rem;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --bg-primary: var(--color-warm-100); /** Page background (cream) */
+  --text-primary: var(--color-warm-800); /** Body text (deep brown) */
+  --accent-primary: var(--color-warm-900); /** Buttons, links (burnt orange) */
+  --btn-text: var(--color-warm-100); /** Button label on accent bg */
+  --border-default: var(--color-neutral-200); /** Rules, dividers (warm tan) */
+
+  /* Legacy aliases (remove after migration) */
+  --bg: var(--bg-primary);
+  --text: var(--text-primary);
+  --accent: var(--accent-primary);
+  --accent-btn: var(--accent-primary);
+  --rule: var(--border-default);
 }

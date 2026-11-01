@@ -1,0 +1,10 @@
+{
+  "bg": "bg-primary",
+  "text": "text-primary",
+  "accent": "accent-primary",
+  "accent-btn": "accent-primary",
+  "rule": "border-default",
+  "black": "color-neutral-900",
+  "grey": "color-neutral-700",
+  "light-grey": "color-neutral-500"
+}
