@@ -16,7 +16,7 @@ type LayoutProps = {
 
 export default function Layout({ children, breadcrumb }: LayoutProps) {
   return (
-    <main>
+    <main data-breadcrumb={breadcrumb ? "" : undefined}>
       <Nav />
       {breadcrumb && <Breadcrumb section={breadcrumb.section} title={breadcrumb.title} />}
       { children }

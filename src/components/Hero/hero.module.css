@@ -3,6 +3,10 @@
   padding-top: 3rem;
   padding-bottom: 5rem;
 
+  :global(main[data-breadcrumb]) & {
+    padding-top: calc(3rem - 2 * var(--space-sm) - var(--font-size-sm));
+  }
+
   :global(.open) ~ & {
     @media (max-width: 599px) {
       padding-top: 0;
