@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from "astro:transitions";
 import Nav from "@/components/Nav/nav";
 import Footer from "@/components/Footer/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.astro";
@@ -26,10 +27,11 @@ const pageTitle = `${title} | ${config.title}`;
   <link rel="icon" href="/favicon.png" />
   <title>{pageTitle}</title>
   {description && <meta name="description" content={description} />}
+  <ClientRouter />
 </head>
 <body class={bodyClass}>
 <main data-breadcrumb={breadcrumb ? "" : undefined}>
-  <Nav client:load />
+  <Nav client:load transition:persist />
   {breadcrumb && (
     <Breadcrumb section={breadcrumb.section} title={breadcrumb.title} />
   )}
