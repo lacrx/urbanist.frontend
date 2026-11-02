@@ -1,6 +1,6 @@
 .nav {
   padding: var(--space-sm) 0;
-  margin-bottom: calc(-1 * var(--space-md));
+  margin-bottom: calc(-1 * (2 * var(--space-sm) + var(--font-size-sm)));
 }
 
 .list {
@@ -23,11 +23,13 @@
   a:link,
   a:visited {
     color: var(--text-muted);
-    text-decoration: none;
+    text-decoration: underline;
+    padding: var(--space-xs) var(--space-xs);
+    margin: calc(-1 * var(--space-xs));
   }
 
   a:hover {
-    text-decoration: underline;
+    color: var(--text-secondary);
   }
 }
 
