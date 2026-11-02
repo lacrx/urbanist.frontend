@@ -41,6 +41,12 @@
   border-radius: 4px;
 }
 
+@media (max-width: 600px) {
+  .map {
+    aspect-ratio: 1 / 1;
+  }
+}
+
 .legend {
   display: flex;
   flex-direction: column;
@@ -59,8 +65,13 @@
 
 .legendBar {
   composes: shimmerBlock;
-  height: 12px;
+  height: 10px;
   border-radius: 2px;
+}
+
+.legendLabels {
+  height: 0.65rem;
+  margin-top: 2px;
 }
 
 .pagination {

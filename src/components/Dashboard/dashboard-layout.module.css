@@ -18,6 +18,10 @@
   align-items: start;
 }
 
+.mapSlot {
+  aspect-ratio: 4 / 3;
+}
+
 .exportRow {
   display: flex;
   justify-content: flex-end;
@@ -100,5 +104,11 @@
 @media (max-width: 800px) {
   .splitPane {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .mapSlot {
+    aspect-ratio: 1 / 1;
   }
 }

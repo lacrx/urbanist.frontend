@@ -214,7 +214,11 @@ export default function AffordabilityDashboard() {
   }
 
   if (data.status === "error" || geo.status === "error") {
-    return <div className={layout.error}>{data.error ?? geo.error}</div>;
+    return (
+      <div className={layout.dashboard}>
+        <div className={layout.error}>{data.error ?? geo.error}</div>
+      </div>
+    );
   }
 
   const d = data.data!;

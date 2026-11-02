@@ -57,7 +57,7 @@ function SkeletonSlider({ years }: { years: [number, number] }) {
           <div
             key={i}
             className={`${sliderStyles.bar} ${skel.shimmerBlock}`}
-            style={{ height: `${20 + Math.random() * 60}%` }}
+            style={{ height: `${20 + ((i * 37 + 13) % 60)}%` }}
           />
         ))}
       </div>
@@ -118,6 +118,7 @@ function SkeletonLegend({ title }: { title: string }) {
     <div className={skel.legend}>
       <span className={skel.legendTitle}>{title}</span>
       <div className={skel.legendBar} />
+      <div className={skel.legendLabels} />
     </div>
   );
 }

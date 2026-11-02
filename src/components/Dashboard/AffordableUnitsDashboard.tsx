@@ -148,7 +148,11 @@ export default function AffordableUnitsDashboard() {
   }
 
   if (data.status === "error" || geo.status === "error") {
-    return <div className={layout.error}>{data.error ?? geo.error}</div>;
+    return (
+      <div className={layout.dashboard}>
+        <div className={layout.error}>{data.error ?? geo.error}</div>
+      </div>
+    );
   }
 
   const d = data.data!;
@@ -252,16 +256,18 @@ export default function AffordableUnitsDashboard() {
 
       <div className={layout.splitPane}>
         <div>
-          {mergedGeo && (
-            <ChoroplethMap
-              geojson={mergedGeo}
-              featureIdField="GEOID"
-              colorField="units"
-              colorBreaks={view === "dr" ? AFFORDABLE_BLUES : SEQUENTIAL_BLUES}
-              selection={selection}
-              featureGroupMap={tractToGroup}
-            />
-          )}
+          <div className={layout.mapSlot}>
+            {mergedGeo && (
+              <ChoroplethMap
+                geojson={mergedGeo}
+                featureIdField="GEOID"
+                colorField="units"
+                colorBreaks={view === "dr" ? AFFORDABLE_BLUES : SEQUENTIAL_BLUES}
+                selection={selection}
+                featureGroupMap={tractToGroup}
+              />
+            )}
+          </div>
           <MapLegend
             variant="sequential"
             breaks={view === "dr" ? AFFORDABLE_BLUES : SEQUENTIAL_BLUES}
