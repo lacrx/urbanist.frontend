@@ -1,0 +1,70 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero/Hero.astro";
+import Content from "@/components/Content/Content.astro";
+import Card from "@/components/Card/Card.astro";
+import config from "@/site/config";
+import { fetchArticles } from "@/lib/strapi";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const articles = await fetchArticles(config);
+  return paginate(articles, { pageSize: 5 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title="Articles">
+  <Hero title="We've put pen to paper" />
+  <Content type="section" ruled>
+    {page.data.map((article) => (
+      <Card
+        link={`/articles/${article.slug}`}
+        title={article.title}
+        description={article.description}
+        imageUrl={article.coverUrl}
+        authorName={article.authorName}
+        publishedAt={article.publishedAt}
+      />
+    ))}
+    {page.lastPage > 1 && (
+      <nav aria-label="Pagination" class="pagination">
+        {page.url.prev ? (
+          <a href={page.url.prev}>‹ Prev</a>
+        ) : (
+          <span class="disabled">‹ Prev</span>
+        )}
+        <span>{page.currentPage} of {page.lastPage}</span>
+        {page.url.next ? (
+          <a href={page.url.next}>Next ›</a>
+        ) : (
+          <span class="disabled">Next ›</span>
+        )}
+      </nav>
+    )}
+  </Content>
+</BaseLayout>
+
+<style>
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0 0.25rem;
+    font-family: var(--font-display);
+    font-size: var(--font-size-sm);
+  }
+  .pagination a {
+    color: var(--accent-primary);
+    text-decoration: none;
+  }
+  .pagination a:hover {
+    text-decoration: underline;
+  }
+  .pagination .disabled {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+</style>

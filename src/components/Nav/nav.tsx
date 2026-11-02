@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, navigate } from "gatsby";
 import { nav, loginBtn, authOnly, noAuthOnly } from './nav.module.css';
 import config from "@/site/config";
 import { useAuth } from "@/components/Auth/auth-context";
@@ -27,7 +26,7 @@ function AuthButtons() {
       <button className={`${loginBtn} ${authOnly}`} onClick={logout}>
         Sign out
       </button>
-      <button className={`${loginBtn} ${noAuthOnly}`} onClick={() => navigate('/sign-in')}>
+      <button className={`${loginBtn} ${noAuthOnly}`} onClick={() => { window.location.href = '/sign-in'; }}>
         Sign in
       </button>
     </li>
@@ -52,10 +51,10 @@ export default function Nav() {
   return (
     <ul ref={ref} className={`${nav} ${open ? "open" : "closed"}`}>
       <li>
-        <Link to="/">
+        <a href="/">
           <div>{config.shortName}</div>
           {config.logo && <img src={config.logo} width="60" alt={`${config.title} Logo`} />}
-        </Link>
+        </a>
       </li>
       <li>
         <button onClick={() => setOpen(!open)}>
@@ -64,7 +63,7 @@ export default function Nav() {
       </li>
       {config.navLinks.map(link => (
         <li key={link.path}>
-          <Link to={link.path}><span>{link.label}</span></Link>
+          <a href={link.path}><span>{link.label}</span></a>
         </li>
       ))}
       {config.auth && <AuthButtons />}

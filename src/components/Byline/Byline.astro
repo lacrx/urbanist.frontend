@@ -1,0 +1,39 @@
+---
+import { ordinal } from "@/utils";
+import { byline, compact as compactCls, author as authorCls, withSep } from "./byline.module.css";
+
+type Props = {
+  author?: string | null;
+  publishedAt?: string | null;
+  compact?: boolean;
+};
+
+const { author, publishedAt, compact = false } = Astro.props;
+
+const PARTS_FORMATTER = new Intl.DateTimeFormat("en-US", {
+  timeZone: "America/Los_Angeles",
+  year: "numeric",
+  month: "long",
+  day: "numeric",
+});
+
+function formatDate(input: string): { label: string; iso: string } | null {
+  const date = new Date(input);
+  if (Number.isNaN(date.getTime())) return null;
+  const parts = PARTS_FORMATTER.formatToParts(date);
+  const month = parts.find((p) => p.type === "month")!.value;
+  const day = Number(parts.find((p) => p.type === "day")!.value);
+  const year = parts.find((p) => p.type === "year")!.value;
+  return { label: `${month} ${ordinal(day)}, ${year}`, iso: date.toISOString() };
+}
+
+const date = publishedAt ? formatDate(publishedAt) : null;
+const show = author || date;
+---
+
+{show && (
+  <div class={`${byline}${compact ? ` ${compactCls}` : ""}`}>
+    {author && <span class={authorCls}>By {author}</span>}
+    {date && <time class={author ? withSep : undefined} datetime={date.iso}>{date.label}</time>}
+  </div>
+)}

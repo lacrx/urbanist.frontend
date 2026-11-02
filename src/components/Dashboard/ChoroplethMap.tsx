@@ -29,8 +29,8 @@ function ensurePmtiles() {
 }
 
 function resolveBasemap(url: string | undefined): string {
-  if (process.env.GATSBY_BASEMAP_PMTILES_URL)
-    return process.env.GATSBY_BASEMAP_PMTILES_URL;
+  if (import.meta.env.PUBLIC_BASEMAP_PMTILES_URL)
+    return import.meta.env.PUBLIC_BASEMAP_PMTILES_URL;
   return url ?? "/tiles/oceanside.pmtiles";
 }
 

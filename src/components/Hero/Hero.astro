@@ -1,0 +1,57 @@
+---
+import { hero, centered as centeredCls } from "./hero.module.css";
+import config from "@/site/config";
+
+type Props = {
+  title: string;
+  cta?: string;
+  ctaUrl?: string;
+  instagramUrl?: string;
+  description?: string;
+  showBuddy?: boolean;
+  centered?: boolean;
+  style?: Record<string, string>;
+};
+
+const {
+  title,
+  cta,
+  ctaUrl = "#",
+  instagramUrl,
+  description,
+  showBuddy = false,
+  centered = false,
+  style,
+} = Astro.props;
+
+const resolvedInstagramUrl = instagramUrl || config.hero.defaultInstagramUrl || "#";
+const classes = `${hero}${centered ? ` ${centeredCls}` : ""}`;
+const styleStr = style
+  ? Object.entries(style).map(([k, v]) => `${k}:${v}`).join(";")
+  : undefined;
+---
+
+<header class={classes} style={styleStr}>
+  <h1>{title}</h1>
+  {description && <p>{description}</p>}
+  {cta && (
+    <a href={ctaUrl} target="_blank" rel="noopener noreferrer">
+      <p>{cta}</p>
+    </a>
+  )}
+  {showBuddy && config.hero.buddyImage && (
+    <a
+      href={resolvedInstagramUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      style="position:absolute;bottom:-6px;right:-5px;z-index:2"
+    >
+      <img
+        src={`/${config.hero.buddyImage}`}
+        width="60"
+        height="60"
+        alt={config.hero.buddyAlt || ""}
+      />
+    </a>
+  )}
+</header>

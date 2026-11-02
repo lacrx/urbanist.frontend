@@ -1,0 +1,30 @@
+---
+import { nav, list, item, separator, current } from "./breadcrumb.module.css";
+
+type Props = {
+  section: { label: string; path: string };
+  title: string;
+};
+
+const { section, title } = Astro.props;
+---
+
+<nav class={nav} aria-label="breadcrumbs">
+  <ol class={list}>
+    <li class={item}>
+      <a href="/">Home</a>
+    </li>
+    <li class={item} role="presentation" aria-hidden="true">
+      <span class={separator}>/</span>
+    </li>
+    <li class={item}>
+      <a href={section.path}>{section.label}</a>
+    </li>
+    <li class={item} role="presentation" aria-hidden="true">
+      <span class={separator}>/</span>
+    </li>
+    <li class={`${item} ${current}`} aria-current="page">
+      {title}
+    </li>
+  </ol>
+</nav>
