@@ -32,7 +32,7 @@ interface DataPageProps extends PageProps {
 
 const SECTION = { label: "Data", path: "/data" };
 
-export default function DataPage({ pageContext: { title, description, dashboardType, image, blocks, methodologyHtml, dataUpdatedAt } }: DataPageProps) {
+export default function DataPage({ pageContext: { title, description, dashboardType, image, blocks, methodologyHtml } }: DataPageProps) {
   const img = image ? getImage(image) : null;
   const Dashboard = DASHBOARDS[dashboardType.replace(/_/g, "-")];
 
@@ -50,11 +50,6 @@ export default function DataPage({ pageContext: { title, description, dashboardT
           <div style={{ padding: "3rem 0", textAlign: "center", color: "var(--text-muted)" }}>
             Dashboard type "{dashboardType}" not yet implemented.
           </div>
-        )}
-        {dataUpdatedAt && (
-          <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", margin: "1.5rem 0 0" }}>
-            Data last updated: {new Date(dataUpdatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
-          </p>
         )}
         {methodologyHtml && (
           <Content type="section" ruled>
