@@ -13,14 +13,14 @@
 .container :global([aria-label="y-axis tick label"]),
 .container :global([aria-label="x-axis tick label"]) {
   font-size: 11px;
-  fill: var(--text-muted);
+  fill: var(--text-secondary);
 }
 
 .container :global([aria-label="y-axis label"]),
 .container :global([aria-label="x-axis label"]) {
   font-size: 11px;
   font-weight: 600;
-  fill: var(--text-muted);
+  fill: var(--text-secondary);
 }
 
 .container :global([aria-label="y-axis grid"] line),
@@ -52,7 +52,7 @@
   margin-top: 0.5rem;
   font-family: var(--font-body);
   font-size: 0.75rem;
-  color: var(--text-muted);
+  color: var(--text-secondary);
 }
 
 .legendItem {

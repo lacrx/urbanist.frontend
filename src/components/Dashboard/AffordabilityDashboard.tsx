@@ -10,7 +10,14 @@ import CsvExport from "./CsvExport";
 import { geometricBreaks } from "./color-scales";
 import { BLUE_RAMP } from "./palette";
 import type { TractId, ColorBreak } from "./types";
+import {
+  OCEANSIDE,
+  groupByMapping,
+  buildTractToGroupMap,
+  buildGroupToTractsMap,
+} from "./neighborhood-mapping";
 import DashboardSkeleton from "./DashboardSkeleton";
+import SectionHeading from "./SectionHeading";
 import * as layout from "./dashboard-layout.module.css";
 
 type TractRow = {
@@ -49,6 +56,22 @@ const METRIC_OPTIONS = [
   { value: "medianHomeValue", label: "Home Value" },
   { value: "medianHouseholdIncome", label: "Income" },
 ];
+
+function avgNullable(members: TractRow[], fn: (m: TractRow) => number | null): number | null {
+  const vals = members.map(fn).filter((v): v is number => v != null);
+  if (!vals.length) return null;
+  return Math.round((vals.reduce((s, v) => s + v, 0) / vals.length) * 10) / 10;
+}
+
+function aggregateAffordability(members: TractRow[]): Partial<TractRow> {
+  return {
+    medianRent: avgNullable(members, (m) => m.medianRent),
+    medianRentPctIncome: avgNullable(members, (m) => m.medianRentPctIncome),
+    medianHomeValue: avgNullable(members, (m) => m.medianHomeValue),
+    medianHouseholdIncome: avgNullable(members, (m) => m.medianHouseholdIncome),
+    costBurdenedPct: avgNullable(members, (m) => m.costBurdenedPct),
+  };
+}
 
 function formatValue(val: number | null | undefined, metric: string): string {
   if (val == null) return "N/A";
@@ -128,23 +151,35 @@ function buildBreaks(tracts: TractRow[], metric: string): ColorBreak[] {
 
 function mergeGeoJSON(
   geojson: GeoJSONFC,
-  tracts: TractRow[],
+  neighborhoods: Array<TractRow & { tractIds?: string[] }>,
   metric: string,
+  groupToTracts: Map<string, string[]>,
+  excludeSet: Set<string>,
 ): GeoJSONFC {
-  const tractMap = new Map<string, number>();
-  for (const t of tracts) {
-    const val = (t as Record<string, unknown>)[metric] as number | null;
-    tractMap.set(t.tractId, val ?? 0);
+  const valueMap = new Map<string, number>();
+  for (const n of neighborhoods) {
+    const val = (n as Record<string, unknown>)[metric] as number | null;
+    const tracts = groupToTracts.get(n.tractId);
+    if (tracts) {
+      for (const t of tracts) valueMap.set(t, val ?? 0);
+    } else {
+      valueMap.set(n.tractId, val ?? 0);
+    }
   }
   return {
     ...geojson,
-    features: geojson.features.map((f) => ({
-      ...f,
-      properties: {
-        ...f.properties,
-        value: tractMap.get(f.properties?.GEOID ?? f.id as string) ?? 0,
-      },
-    })),
+    features: geojson.features
+      .filter((f) => {
+        const id = f.properties?.GEOID ?? (f.id as string);
+        return !excludeSet.has(id);
+      })
+      .map((f) => ({
+        ...f,
+        properties: {
+          ...f.properties,
+          value: valueMap.get(f.properties?.GEOID ?? f.id as string) ?? 0,
+        },
+      })),
   };
 }
 
@@ -154,13 +189,24 @@ export default function AffordabilityDashboard() {
   const selection = useLinkedSelection<TractId>();
   const [metric, setMetric] = useState("costBurdenedPct");
 
+  const mapping = OCEANSIDE;
+
+  const neighborhoods = useMemo(() => {
+    if (!data.data) return [];
+    return groupByMapping(data.data.tracts, mapping, aggregateAffordability);
+  }, [data.data, mapping]);
+
+  const tractToGroup = useMemo(() => buildTractToGroupMap(mapping), [mapping]);
+  const groupToTracts = useMemo(() => buildGroupToTractsMap(mapping), [mapping]);
+  const excludeSet = useMemo(() => new Set(mapping.exclude), [mapping]);
+
   const breaks = useMemo(
-    () => data.data ? buildBreaks(data.data.tracts, metric) : [],
-    [data.data, metric],
+    () => neighborhoods.length ? buildBreaks(neighborhoods, metric) : [],
+    [neighborhoods, metric],
   );
   const mergedGeo = useMemo(
-    () => (geo.data && data.data) ? mergeGeoJSON(geo.data, data.data.tracts, metric) : null,
-    [geo.data, data.data, metric],
+    () => (geo.data && neighborhoods.length) ? mergeGeoJSON(geo.data, neighborhoods, metric, groupToTracts, excludeSet) : null,
+    [geo.data, neighborhoods, metric, groupToTracts, excludeSet],
   );
 
   if (data.status === "loading" || geo.status === "loading") {
@@ -172,13 +218,14 @@ export default function AffordabilityDashboard() {
   }
 
   const d = data.data!;
-  const selectedTract = d.tracts.find((t) => t.tractId === selection.activeUnit);
+  const selectedNeighborhood = neighborhoods.find((t) => t.tractId === selection.activeUnit);
 
-  const tableRows = d.tracts
+  const tableRows = neighborhoods
     .filter((t) => t.medianRent != null || t.medianHomeValue != null)
     .map((t) => ({
       tractId: t.tractId,
       name: t.name,
+      tractLabel: t.tractLabel,
       medianRent: t.medianRent ?? 0,
       medianHomeValue: t.medianHomeValue ?? 0,
       medianHouseholdIncome: t.medianHouseholdIncome ?? 0,
@@ -214,6 +261,11 @@ export default function AffordabilityDashboard() {
         />
       </div>
 
+      <SectionHeading
+        title="Geographic Distribution"
+        subtitle="By neighborhood"
+      />
+
       <div className={layout.splitPane}>
         <div>
           {mergedGeo && (
@@ -223,6 +275,7 @@ export default function AffordabilityDashboard() {
               colorField="value"
               colorBreaks={breaks}
               selection={selection}
+              featureGroupMap={tractToGroup}
             />
           )}
           <MapLegend
@@ -232,12 +285,19 @@ export default function AffordabilityDashboard() {
           />
         </div>
         <div>
-          {selectedTract ? (
-            <TractDetail tract={selectedTract} />
+          {selectedNeighborhood ? (
+            <TractDetail tract={selectedNeighborhood} />
           ) : (
             <DataTable
               columns={[
-                { key: "name", label: "Tract", sortable: true },
+                {
+                  key: "name",
+                  label: "Neighborhood",
+                  sortable: true,
+                  render: (v: unknown, row: Record<string, unknown>) => (
+                    <span title={row.tractLabel as string | undefined}>{v as string}</span>
+                  ),
+                },
                 { key: "costBurdenedPct", label: "Cost Burden %", align: "right", sortable: true },
                 { key: "medianRent", label: "Rent", align: "right", sortable: true },
                 { key: "medianHomeValue", label: "Home Value", align: "right", sortable: true },
@@ -246,6 +306,9 @@ export default function AffordabilityDashboard() {
               rowKey="tractId"
               defaultSort={{ key: "costBurdenedPct", direction: "desc" }}
               selection={selection}
+              searchable
+              searchKeys={["name", "tractLabel"]}
+              pageSize={8}
             />
           )}
         </div>
@@ -255,8 +318,9 @@ export default function AffordabilityDashboard() {
         <CsvExport
           rows={tableRows}
           columns={[
-            { key: "tractId", label: "GEOID" },
-            { key: "name", label: "Tract" },
+            { key: "tractId", label: "Neighborhood ID" },
+            { key: "name", label: "Neighborhood" },
+            { key: "tractLabel", label: "Census Tracts" },
             { key: "medianRent", label: "Median Rent" },
             { key: "medianHomeValue", label: "Median Home Value" },
             { key: "medianHouseholdIncome", label: "Median Household Income" },

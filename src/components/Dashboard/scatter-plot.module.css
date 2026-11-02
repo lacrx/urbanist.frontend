@@ -15,14 +15,14 @@
 .chartWrap :global([aria-label="y-axis tick label"]),
 .chartWrap :global([aria-label="x-axis tick label"]) {
   font-size: 11px;
-  fill: var(--text-muted);
+  fill: var(--text-secondary);
 }
 
 .chartWrap :global([aria-label="y-axis label"]),
 .chartWrap :global([aria-label="x-axis label"]) {
   font-size: 11px;
   font-weight: 600;
-  fill: var(--text-muted);
+  fill: var(--text-secondary);
 }
 
 .chartWrap :global([aria-label="y-axis grid"] line),

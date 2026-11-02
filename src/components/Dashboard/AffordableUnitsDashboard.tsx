@@ -12,7 +12,14 @@ import DataTable from "./data-table";
 import CsvExport from "./CsvExport";
 import { SEQUENTIAL_BLUES } from "./color-scales";
 import type { YearRange, TractId, ColorBreak } from "./types";
+import {
+  OCEANSIDE,
+  groupByMapping,
+  buildTractToGroupMap,
+  buildGroupToTractsMap,
+} from "./neighborhood-mapping";
 import DashboardSkeleton from "./DashboardSkeleton";
+import SectionHeading from "./SectionHeading";
 import * as layout from "./dashboard-layout.module.css";
 
 type TractRow = {
@@ -71,27 +78,49 @@ const AFFORDABLE_BLUES: ColorBreak[] = [
   { value: 100, color: "#264b73", label: "100+" },
 ];
 
+function aggregateAffordable(members: TractRow[]): Partial<TractRow> {
+  const deedRestricted = members.reduce((s, m) => s + m.deedRestricted, 0);
+  const marketRate = members.reduce((s, m) => s + m.marketRate, 0);
+  const byTier: Record<string, number> = {};
+  const byYear: Record<string, number> = {};
+  for (const m of members) {
+    for (const [k, v] of Object.entries(m.byTier)) byTier[k] = (byTier[k] ?? 0) + v;
+    for (const [k, v] of Object.entries(m.byYear)) byYear[k] = (byYear[k] ?? 0) + v;
+  }
+  return { deedRestricted, marketRate, byTier, byYear };
+}
+
 function mergeGeoJSON(
   geojson: GeoJSONFC,
-  tracts: TractRow[],
+  neighborhoods: Array<TractRow & { tractIds?: string[] }>,
   metric: "deedRestricted" | "marketRate" | "total",
+  groupToTracts: Map<string, string[]>,
+  excludeSet: Set<string>,
 ): GeoJSONFC {
-  const tractMap = new Map<string, number>();
-  for (const t of tracts) {
-    const val = metric === "total"
-      ? t.deedRestricted + t.marketRate
-      : t[metric];
-    tractMap.set(t.tractId, val);
+  const unitsMap = new Map<string, number>();
+  for (const n of neighborhoods) {
+    const val = metric === "total" ? n.deedRestricted + n.marketRate : n[metric];
+    const tracts = groupToTracts.get(n.tractId);
+    if (tracts) {
+      for (const t of tracts) unitsMap.set(t, val);
+    } else {
+      unitsMap.set(n.tractId, val);
+    }
   }
   return {
     ...geojson,
-    features: geojson.features.map((f) => ({
-      ...f,
-      properties: {
-        ...f.properties,
-        units: tractMap.get(f.properties?.GEOID ?? f.id as string) ?? 0,
-      },
-    })),
+    features: geojson.features
+      .filter((f) => {
+        const id = f.properties?.GEOID ?? (f.id as string);
+        return !excludeSet.has(id);
+      })
+      .map((f) => ({
+        ...f,
+        properties: {
+          ...f.properties,
+          units: unitsMap.get(f.properties?.GEOID ?? f.id as string) ?? 0,
+        },
+      })),
   };
 }
 
@@ -102,6 +131,17 @@ export default function AffordableUnitsDashboard() {
 
   const [yearRange, setYearRange] = useState<YearRange | null>(null);
   const [view, setView] = useState("all");
+
+  const mapping = OCEANSIDE;
+
+  const neighborhoods = useMemo(() => {
+    if (!data.data) return [];
+    return groupByMapping(data.data.tracts, mapping, aggregateAffordable);
+  }, [data.data, mapping]);
+
+  const tractToGroup = useMemo(() => buildTractToGroupMap(mapping), [mapping]);
+  const groupToTracts = useMemo(() => buildGroupToTractsMap(mapping), [mapping]);
+  const excludeSet = useMemo(() => new Set(mapping.exclude), [mapping]);
 
   if (data.status === "loading" || geo.status === "loading") {
     return <DashboardSkeleton dashboardType="affordable-units" />;
@@ -119,12 +159,13 @@ export default function AffordableUnitsDashboard() {
   );
 
   const mapMetric = view === "dr" ? "deedRestricted" as const : "total" as const;
-  const mergedGeo = geo.data ? mergeGeoJSON(geo.data, d.tracts, mapMetric) : null;
+  const mergedGeo = geo.data ? mergeGeoJSON(geo.data, neighborhoods, mapMetric, groupToTracts, excludeSet) : null;
 
-  const tableRows = d.tracts
+  const tableRows = neighborhoods
     .map((t) => ({
       tractId: t.tractId,
       name: t.name,
+      tractLabel: t.tractLabel,
       deedRestricted: t.deedRestricted,
       marketRate: t.marketRate,
       total: t.deedRestricted + t.marketRate,
@@ -204,6 +245,11 @@ export default function AffordableUnitsDashboard() {
         height={320}
       />
 
+      <SectionHeading
+        title="Geographic Distribution"
+        subtitle={`By neighborhood · ${activeRange[0]}–${activeRange[1]}`}
+      />
+
       <div className={layout.splitPane}>
         <div>
           {mergedGeo && (
@@ -213,6 +259,7 @@ export default function AffordableUnitsDashboard() {
               colorField="units"
               colorBreaks={view === "dr" ? AFFORDABLE_BLUES : SEQUENTIAL_BLUES}
               selection={selection}
+              featureGroupMap={tractToGroup}
             />
           )}
           <MapLegend
@@ -224,7 +271,14 @@ export default function AffordableUnitsDashboard() {
         <div>
           <DataTable
             columns={[
-              { key: "name", label: "Tract", sortable: true },
+              {
+                key: "name",
+                label: "Neighborhood",
+                sortable: true,
+                render: (v: unknown, row: Record<string, unknown>) => (
+                  <span title={row.tractLabel as string | undefined}>{v as string}</span>
+                ),
+              },
               { key: "deedRestricted", label: "DR", align: "right", sortable: true },
               { key: "marketRate", label: "Market", align: "right", sortable: true },
               { key: "total", label: "Total", align: "right", sortable: true },
@@ -234,7 +288,7 @@ export default function AffordableUnitsDashboard() {
             defaultSort={{ key: "total", direction: "desc" }}
             selection={selection}
             searchable
-            searchKeys={["name"]}
+            searchKeys={["name", "tractLabel"]}
             pageSize={8}
           />
         </div>
@@ -244,8 +298,9 @@ export default function AffordableUnitsDashboard() {
         <CsvExport
           rows={tableRows}
           columns={[
-            { key: "tractId", label: "GEOID" },
-            { key: "name", label: "Tract" },
+            { key: "tractId", label: "Neighborhood ID" },
+            { key: "name", label: "Neighborhood" },
+            { key: "tractLabel", label: "Census Tracts" },
             { key: "deedRestricted", label: "Deed-Restricted" },
             { key: "marketRate", label: "Market Rate" },
             { key: "total", label: "Total" },

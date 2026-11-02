@@ -45,6 +45,50 @@ export function buildGroupToTractsMap(
   return map;
 }
 
+export type GroupedRow<T> = T & {
+  tractIds: string[];
+  tractLabel: string;
+};
+
+export function groupByMapping<T extends { tractId: string; name: string }>(
+  tracts: T[],
+  mapping: NeighborhoodMapping,
+  aggregate: (members: T[]) => Partial<T>,
+): GroupedRow<T>[] {
+  const tractMap = new Map(tracts.map((t) => [t.tractId, t]));
+  const excludeSet = new Set(mapping.exclude);
+  const mappedSet = new Set(mapping.neighborhoods.flatMap((n) => n.tracts));
+  const result: GroupedRow<T>[] = [];
+
+  for (const n of mapping.neighborhoods) {
+    const members = n.tracts
+      .map((id) => tractMap.get(id))
+      .filter((t): t is T => t != null);
+    if (members.length === 0) continue;
+
+    const agg = aggregate(members);
+    result.push({
+      ...members[0],
+      ...agg,
+      tractId: n.id,
+      name: n.name,
+      tractIds: n.tracts,
+      tractLabel: tractLabel(n.tracts),
+    } as GroupedRow<T>);
+  }
+
+  for (const t of tracts) {
+    if (mappedSet.has(t.tractId) || excludeSet.has(t.tractId)) continue;
+    result.push({
+      ...t,
+      tractIds: [t.tractId],
+      tractLabel: tractLabel([t.tractId]),
+    });
+  }
+
+  return result;
+}
+
 type TractLike = {
   tractId: string;
   name: string;
