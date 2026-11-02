@@ -72,14 +72,7 @@ const TABLE_COLUMNS = [
     label: "Neighborhood",
     sortable: true,
     render: (v: unknown, row: Record<string, unknown>) => (
-      <>
-        <span>{v as string}</span>
-        {row.tractLabel && (
-          <span style={{ display: "block", fontSize: "0.72rem", opacity: 0.55, marginTop: "1px" }}>
-            {row.tractLabel as string}
-          </span>
-        )}
-      </>
+      <span title={row.tractLabel as string | undefined}>{v as string}</span>
     ),
   },
   { key: "units", label: "Approved Units", align: "right" as const, sortable: true },

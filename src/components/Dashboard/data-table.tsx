@@ -96,66 +96,68 @@ export default function DataTable({
           />
         </div>
       )}
-      <table className={styles.table} role="grid">
-        {caption && <caption>{caption}</caption>}
-        <thead>
-          <tr>
-            {columns.map((col) => (
-              <th
-                key={col.key}
-                className={`${col.sortable ? styles.sortable : ""} ${col.align === "right" ? styles.right : col.align === "center" ? styles.center : ""}`}
-                onClick={() => handleSort(col)}
-                aria-sort={
-                  sortKey === col.key
-                    ? sortDir === "asc"
-                      ? "ascending"
-                      : "descending"
-                    : undefined
-                }
-              >
-                {col.label}
-                {sortKey === col.key && (
-                  <span className={styles.sortIndicator}>
-                    {sortDir === "asc" ? "▲" : "▼"}
-                  </span>
-                )}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {paged.map((row) => {
-            const id = String(row[rowKey] ?? "");
-            const active = selection?.activeUnit === id;
-            return (
-              <tr
-                key={id}
-                className={active ? styles.active : undefined}
-                onMouseEnter={() => selection?.onHover(id)}
-                onMouseLeave={() => selection?.onHover(null)}
-                onClick={() => selection?.onSelect(id)}
-              >
-                {columns.map((col) => (
-                  <td
-                    key={col.key}
-                    className={
-                      col.align === "right"
-                        ? styles.right
-                        : col.align === "center"
-                          ? styles.center
-                          : ""
-                    }
-                  >
-                    {col.render
-                      ? col.render(row[col.key], row as Record<string, unknown>)
-                      : (row[col.key] ?? "")}
-                  </td>
-                ))}
-              </tr>
-            );
-          })}
-        </tbody>
-      </table>
+      <div className={styles.tableScroll}>
+        <table className={styles.table} role="grid">
+          {caption && <caption>{caption}</caption>}
+          <thead>
+            <tr>
+              {columns.map((col) => (
+                <th
+                  key={col.key}
+                  className={`${col.sortable ? styles.sortable : ""} ${col.align === "right" ? styles.right : col.align === "center" ? styles.center : ""}`}
+                  onClick={() => handleSort(col)}
+                  aria-sort={
+                    sortKey === col.key
+                      ? sortDir === "asc"
+                        ? "ascending"
+                        : "descending"
+                      : undefined
+                  }
+                >
+                  {col.label}
+                  {sortKey === col.key && (
+                    <span className={styles.sortIndicator}>
+                      {sortDir === "asc" ? "▲" : "▼"}
+                    </span>
+                  )}
+                </th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {paged.map((row) => {
+              const id = String(row[rowKey] ?? "");
+              const active = selection?.activeUnit === id;
+              return (
+                <tr
+                  key={id}
+                  className={active ? styles.active : undefined}
+                  onMouseEnter={() => selection?.onHover(id)}
+                  onMouseLeave={() => selection?.onHover(null)}
+                  onClick={() => selection?.onSelect(id)}
+                >
+                  {columns.map((col) => (
+                    <td
+                      key={col.key}
+                      className={
+                        col.align === "right"
+                          ? styles.right
+                          : col.align === "center"
+                            ? styles.center
+                            : ""
+                      }
+                    >
+                      {col.render
+                        ? col.render(row[col.key], row as Record<string, unknown>)
+                        : (row[col.key] ?? "")}
+                    </td>
+                  ))}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
       {pageSize && (
         <Pagination
           page={page}

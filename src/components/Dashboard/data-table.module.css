@@ -1,11 +1,15 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
   border: 1px solid var(--border-default);
   border-radius: 4px;
   background: var(--dash-surface);
+}
+
+.tableScroll {
+  flex: 1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .searchRow {
@@ -98,7 +102,6 @@
 
 .table tbody tr {
   cursor: pointer;
-  height: 2.375rem;
 }
 
 .table td.right,
