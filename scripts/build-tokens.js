@@ -1,6 +1,13 @@
 import { readdirSync, existsSync, readFileSync, writeFileSync } from 'fs';
 import { join } from 'path';
-import { build } from '@lacrx/design-system';
+
+let build;
+try {
+  ({ build } = await import('@lacrx/design-system'));
+} catch {
+  console.log('⚠ @lacrx/design-system not installed — using pre-built theme.css files');
+  process.exit(0);
+}
 
 function buildTokenManifest(themePath, site) {
   const css = readFileSync(themePath, 'utf8');
