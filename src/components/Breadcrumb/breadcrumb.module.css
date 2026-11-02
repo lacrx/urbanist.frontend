@@ -1,4 +1,6 @@
 .nav {
+  position: relative;
+  z-index: 1;
   padding: var(--space-sm) 0;
   margin-bottom: calc(-1 * (2 * var(--space-sm) + var(--font-size-sm)));
 }
