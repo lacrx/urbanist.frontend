@@ -73,9 +73,6 @@ const TABLE_COLUMNS = [
     key: "name",
     label: "Neighborhood",
     sortable: true,
-    render: (v: unknown, row: Record<string, unknown>) => (
-      <span title={row.tractLabel as string | undefined}>{v as string}</span>
-    ),
   },
   { key: "units", label: "Approved Units", align: "right" as const, sortable: true },
   {

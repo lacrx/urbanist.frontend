@@ -275,9 +275,6 @@ export default function AffordableUnitsDashboard() {
                 key: "name",
                 label: "Neighborhood",
                 sortable: true,
-                render: (v: unknown, row: Record<string, unknown>) => (
-                  <span title={row.tractLabel as string | undefined}>{v as string}</span>
-                ),
               },
               { key: "deedRestricted", label: "DR", align: "right", sortable: true },
               { key: "marketRate", label: "Market", align: "right", sortable: true },

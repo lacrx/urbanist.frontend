@@ -294,9 +294,6 @@ export default function AffordabilityDashboard() {
                   key: "name",
                   label: "Neighborhood",
                   sortable: true,
-                  render: (v: unknown, row: Record<string, unknown>) => (
-                    <span title={row.tractLabel as string | undefined}>{v as string}</span>
-                  ),
                 },
                 { key: "costBurdenedPct", label: "Cost Burden %", align: "right", sortable: true },
                 { key: "medianRent", label: "Rent", align: "right", sortable: true },
