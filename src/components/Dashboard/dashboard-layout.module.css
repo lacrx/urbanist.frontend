@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 1.5rem;
   padding: 2rem 0;
-  overflow-x: hidden;
 }
 
 .controls {
