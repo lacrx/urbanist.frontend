@@ -1,40 +1,15 @@
 import type { GatsbyVisualization } from "@/components/ArticleBlocks/visualization-block";
-import * as styles from "./stat-tiles.module.css";
-
-type StatTilesData = {
-  tiles: Array<{
-    value: string | number;
-    label: string;
-    detail?: string;
-  }>;
-};
-
-type StatTilesConfig = {
-  columns?: number;
-};
+import StatTilesBase from "@/components/Dashboard/stat-tiles";
 
 type Props = { artifact: GatsbyVisualization };
 
 export default function StatTiles({ artifact }: Props) {
-  const { tiles } = (artifact.data ?? { tiles: [] }) as StatTilesData;
-  const cfg = (artifact.config ?? {}) as StatTilesConfig;
-  const columns = cfg.columns ?? tiles.length;
+  const { tiles } = (artifact.data ?? { tiles: [] }) as { tiles: Array<{ value: string | number; label: string; detail?: string }> };
+  const cfg = (artifact.config ?? {}) as { columns?: number };
 
   return (
-    <dl
-      className={styles.grid}
-      data-viz-ready="true"
-      style={columns !== 4 ? { gridTemplateColumns: `repeat(${columns}, 1fr)` } : undefined}
-    >
-      {tiles.map((tile, i) => (
-        <div key={i} className={styles.tile}>
-          <dt className={styles.value}>{tile.value}</dt>
-          <dd className={styles.label}>
-            {tile.label}
-            {tile.detail && <span className={styles.detail}><br />{tile.detail}</span>}
-          </dd>
-        </div>
-      ))}
-    </dl>
+    <div data-viz-ready="true">
+      <StatTilesBase tiles={tiles} columns={cfg.columns} />
+    </div>
   );
 }

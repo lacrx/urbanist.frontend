@@ -1,7 +1,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
 import * as styles from "./trend-line-chart.module.css";
-import * as sectionStyles from "./section-heading.module.css";
+import SectionHeading from "./SectionHeading";
+import { repositionYAxis } from "./chart-utils";
 import type { LinkedSelection } from "./types";
 
 export type TrendPoint = {
@@ -131,20 +132,7 @@ export default function TrendLineChart({
       marks,
     });
 
-    const tickLabelGroup = plot.querySelector(
-      '[aria-label="y-axis tick label"]',
-    );
-    if (tickLabelGroup) {
-      tickLabelGroup.setAttribute("text-anchor", "start");
-      tickLabelGroup.setAttribute("transform", `translate(${-ml},0)`);
-    }
-    const axisLabelGroup = plot.querySelector('[aria-label="y-axis label"]');
-    if (axisLabelGroup) {
-      const prev = axisLabelGroup.getAttribute("transform") ?? "";
-      const yMatch = prev.match(/translate\([^,]+,\s*([^)]+)\)/);
-      const y = yMatch ? yMatch[1] : "0";
-      axisLabelGroup.setAttribute("transform", `translate(${-ml},${y})`);
-    }
+    repositionYAxis(plot, ml);
 
     const xScale = plot.scale("x");
     const yScale = plot.scale("y");
@@ -186,12 +174,7 @@ export default function TrendLineChart({
 
   return (
     <div>
-      {heading && (
-        <div className={sectionStyles.section} style={{ marginBottom: "0.5rem" }}>
-          <h3 className={sectionStyles.title}>{heading}</h3>
-          {subheading && <p className={sectionStyles.subtitle}>{subheading}</p>}
-        </div>
-      )}
+      {heading && <SectionHeading title={heading} subtitle={subheading} />}
       <div
         ref={containerRef}
         className={styles.chartWrap}

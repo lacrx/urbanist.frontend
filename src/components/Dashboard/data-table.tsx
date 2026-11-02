@@ -1,6 +1,7 @@
 import { useState, useCallback, useMemo, useEffect } from "react";
 import * as styles from "./data-table.module.css";
 import Pagination from "../Pagination/pagination";
+import usePagination from "@/hooks/usePagination";
 import type { LinkedSelection } from "./types";
 
 export type Column = {
@@ -39,7 +40,6 @@ export default function DataTable({
     defaultSort?.direction ?? "asc",
   );
   const [query, setQuery] = useState("");
-  const [page, setPage] = useState(0);
 
   const filtered = useMemo(() => {
     if (!query.trim()) return rows;
@@ -65,14 +65,9 @@ export default function DataTable({
       })
     : filtered;
 
-  const totalPages = pageSize ? Math.max(1, Math.ceil(sorted.length / pageSize)) : 1;
-  const safePage = Math.min(page, totalPages - 1);
-  const paged = pageSize ? sorted.slice(safePage * pageSize, (safePage + 1) * pageSize) : sorted;
+  const { items: paged, page, totalPages, prev, next, setPage } = usePagination(sorted, pageSize || sorted.length);
 
-  const prevPage = useCallback(() => setPage((p) => Math.max(0, p - 1)), []);
-  const nextPage = useCallback(() => setPage((p) => Math.min(totalPages - 1, p + 1)), [totalPages]);
-
-  useEffect(() => setPage(0), [rows, query]);
+  useEffect(() => setPage(1), [rows, query, setPage]);
 
   const handleSort = useCallback(
     (col: Column) => {
@@ -163,10 +158,10 @@ export default function DataTable({
       </table>
       {pageSize && (
         <Pagination
-          page={safePage + 1}
+          page={page}
           totalPages={totalPages}
-          onPrev={prevPage}
-          onNext={nextPage}
+          onPrev={prev}
+          onNext={next}
         />
       )}
     </div>

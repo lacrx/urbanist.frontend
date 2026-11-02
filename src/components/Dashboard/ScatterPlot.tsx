@@ -1,7 +1,8 @@
 import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
 import * as styles from "./scatter-plot.module.css";
-import * as sectionStyles from "./section-heading.module.css";
+import SectionHeading from "./SectionHeading";
+import { repositionYAxis } from "./chart-utils";
 import type { LinkedSelection } from "./types";
 
 export type ScatterPoint = {
@@ -149,7 +150,6 @@ export default function ScatterPlot({
         grid: true,
       },
       marks,
-      style: { fontFamily: "var(--sans)", fontSize: "12px" },
     });
 
     const xScale = plot.scale("x");
@@ -193,12 +193,7 @@ export default function ScatterPlot({
 
   return (
     <div>
-      {heading && (
-        <div className={sectionStyles.section} style={{ marginBottom: "0.5rem" }}>
-          <h3 className={sectionStyles.title}>{heading}</h3>
-          {subheading && <p className={sectionStyles.subtitle}>{subheading}</p>}
-        </div>
-      )}
+      {heading && <SectionHeading title={heading} subtitle={subheading} />}
       <div
         ref={containerRef}
         className={styles.chartWrap}

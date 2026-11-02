@@ -88,7 +88,7 @@
 }
 
 .table tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.25);
+  background: color-mix(in srgb, var(--bg-primary) 25%, transparent);
 }
 
 .table tbody tr.active,

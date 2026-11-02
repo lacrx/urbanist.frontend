@@ -10,11 +10,8 @@ import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
 
 const DASHBOARDS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
   "permitted-units": lazy(() => import("@/components/Dashboard/PermittedUnitsDashboard")),
-  "permitted_units": lazy(() => import("@/components/Dashboard/PermittedUnitsDashboard")),
   "affordable-units": lazy(() => import("@/components/Dashboard/AffordableUnitsDashboard")),
-  "affordable_units": lazy(() => import("@/components/Dashboard/AffordableUnitsDashboard")),
   "affordability-map": lazy(() => import("@/components/Dashboard/AffordabilityDashboard")),
-  "affordability_map": lazy(() => import("@/components/Dashboard/AffordabilityDashboard")),
 };
 
 type DataPageContext = {
@@ -34,7 +31,7 @@ interface DataPageProps extends PageProps {
 
 export default function DataPage({ pageContext: { title, description, dashboardType, image, blocks, methodologyHtml, dataUpdatedAt } }: DataPageProps) {
   const img = image ? getImage(image) : null;
-  const Dashboard = DASHBOARDS[dashboardType];
+  const Dashboard = DASHBOARDS[dashboardType.replace(/_/g, "-")];
 
   return (
     <Layout>
@@ -43,16 +40,16 @@ export default function DataPage({ pageContext: { title, description, dashboardT
         {img && <GatsbyImage image={img} alt={title} className={cover} />}
         <ArticleBlocks blocks={blocks} />
         {Dashboard ? (
-          <Suspense fallback={<div style={{ padding: "3rem 0", textAlign: "center", color: "var(--light-grey)" }}>Loading dashboard...</div>}>
+          <Suspense fallback={<div style={{ padding: "3rem 0", textAlign: "center", color: "var(--text-muted)" }}>Loading dashboard...</div>}>
             <Dashboard />
           </Suspense>
         ) : (
-          <div style={{ padding: "3rem 0", textAlign: "center", color: "var(--light-grey)" }}>
+          <div style={{ padding: "3rem 0", textAlign: "center", color: "var(--text-muted)" }}>
             Dashboard type "{dashboardType}" not yet implemented.
           </div>
         )}
         {dataUpdatedAt && (
-          <p style={{ fontSize: "0.82rem", color: "var(--light-grey)", margin: "1.5rem 0 0" }}>
+          <p style={{ fontSize: "0.82rem", color: "var(--text-muted)", margin: "1.5rem 0 0" }}>
             Data last updated: {new Date(dataUpdatedAt).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
           </p>
         )}

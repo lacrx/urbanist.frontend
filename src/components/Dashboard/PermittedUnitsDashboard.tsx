@@ -21,18 +21,7 @@ import {
   buildGroupToTractsMap,
 } from "./neighborhood-mapping";
 import * as layout from "./dashboard-layout.module.css";
-import * as sectionStyles from "./section-heading.module.css";
-
-function Tooltip({ text, children }: { text: string; children: React.ReactNode }) {
-  return (
-    <span
-      style={{ cursor: "help", borderBottom: "1px dotted var(--dash-neutral)" }}
-      title={text}
-    >
-      {children}
-    </span>
-  );
-}
+import SectionHeading from "./SectionHeading";
 
 type TractRow = {
   tractId: TractId;
@@ -327,7 +316,7 @@ export default function PermittedUnitsDashboard() {
           },
           {
             value: `${d.citywide.rhnaPace}%`,
-            label: <Tooltip text="Regional Housing Needs Allocation: state-mandated housing production targets for each jurisdiction">RHNA Pace</Tooltip>,
+            label: <span title="Regional Housing Needs Allocation: state-mandated housing production targets for each jurisdiction" style={{ cursor: "help", borderBottom: "1px dotted var(--dash-neutral)" }}>RHNA Pace</span>,
             detail: `${d.rhna.total.toLocaleString()} unit target (6th cycle)`,
             trend: d.citywide.rhnaPace >= 50 ? "positive" : "negative",
           },
@@ -376,14 +365,12 @@ export default function PermittedUnitsDashboard() {
       )}
       */}
 
-      <div className={sectionStyles.section}>
-        <h3 className={sectionStyles.title}>Geographic Distribution</h3>
-        <p className={sectionStyles.subtitle}>
-          {activeTractName
-            ? `${activeTractName} · ${activeRange[0]}–${activeRange[1]}`
-            : `By neighborhood · ${activeRange[0]}–${activeRange[1]}`}
-        </p>
-      </div>
+      <SectionHeading
+        title="Geographic Distribution"
+        subtitle={activeTractName
+          ? `${activeTractName} · ${activeRange[0]}–${activeRange[1]}`
+          : `By neighborhood · ${activeRange[0]}–${activeRange[1]}`}
+      />
 
       <div className={layout.splitPane}>
         <div>

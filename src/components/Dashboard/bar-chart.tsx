@@ -2,6 +2,7 @@ import { useEffect, useRef } from "react";
 import * as Plot from "@observablehq/plot";
 import * as styles from "./bar-chart.module.css";
 import { CATEGORICAL } from "./palette";
+import { repositionYAxis } from "./chart-utils";
 
 type BarChartConfig = {
   mode: "stacked" | "grouped";
@@ -18,7 +19,6 @@ type BarChartConfig = {
   title?: string;
 };
 
-const FALLBACK_PALETTE = [...CATEGORICAL];
 
 type Props = {
   rows: Array<Record<string, string | number>>;
@@ -29,7 +29,7 @@ type Props = {
 export default function BarChart({ rows, config: cfg, height = 300 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const palette = cfg.colors ?? FALLBACK_PALETTE;
+  const palette = cfg.colors ?? CATEGORICAL;
   const domain =
     cfg.domain ??
     (cfg.seriesField
@@ -93,21 +93,7 @@ export default function BarChart({ rows, config: cfg, height = 300 }: Props) {
 
     containerRef.current.replaceChildren(plot);
 
-    const ml = cfg.marginLeft ?? 40;
-    const tickLabelGroup = plot.querySelector(
-      '[aria-label="y-axis tick label"]',
-    );
-    if (tickLabelGroup) {
-      tickLabelGroup.setAttribute("text-anchor", "start");
-      tickLabelGroup.setAttribute("transform", `translate(${-ml},0)`);
-    }
-    const axisLabelGroup = plot.querySelector('[aria-label="y-axis label"]');
-    if (axisLabelGroup) {
-      const prev = axisLabelGroup.getAttribute("transform") ?? "";
-      const yMatch = prev.match(/translate\([^,]+,\s*([^)]+)\)/);
-      const y = yMatch ? yMatch[1] : "0";
-      axisLabelGroup.setAttribute("transform", `translate(${-ml},${y})`);
-    }
+    repositionYAxis(plot, cfg.marginLeft ?? 40);
 
     return () => plot.remove();
   }, [rows, cfg, height, palette, domain]);
