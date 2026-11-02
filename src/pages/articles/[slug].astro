@@ -52,7 +52,7 @@ const ARTICLE_SECTION = { label: "Articles", path: "/articles" };
       <Hero title={article.title} description={article.description} style={{ "padding-bottom": "0" }} />
       <Content type="section">
         <Byline author={article.authorName} publishedAt={article.publishedAt} />
-        {article.coverUrl && article.blocks[0]?.kind !== "visualization" && (
+        {article.coverUrl && !article.coverIsFallback && article.blocks[0]?.kind !== "visualization" && (
           <img src={article.coverUrl} alt={article.title} class={cover} loading="lazy" width="1050" height="600" />
         )}
         <ArticleBlocks blocks={article.blocks} visualizations={visualizations} />
