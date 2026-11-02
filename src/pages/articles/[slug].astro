@@ -19,13 +19,15 @@ export const getStaticPaths = (async () => {
   const walkAudits = config.build.walkAudit ? await fetchWalkAudits() : [];
   const visualizations = await fetchVisualizations();
 
+  const articleSlugs = new Set(articles.map((a) => a.slug));
+
   return [
     ...articles.map((a) => ({
       params: { slug: a.slug },
       props: { type: "article" as const, article: a, visualizations },
     })),
     ...walkAudits
-      .filter((w) => w.status === "completed")
+      .filter((w) => w.status === "completed" && !articleSlugs.has(w.slug))
       .map((w) => ({
         params: { slug: w.slug },
         props: { type: "walk-audit" as const, walkAudit: w, visualizations },
@@ -84,11 +86,7 @@ const ARTICLE_SECTION = { label: "Articles", path: "/articles" };
           {walkAudit.segments.length > 0 && (
             <p>{walkAudit.segments.length} segment{walkAudit.segments.length === 1 ? "" : "s"}: {walkAudit.segments.map((s) => s.name).join(", ")}</p>
           )}
-          {walkAudit.summary ? (
-            <div set:html={walkAudit.summary} />
-          ) : (
-            <p>Summary coming soon.</p>
-          )}
+          <p>Summary coming soon.</p>
         </div>
       </Content>
     </BaseLayout>

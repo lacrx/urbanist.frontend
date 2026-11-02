@@ -65,7 +65,6 @@ export type WalkAudit = {
   description: string | null;
   mapUrl: string | null;
   segments: { name: string }[];
-  summary: string | null;
   routeSegments: RouteSegment[];
 };
 
@@ -136,7 +135,6 @@ type StrapiWalkAudit = {
   description: string | null;
   mapUrl: string | null;
   segments: { name: string }[];
-  summary: string | null;
 };
 
 type StrapiDataPage = {
@@ -238,7 +236,7 @@ function buildArticleQuery(config: SiteConfig): string {
 
   return `
     query GetAllStrapiArticles {
-      articles(sort: ["publishedAt:desc"]${paginationClause}) {
+      articles(sort: ["publishedAt:desc"], status: PUBLISHED${paginationClause}) {
         documentId
         title
         description
@@ -258,7 +256,7 @@ function buildArticleQuery(config: SiteConfig): string {
 
 const VISUALIZATIONS_QUERY = `
   query GetAllStrapiVisualizations {
-    visualizations(pagination: { pageSize: 100 }) {
+    visualizations(status: PUBLISHED, pagination: { pageSize: 100 }) {
       documentId
       vizId
       title
@@ -272,7 +270,7 @@ const VISUALIZATIONS_QUERY = `
 
 const EVENTS_QUERY = `
   query GetAllStrapiEvents {
-    events(sort: ["date:asc"]) {
+    events(sort: ["date:asc"], status: PUBLISHED) {
       documentId
       title
       description
@@ -296,7 +294,7 @@ const SITE_SETTING_QUERY = `
 
 const WALK_AUDITS_QUERY = `
   query GetAllStrapiWalkAudits {
-    walkAudits(filters: { status: { ne: "draft" } }, sort: ["date:desc"]) {
+    walkAudits(filters: { status: { ne: "draft" } }, status: PUBLISHED, sort: ["date:desc"]) {
       title
       slug
       date
@@ -304,14 +302,13 @@ const WALK_AUDITS_QUERY = `
       description
       mapUrl
       segments { name }
-      summary
     }
   }
 `;
 
 const DATA_PAGES_QUERY = `
   query GetAllStrapiDataPages {
-    dataPages(sort: ["sortOrder:asc"], pagination: { pageSize: 100 }) {
+    dataPages(sort: ["sortOrder:asc"], status: PUBLISHED, pagination: { pageSize: 100 }) {
       documentId
       title
       description
@@ -360,7 +357,14 @@ export async function fetchArticles(config: SiteConfig): Promise<Article[]> {
     const result = await client.request<{ articles: StrapiArticle[] }>(
       buildArticleQuery(config),
     );
-    _articles = result.articles.map((a) => {
+    const seenIds = new Set<string>();
+    const seenSlugs = new Set<string>();
+    _articles = result.articles.filter((a) => {
+      if (seenIds.has(a.documentId) || seenSlugs.has(a.slug)) return false;
+      seenIds.add(a.documentId);
+      seenSlugs.add(a.slug);
+      return true;
+    }).map((a) => {
       let coverUrl = resolveCoverUrl(a.cover, strapiUrl);
       let coverIsFallback = false;
       if (!coverUrl) {

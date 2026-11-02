@@ -1,4 +1,4 @@
-import { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { form, input, button, message, success, error } from "./signup-form.module.css";
 
 type SignupFormProps = {
