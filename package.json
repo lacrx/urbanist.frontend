@@ -8,9 +8,6 @@
     "build": "npm run build:tokens && astro build",
     "preview": "astro preview",
     "clean": "rm -rf dist .astro",
-    "generate:css": "tcm -p 'src/**/*.module.css' .",
-    "build:viz-tiles": "echo 'no viz tiles yet'",
-    "build:viz-poster": "echo 'no viz posters yet'",
     "capture:placeholders": "node scripts/capture-placeholders.js",
     "build:tokens": "node scripts/build-tokens.js",
     "lint:css": "stylelint 'src/**/*.css'"
@@ -43,7 +40,6 @@
     "puppeteer": "^24.42.0",
     "stylelint": "^17.16.0",
     "stylelint-declaration-strict-value": "^1.12.1",
-    "typed-css-modules": "^0.9.1",
     "typescript": "^5.9.3",
     "vt-pbf": "^3.1.3"
   }

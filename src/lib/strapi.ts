@@ -339,13 +339,13 @@ const DATA_PAGES_QUERY = `
 let _client: GraphQLClient | null = null;
 function getClient(): GraphQLClient {
   if (_client) return _client;
-  const strapiUrl = process.env.STRAPI_URL || "http://localhost:1337";
+  const strapiUrl = import.meta.env.STRAPI_URL || "http://localhost:1337";
   _client = new GraphQLClient(`${strapiUrl}/graphql`);
   return _client;
 }
 
 function getStrapiUrl(): string {
-  return process.env.STRAPI_URL || "http://localhost:1337";
+  return import.meta.env.STRAPI_URL || "http://localhost:1337";
 }
 
 let _articles: Article[] | null = null;

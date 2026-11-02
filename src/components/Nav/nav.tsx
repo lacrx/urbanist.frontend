@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { nav, loginBtn, authOnly, noAuthOnly } from './nav.module.css';
 import config from "@/site/config";
-import { useAuth } from "@/components/Auth/auth-context";
+import { AuthProvider, useAuth } from "@/components/Auth/auth-context";
 
 const Hamburger = () =>
   <svg width="16" height="10" viewBox="0 0 16 10">
@@ -34,6 +34,14 @@ function AuthButtons() {
 }
 
 export default function Nav() {
+  return (
+    <AuthProvider>
+      <NavInner />
+    </AuthProvider>
+  );
+}
+
+function NavInner() {
   const ref = useRef<HTMLUListElement>(null);
   const [open, setOpen] = useState(false);
 

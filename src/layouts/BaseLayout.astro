@@ -5,6 +5,7 @@ import Footer from "@/components/Footer/Footer.astro";
 import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.astro";
 import SignupForm from "@/components/SignupForm/signup-form";
 import config from "@/site/config";
+import favicon from "@/site/images/favicon.png";
 import "@/styles/reset.css";
 import "@/styles/global.css";
 import "@/site/theme.css";
@@ -24,7 +25,7 @@ const pageTitle = `${title} | ${config.title}`;
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="/favicon.png" />
+  <link rel="icon" href={favicon.src} />
   <title>{pageTitle}</title>
   {description && <meta name="description" content={description} />}
   <ClientRouter />

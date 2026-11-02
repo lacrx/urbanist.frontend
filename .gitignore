@@ -7,3 +7,5 @@ tmp-*
 yarn-error.log
 .env*
 !.env.example
+public/page-data/
+public/static/

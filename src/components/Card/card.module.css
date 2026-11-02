@@ -36,10 +36,6 @@
     flex: 0 0 9.375rem;
     height: 9.375rem;
     overflow: hidden;
-
-    :global(.gatsby-image-wrapper) {
-      height: 100%;
-    }
   }
 
   :global(a) > h2,

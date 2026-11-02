@@ -1,8 +1,16 @@
 import { useState, useEffect } from "react";
-import { useAuth } from "./auth-context";
+import { AuthProvider, useAuth } from "./auth-context";
 import * as s from "./sign-in.module.css";
 
 export default function SignInForm() {
+  return (
+    <AuthProvider>
+      <SignInFormInner />
+    </AuthProvider>
+  );
+}
+
+function SignInFormInner() {
   const { isAdmin, userName, login, logout } = useAuth();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
