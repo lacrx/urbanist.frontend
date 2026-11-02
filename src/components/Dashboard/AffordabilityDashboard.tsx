@@ -10,6 +10,7 @@ import CsvExport from "./CsvExport";
 import { geometricBreaks } from "./color-scales";
 import { BLUE_RAMP } from "./palette";
 import type { TractId, ColorBreak } from "./types";
+import DashboardPlaceholder from "./DashboardPlaceholder";
 import * as layout from "./dashboard-layout.module.css";
 
 type TractRow = {
@@ -163,7 +164,7 @@ export default function AffordabilityDashboard() {
   );
 
   if (data.status === "loading" || geo.status === "loading") {
-    return <div className={layout.loading}>Loading affordability data...</div>;
+    return <DashboardPlaceholder dashboardType="affordability-map" />;
   }
 
   if (data.status === "error" || geo.status === "error") {

@@ -1,6 +1,7 @@
 import { lazy, Suspense } from "react";
 import { graphql, useStaticQuery } from "gatsby";
 import { SKELETONS } from "@/components/Vis/skeletons";
+import VizPlaceholder from "@/components/Vis/VizPlaceholder";
 import * as styles from "./article-blocks.module.css";
 
 const Choropleth3DMaplibre = lazy(() => import("@/components/Vis/choropleth-3d-maplibre"));
@@ -110,7 +111,7 @@ export default function VisualizationBlock({ vizId, caption, height, align }: Vi
     const posterUrlMobile = artifact.posterFileMobile?.publicURL ?? null;
 
     return (
-      <figure className={`${styles.vizFigure} ${alignClass}`}>
+      <figure className={`${styles.vizFigure} ${alignClass}`} data-viz-id={vizId}>
         <div className={styles.vizStage} style={{ height }}>
           {posterUrl && (
             <picture className={styles.vizPoster}>
@@ -145,17 +146,20 @@ export default function VisualizationBlock({ vizId, caption, height, align }: Vi
   }
 
   const Skeleton = SKELETONS[normalizedType];
-  const hasSkeleton = !!Skeleton;
+
+  const fallbackContent = Skeleton
+    ? <Skeleton artifact={artifact} height={height} />
+    : <div style={{ height }} />;
 
   return (
-    <figure className={`${styles.vizFigure} ${alignClass}`}>
+    <figure className={`${styles.vizFigure} ${alignClass}`} data-viz-id={vizId}>
       <div className={styles.vizStageContent}>
-        {Skeleton && (
-          <div className={styles.vizSkeleton}>
-            <Skeleton artifact={artifact} height={height} />
-          </div>
-        )}
-        <Suspense fallback={hasSkeleton ? null : <div style={{ height }} />}>
+        <div className={styles.vizSkeleton}>
+          <VizPlaceholder vizId={vizId} height={height}>
+            {fallbackContent}
+          </VizPlaceholder>
+        </div>
+        <Suspense fallback={null}>
           <Renderer artifact={artifact} height={height} />
         </Suspense>
       </div>

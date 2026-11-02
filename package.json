@@ -11,6 +11,7 @@
     "generate:css": "tcm -p 'src/**/*.module.css' .",
     "build:viz-tiles": "echo 'no viz tiles yet'",
     "build:viz-poster": "echo 'no viz posters yet'",
+    "capture:placeholders": "node scripts/capture-placeholders.js",
     "build:tokens": "node scripts/build-tokens.js",
     "lint:css": "stylelint 'src/**/*.css'"
   },
