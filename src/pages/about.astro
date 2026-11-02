@@ -1,0 +1,14 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero/Hero.astro";
+import Content from "@/components/Content/Content.astro";
+import AboutContent from "@/site/about-content";
+import config from "@/site/config";
+---
+
+<BaseLayout title="About Us">
+  <Hero title="About Us" {...config.about.heroProps} />
+  <Content type="section" {...config.about.contentProps}>
+    <AboutContent />
+  </Content>
+</BaseLayout>

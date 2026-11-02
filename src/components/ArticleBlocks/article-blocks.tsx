@@ -1,5 +1,6 @@
 import { Fragment } from "react";
 import VisualizationBlock from "./visualization-block";
+import type { Visualization } from "@/lib/strapi";
 import { richText } from "./article-blocks.module.css";
 
 export type ArticleBlock = {
@@ -13,9 +14,10 @@ export type ArticleBlock = {
 
 type ArticleBlocksProps = {
   blocks: ArticleBlock[];
+  visualizations?: Visualization[];
 };
 
-export default function ArticleBlocks({ blocks }: ArticleBlocksProps) {
+export default function ArticleBlocks({ blocks, visualizations }: ArticleBlocksProps) {
   return (
     <>
       {blocks.map((block, i) => {
@@ -36,6 +38,7 @@ export default function ArticleBlocks({ blocks }: ArticleBlocksProps) {
               caption={block.caption}
               height={block.height ?? 520}
               align={block.align ?? "inline"}
+              visualizations={visualizations}
             />
           );
         }

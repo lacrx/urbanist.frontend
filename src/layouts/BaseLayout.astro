@@ -1,0 +1,64 @@
+---
+import Nav from "@/components/Nav/nav";
+import Footer from "@/components/Footer/Footer.astro";
+import Breadcrumb from "@/components/Breadcrumb/Breadcrumb.astro";
+import SignupForm from "@/components/SignupForm/signup-form";
+import config from "@/site/config";
+import "@/styles/reset.css";
+import "@/styles/global.css";
+import "@/site/theme.css";
+
+type Props = {
+  title: string;
+  description?: string;
+  breadcrumb?: { section: { label: string; path: string }; title: string };
+  bodyClass?: string;
+};
+
+const { title, description, breadcrumb, bodyClass } = Astro.props;
+const pageTitle = `${title} | ${config.title}`;
+---
+
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="/favicon.png" />
+  <title>{pageTitle}</title>
+  {description && <meta name="description" content={description} />}
+</head>
+<body class={bodyClass}>
+<main data-breadcrumb={breadcrumb ? "" : undefined}>
+  <Nav client:load />
+  {breadcrumb && (
+    <Breadcrumb section={breadcrumb.section} title={breadcrumb.title} />
+  )}
+  <slot />
+  <div>
+    <section class="signup">
+      <p>{config.newsletter.cta}</p>
+      <SignupForm
+        client:idle
+        actionUrl={config.newsletter.actionUrl}
+        listId={config.newsletter.listId}
+        placeholder="Your email"
+        buttonText="Subscribe"
+      />
+    </section>
+    <Footer />
+  </div>
+</main>
+</body>
+</html>
+
+<style>
+  .signup {
+    border-top: 1px solid var(--border-default);
+    padding: 3rem 0 1.5rem;
+  }
+  .signup > p {
+    font-family: var(--font-display);
+    font-size: 1rem;
+    margin: 0 0 0.75rem;
+  }
+</style>

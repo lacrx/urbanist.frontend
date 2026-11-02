@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 
-const STRAPI_URL = process.env.GATSBY_STRAPI_URL || "";
+const STRAPI_URL = import.meta.env.PUBLIC_STRAPI_URL || "";
 const LS_KEY = "sto_admin";
 
 type AuthState = {

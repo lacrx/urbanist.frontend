@@ -1,0 +1,75 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero/Hero.astro";
+import Content from "@/components/Content/Content.astro";
+import Card from "@/components/Card/Card.astro";
+import EventCard from "@/components/EventList/EventCard.astro";
+import config from "@/site/config";
+import {
+  fetchArticles,
+  fetchEvents,
+  fetchDataPages,
+  fetchSiteSettings,
+} from "@/lib/strapi";
+
+const [articles, events, dataPages, settings] = await Promise.all([
+  fetchArticles(config),
+  fetchEvents(config),
+  config.build.dataPages ? fetchDataPages(config) : Promise.resolve([]),
+  fetchSiteSettings(),
+]);
+
+const article = articles[0];
+const event = events[0];
+const dataPage = dataPages[0];
+
+let ctaUrl = "#";
+if (config.hero.ctaSource === "meetup") {
+  ctaUrl = settings.meetupUrl || "#";
+} else if (config.hero.ctaSource === "discord") {
+  ctaUrl = config.hero.discordUrl || "#";
+}
+const instagramUrl = settings.instagramUrl || config.hero.defaultInstagramUrl || "#";
+---
+
+<BaseLayout title={config.hero.title}>
+  <Hero
+    title={config.hero.title}
+    description={config.hero.description}
+    cta={config.hero.cta}
+    ctaUrl={ctaUrl}
+    instagramUrl={instagramUrl}
+    showBuddy={config.hero.showBuddy}
+  />
+  {article && (
+    <Content type="section">
+      <h2>Newest Article</h2>
+      <Card
+        link={`/articles/${article.slug}`}
+        title={article.title}
+        description={article.description}
+        imageUrl={article.coverUrl}
+        authorName={article.authorName}
+        publishedAt={article.publishedAt}
+      />
+    </Content>
+  )}
+  {event && (
+    <Content type="section">
+      <h2>Next Event</h2>
+      <EventCard event={event} />
+    </Content>
+  )}
+  {dataPage && (
+    <Content type="section">
+      <h2>Latest Data</h2>
+      <Card
+        link={`/data/${dataPage.slug}`}
+        title={dataPage.title}
+        description={dataPage.description || ""}
+        imageUrl={dataPage.coverUrl}
+        publishedAt={dataPage.dataUpdatedAt}
+      />
+    </Content>
+  )}
+</BaseLayout>

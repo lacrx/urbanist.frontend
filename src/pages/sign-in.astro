@@ -1,0 +1,13 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SignInForm from "@/components/Auth/SignInForm";
+import config from "@/site/config";
+
+if (!config.auth) {
+  return Astro.redirect("/404", 404);
+}
+---
+
+<BaseLayout title="Sign in">
+  <SignInForm client:load />
+</BaseLayout>

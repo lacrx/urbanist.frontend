@@ -1,7 +1,7 @@
 import { lazy, Suspense } from "react";
-import { graphql, useStaticQuery } from "gatsby";
 import { SKELETONS } from "@/components/Vis/skeletons";
 import VizPlaceholder from "@/components/Vis/VizPlaceholder";
+import type { Visualization } from "@/lib/strapi";
 import * as styles from "./article-blocks.module.css";
 
 const Choropleth3DMaplibre = lazy(() => import("@/components/Vis/choropleth-3d-maplibre"));
@@ -29,60 +29,11 @@ type VisualizationBlockProps = {
   caption?: string | null;
   height: number;
   align: string;
+  visualizations?: Visualization[];
 };
 
-export type GatsbyVisualization = {
-  vizId: string;
-  type: string;
-  title: string | null;
-  source: string | null;
-  data: unknown;
-  config: unknown;
-  featuresFile: { publicURL: string | null } | null;
-  featuresTilesFile: { publicURL: string | null } | null;
-  featuresTilesUrl: string | null;
-  basemap: string | null;
-  posterFile: { publicURL: string | null } | null;
-  posterFileMobile: { publicURL: string | null } | null;
-  tilesLayer: string | null;
-  camera: { center: number[]; zoom: number | null; pitch: number | null; bearing: number | null } | null;
-  color: { field: string; domain: number[]; range: string[] } | null;
-  elevation: { field: string; divisor: number | null } | null;
-  fallback2d: { maxViewportWidth: number | null } | null;
-};
-
-type Query = {
-  allGatsbyVisualization: { nodes: GatsbyVisualization[] };
-};
-
-export default function VisualizationBlock({ vizId, caption, height, align }: VisualizationBlockProps) {
-  const { allGatsbyVisualization } = useStaticQuery<Query>(graphql`
-    query AllGatsbyVisualization {
-      allGatsbyVisualization {
-        nodes {
-          vizId
-          type
-          title
-          source
-          data
-          config
-          featuresFile { publicURL }
-          featuresTilesFile { publicURL }
-          featuresTilesUrl
-          basemap
-          posterFile { publicURL }
-          posterFileMobile { publicURL }
-          tilesLayer
-          camera { center zoom pitch bearing }
-          color { field domain range }
-          elevation { field divisor }
-          fallback2d { maxViewportWidth }
-        }
-      }
-    }
-  `);
-
-  const artifact = allGatsbyVisualization.nodes.find(v => v.vizId === vizId);
+export default function VisualizationBlock({ vizId, caption, height, align, visualizations = [] }: VisualizationBlockProps) {
+  const artifact = visualizations.find(v => v.vizId === vizId) as (Visualization & Record<string, any>) | undefined;
   const alignClass =
     align === "full-bleed" ? styles.fullBleed : align === "wide" ? styles.wide : styles.inline;
 
@@ -107,8 +58,8 @@ export default function VisualizationBlock({ vizId, caption, height, align }: Vi
   }
 
   if (NEEDS_STAGE[normalizedType]) {
-    const posterUrl = artifact.posterFile?.publicURL ?? null;
-    const posterUrlMobile = artifact.posterFileMobile?.publicURL ?? null;
+    const posterUrl = artifact.posterFile?.publicURL ?? artifact.posterFrame ?? null;
+    const posterUrlMobile = artifact.posterFileMobile?.publicURL ?? artifact.posterFrameMobile ?? null;
 
     return (
       <figure className={`${styles.vizFigure} ${alignClass}`} data-viz-id={vizId}>

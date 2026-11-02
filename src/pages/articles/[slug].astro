@@ -1,0 +1,96 @@
+---
+import type { GetStaticPaths } from "astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero/Hero.astro";
+import Content from "@/components/Content/Content.astro";
+import Byline from "@/components/Byline/Byline.astro";
+import ArticleBlocks from "@/components/ArticleBlocks/article-blocks";
+import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
+import config from "@/site/config";
+import {
+  fetchArticles,
+  fetchWalkAudits,
+  fetchVisualizations,
+} from "@/lib/strapi";
+import { results, routeLink } from "@/components/WalkAudit/walk-audit.module.css";
+
+export const getStaticPaths = (async () => {
+  const articles = await fetchArticles(config);
+  const walkAudits = config.build.walkAudit ? await fetchWalkAudits() : [];
+  const visualizations = await fetchVisualizations();
+
+  return [
+    ...articles.map((a) => ({
+      params: { slug: a.slug },
+      props: { type: "article" as const, article: a, visualizations },
+    })),
+    ...walkAudits
+      .filter((w) => w.status === "completed")
+      .map((w) => ({
+        params: { slug: w.slug },
+        props: { type: "walk-audit" as const, walkAudit: w, visualizations },
+      })),
+  ];
+}) satisfies GetStaticPaths;
+
+const { type } = Astro.props;
+
+const ARTICLE_SECTION = { label: "Articles", path: "/articles" };
+---
+
+{type === "article" ? (() => {
+  const { article, visualizations } = Astro.props;
+  return (
+    <BaseLayout
+      title={article.title}
+      description={article.description}
+      breadcrumb={{ section: ARTICLE_SECTION, title: article.title }}
+      bodyClass="article"
+    >
+      <Hero title={article.title} description={article.description} style={{ "padding-bottom": "0" }} />
+      <Content type="section">
+        <Byline author={article.authorName} publishedAt={article.publishedAt} />
+        {article.coverUrl && article.blocks[0]?.kind !== "visualization" && (
+          <img src={article.coverUrl} alt={article.title} class={cover} loading="lazy" width="1050" height="600" />
+        )}
+        <ArticleBlocks client:visible blocks={article.blocks} visualizations={visualizations} />
+      </Content>
+    </BaseLayout>
+  );
+})() : (() => {
+  const { walkAudit } = Astro.props;
+  const formatDate = (iso: string) => {
+    const d = new Date(iso + "T12:00:00");
+    return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+  };
+  return (
+    <BaseLayout
+      title={`Walk Audit: ${walkAudit.title}`}
+      breadcrumb={{ section: ARTICLE_SECTION, title: `Walk Audit: ${walkAudit.title}` }}
+    >
+      <Hero
+        title={`Walk Audit: ${walkAudit.title}`}
+        description={`${formatDate(walkAudit.date)}${walkAudit.description ? ` · ${walkAudit.description}` : ""}`}
+      />
+      <Content type="section" ruled>
+        <div class={results}>
+          {walkAudit.mapUrl && (
+            <p>
+              <a class={routeLink} href={walkAudit.mapUrl} target="_blank" rel="noopener noreferrer">
+                &#x1f5fa;&#xfe0f; View route map
+              </a>
+            </p>
+          )}
+          {walkAudit.segments.length > 0 && (
+            <p>{walkAudit.segments.length} segment{walkAudit.segments.length === 1 ? "" : "s"}: {walkAudit.segments.map((s) => s.name).join(", ")}</p>
+          )}
+          {walkAudit.summary ? (
+            <div set:html={walkAudit.summary} />
+          ) : (
+            <p>Summary coming soon.</p>
+          )}
+        </div>
+      </Content>
+    </BaseLayout>
+  );
+})()}

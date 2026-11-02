@@ -1,0 +1,17 @@
+---
+import { content, ruled as ruledCls } from "./content.module.css";
+
+type Props = {
+  type: string;
+  ruled?: boolean;
+  style?: string;
+};
+
+const { type: tag = "section", ruled = false, style } = Astro.props;
+const Tag = tag as any;
+const classes = `${content}${ruled ? ` ${ruledCls}` : ""} container`;
+---
+
+<Tag class={classes} style={style}>
+  <slot />
+</Tag>

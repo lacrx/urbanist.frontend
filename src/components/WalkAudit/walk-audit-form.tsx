@@ -105,8 +105,8 @@ function resizePhoto(file: File): Promise<string> {
   });
 }
 
-const SUPABASE_URL = process.env.GATSBY_SUPABASE_URL || "";
-const SUPABASE_KEY = process.env.GATSBY_SUPABASE_KEY || "";
+const SUPABASE_URL = import.meta.env.PUBLIC_SUPABASE_URL || "";
+const SUPABASE_KEY = import.meta.env.PUBLIC_SUPABASE_KEY || "";
 
 function getDeviceId(): string {
   if (typeof window === "undefined") return "";

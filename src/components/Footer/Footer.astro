@@ -1,0 +1,18 @@
+---
+import { footer } from "./footer.module.css";
+import config from "@/site/config";
+
+const CURRENT_YEAR = new Date().getFullYear();
+---
+
+<footer class={footer}>
+  <ul>
+    <li>
+      <a href="/">
+        <div>{config.shortName}</div>
+        {config.logo && <img src={config.logo} width="60" alt={`${config.title} Logo`} />}
+      </a>
+    </li>
+  </ul>
+  <span>&copy; {CURRENT_YEAR} {config.title}</span>
+</footer>

@@ -11,8 +11,8 @@ import { mapRoot, ready as readyCls, attribution } from "./choropleth-3d-maplibr
 type Artifact = {
   vizId: string;
   basemap: string | null;
-  featuresFile: { publicURL: string | null } | null;
-  featuresTilesFile: { publicURL: string | null } | null;
+  features: string | null;
+  featuresTiles: string | null;
   featuresTilesUrl: string | null;
   tilesLayer: string | null;
   camera: { center: number[]; zoom: number | null; pitch: number | null; bearing: number | null } | null;
@@ -24,7 +24,7 @@ type Artifact = {
 type Props = { artifact: Artifact };
 
 const BASEMAP_PMTILES_URL =
-  process.env.GATSBY_BASEMAP_PMTILES_URL || "/tiles/basemap.pmtiles";
+  import.meta.env.PUBLIC_BASEMAP_PMTILES_URL || "/tiles/basemap.pmtiles";
 
 function hexToRgb(hex: string): [number, number, number] {
   const h = hex.replace("#", "");
@@ -177,8 +177,8 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
     if (!containerRef.current) return;
     if (usePosterOnly) return;
     if (!artifact.camera || !artifact.color || !artifact.elevation) return;
-    const hasTiles = Boolean(artifact.featuresTilesFile?.publicURL || artifact.featuresTilesUrl);
-    const hasGeojson = Boolean(artifact.featuresFile?.publicURL);
+    const hasTiles = Boolean(artifact.featuresTiles || artifact.featuresTilesUrl);
+    const hasGeojson = Boolean(artifact.features);
     if (!hasTiles && !hasGeojson) return;
 
     ensurePmtilesProtocol();
@@ -255,12 +255,12 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
     map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
     map.on("error", (e) => {
-      if (process.env.NODE_ENV === "development") {
+      if (import.meta.env.DEV) {
         console.warn(`[viz:${artifact.vizId}] map error`, e.error?.message ?? e);
       }
     });
 
-    if (process.env.NODE_ENV === "development") {
+    if (import.meta.env.DEV) {
       map.on("moveend", () => {
         const c = map.getCenter();
         const cam = {
@@ -307,7 +307,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
 
       // Feature data (critical path)
       if (hasTiles) {
-        const rawUrl = artifact.featuresTilesFile?.publicURL ?? artifact.featuresTilesUrl!;
+        const rawUrl = artifact.featuresTiles ?? artifact.featuresTilesUrl!;
         const tilesUrl =
           typeof window !== "undefined" && rawUrl.startsWith("/")
             ? `${window.location.origin}${rawUrl}`
@@ -349,7 +349,7 @@ export default function Choropleth3DMaplibre({ artifact }: Props) {
           layers: [
             new GeoJsonLayer({
               id: artifact.vizId,
-              data: artifact.featuresFile!.publicURL!,
+              data: artifact.features!,
               stroked: false,
               filled: true,
               extruded: true,

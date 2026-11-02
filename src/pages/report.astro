@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero/Hero.astro";
+import Content from "@/components/Content/Content.astro";
+import WalkAuditForm from "@/components/WalkAudit/walk-audit-form";
+import config from "@/site/config";
+
+if (config.id !== "stoside") {
+  return Astro.redirect("/404", 404);
+}
+---
+
+<BaseLayout title="Report a Condition">
+  <Hero
+    title="Report a Condition"
+    description="Help us identify and document unsafe conditions on Oceanside streets."
+  />
+  <Content type="section" ruled>
+    <WalkAuditForm client:load auditSlug="oceanside" />
+  </Content>
+</BaseLayout>

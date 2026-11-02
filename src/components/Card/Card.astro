@@ -1,0 +1,30 @@
+---
+import Byline from "@/components/Byline/Byline.astro";
+import { card } from "./card.module.css";
+
+type Props = {
+  link: string;
+  title: string;
+  description: string;
+  imageUrl?: string | null;
+  authorName?: string | null;
+  publishedAt?: string | null;
+};
+
+const { link, title, description, imageUrl, authorName, publishedAt } = Astro.props;
+---
+
+<article class={card}>
+  <div>
+    <div><a href={link}><h2>{title}</h2></a></div>
+    <div><a href={link}><p>{description}</p></a></div>
+    <Byline author={authorName} publishedAt={publishedAt} compact />
+  </div>
+  {imageUrl && (
+    <div>
+      <a href={link}>
+        <img src={imageUrl} alt={title} width="150" height="150" loading="lazy" />
+      </a>
+    </div>
+  )}
+</article>

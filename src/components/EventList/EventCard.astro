@@ -1,0 +1,54 @@
+---
+import { card, location as locationCls } from "@/components/Card/card.module.css";
+import type { Event } from "@/lib/strapi";
+
+type Props = {
+  event: Event;
+  as?: string;
+};
+
+const { event: e, as: tag = "div" } = Astro.props;
+const Tag = tag as any;
+
+const TZ = "America/Los_Angeles";
+const DAY_FMT = new Intl.DateTimeFormat("en-US", {
+  timeZone: TZ, year: "numeric", month: "2-digit", day: "2-digit",
+});
+const TIME_FMT = new Intl.DateTimeFormat("en-US", {
+  timeZone: TZ, hour: "numeric", minute: "2-digit", hour12: true,
+});
+const HOUR_FMT = new Intl.DateTimeFormat("en-US", {
+  timeZone: TZ, hour: "numeric", hour12: false,
+});
+
+function formatDisplayDate(iso: string, display: string): string {
+  const eventDate = new Date(iso);
+  const now = new Date();
+  if (DAY_FMT.format(eventDate) !== DAY_FMT.format(now)) return display;
+  const hour = Number(HOUR_FMT.format(eventDate));
+  const label = hour >= 17 ? "Tonight" : "Today";
+  return `${label} at ${TIME_FMT.format(eventDate)}`;
+}
+
+const dateLabel = formatDisplayDate(e.startDate, e.startDateDisplay);
+---
+
+<Tag class={card}>
+  <div>
+    <div>
+      <a href={e.url} target="_blank" rel="noopener noreferrer">
+        <h2>{e.title}</h2>
+      </a>
+    </div>
+    <div>
+      <p>{dateLabel}{e.location && <span class={locationCls}>{e.location}</span>}</p>
+    </div>
+  </div>
+  {e.imageUrl && (
+    <div>
+      <a href={e.url} target="_blank" rel="noopener noreferrer">
+        <img src={e.imageUrl} alt={e.title} width="150" height="150" loading="lazy" />
+      </a>
+    </div>
+  )}
+</Tag>
