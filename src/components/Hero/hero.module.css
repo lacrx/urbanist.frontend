@@ -3,12 +3,6 @@
   padding-top: 3rem;
   padding-bottom: 5rem;
 
-  :global(.open) ~ & {
-    @media (max-width: 599px) {
-      padding-top: 0;
-    }
-  }
-
   > :nth-child(n) {
     max-width: 40rem;
   }
