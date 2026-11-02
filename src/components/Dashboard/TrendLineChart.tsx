@@ -133,11 +133,11 @@ export default function TrendLineChart({
             x: "year",
             y: "value",
             text: (d: TrendPoint) => d.name,
-            dx: 6,
+            dx: -6,
             fill: (d: TrendPoint) => neighborhoodColor(colorMap, d.tractId),
             fontSize: 9,
             fontWeight: 600,
-            textAnchor: "start",
+            textAnchor: "end",
           }),
         );
       }
@@ -164,11 +164,12 @@ export default function TrendLineChart({
             x: "year",
             y: "value",
             text: (d: TrendPoint) => `${d.name}  ${d.value}`,
-            dx: 8,
+            dx: -6,
+            dy: -10,
             fill: fgColor,
             fontWeight: 700,
             fontSize: 12,
-            textAnchor: "start",
+            textAnchor: "end",
           }),
         );
       }
@@ -214,15 +215,16 @@ export default function TrendLineChart({
     }
 
     const ml = 40;
-    const mr = useColorMap ? 100 : 0;
+    const years = [...new Set(data.map((d) => d.year))].sort((a, b) => a - b);
     const plot = Plot.plot({
       width,
       height: Math.max(height, 180),
       marginBottom: 40,
       marginLeft: ml,
-      marginRight: mr,
+      marginRight: 16,
       x: {
         label: null,
+        ticks: years,
         tickFormat: (d: unknown) => String(d),
       },
       y: {
@@ -235,6 +237,16 @@ export default function TrendLineChart({
     });
 
     repositionYAxis(plot, ml);
+
+    if (useColorMap) {
+      const catColors = new Set([...colorMap.values()].filter((c) => c !== NEUTRAL));
+      plot.querySelectorAll("text").forEach((t: SVGTextElement) => {
+        const fill = t.getAttribute("fill");
+        if (fill && catColors.has(fill)) {
+          t.setAttribute("text-anchor", "end");
+        }
+      });
+    }
 
     const xScale = plot.scale("x");
     const yScale = plot.scale("y");
