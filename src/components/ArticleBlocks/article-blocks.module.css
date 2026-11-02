@@ -197,6 +197,36 @@
   z-index: 1;
 }
 
+.vizActivateOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  background: color-mix(in srgb, var(--text-primary) 85%, transparent);
+  transition: background 200ms ease;
+}
+
+.vizStage:hover .vizActivateOverlay,
+.vizStage:focus-within .vizActivateOverlay {
+  background: color-mix(in srgb, var(--text-primary) 75%, transparent);
+}
+
+.vizActivateLabel {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--bg-primary);
+  background: color-mix(in srgb, var(--bg-primary) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bg-primary) 30%, transparent);
+  border-radius: 4px;
+  padding: 0.6rem 1.25rem;
+  pointer-events: none;
+}
+
 .vizLoader {
   position: absolute;
   top: 35%;

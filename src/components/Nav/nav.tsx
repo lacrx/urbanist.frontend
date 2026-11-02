@@ -61,7 +61,7 @@ function NavInner() {
       <li>
         <a href="/">
           <div>{config.shortName}</div>
-          {config.logo && <img src={config.logo} width="60" alt={`${config.title} Logo`} />}
+          {config.logo && <img src={config.logo} width="60" height="12" alt={`${config.title} Logo`} />}
         </a>
       </li>
       <li>
