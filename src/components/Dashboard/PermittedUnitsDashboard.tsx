@@ -21,6 +21,7 @@ import {
   buildGroupToTractsMap,
 } from "./neighborhood-mapping";
 import DashboardSkeleton from "./DashboardSkeleton";
+import { buildNeighborhoodColorMap } from "./neighborhood-colors";
 import * as layout from "./dashboard-layout.module.css";
 import SectionHeading from "./SectionHeading";
 
@@ -217,6 +218,13 @@ export default function PermittedUnitsDashboard() {
     });
   }, [filtered, latestYearFiltered, priorFiltered]);
 
+  const colorMap = useMemo(() => {
+    const ranked = [...filtered]
+      .sort((a, b) => b.units - a.units)
+      .map((t) => t.tractId);
+    return buildNeighborhoodColorMap(ranked);
+  }, [filtered]);
+
   const filteredTotal = useMemo(
     () => filtered.reduce((sum, t) => sum + t.units, 0),
     [filtered],
@@ -322,6 +330,7 @@ export default function PermittedUnitsDashboard() {
       <TrendLineChart
         data={trendData}
         selection={selection}
+        colorMap={colorMap}
         heading="Permitting Trends"
         subheading={
           activeTractName
@@ -377,6 +386,7 @@ export default function PermittedUnitsDashboard() {
             rowKey="tractId"
             defaultSort={{ key: "units", direction: "desc" }}
             selection={selection}
+            colorMap={colorMap}
             searchable
             searchKeys={["name", "tractLabel"]}
             pageSize={8}

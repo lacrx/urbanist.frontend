@@ -18,3 +18,5 @@ export const CATEGORICAL = [
   "#b07aa1",
   "#ff9da7",
 ] as const;
+
+export const NEUTRAL = "#bab0ac" as const;

@@ -3,6 +3,8 @@ import * as styles from "./data-table.module.css";
 import Pagination from "../Pagination/pagination";
 import usePagination from "@/hooks/usePagination";
 import type { LinkedSelection } from "./types";
+import type { NeighborhoodColorMap } from "./neighborhood-colors";
+import { neighborhoodColor } from "./neighborhood-colors";
 
 export type Column = {
   key: string;
@@ -19,6 +21,7 @@ type Props = {
   defaultSort?: { key: string; direction: "asc" | "desc" };
   caption?: string;
   selection?: LinkedSelection;
+  colorMap?: NeighborhoodColorMap;
   searchable?: boolean;
   searchKeys?: string[];
   pageSize?: number;
@@ -31,6 +34,7 @@ export default function DataTable({
   defaultSort,
   caption,
   selection,
+  colorMap,
   searchable,
   searchKeys,
   pageSize,
@@ -155,7 +159,7 @@ export default function DataTable({
                   onMouseLeave={() => selection?.onHover(null)}
                   onClick={() => selection?.onSelect(id)}
                 >
-                  {columns.map((col) => (
+                  {columns.map((col, colIdx) => (
                     <td
                       key={col.key}
                       className={
@@ -166,7 +170,17 @@ export default function DataTable({
                             : ""
                       }
                     >
-                      {col.render
+                      {colIdx === 0 && colorMap ? (
+                        <>
+                          <span
+                            className={styles.colorDot}
+                            style={{ backgroundColor: neighborhoodColor(colorMap, id) }}
+                          />
+                          {col.render
+                            ? col.render(row[col.key], row as Record<string, unknown>)
+                            : (row[col.key] ?? "")}
+                        </>
+                      ) : col.render
                         ? col.render(row[col.key], row as Record<string, unknown>)
                         : (row[col.key] ?? "")}
                     </td>
