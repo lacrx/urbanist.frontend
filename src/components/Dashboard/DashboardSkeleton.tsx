@@ -237,8 +237,8 @@ function SkeletonRhnaPace() {
           >
             <div className={skel.shimmerBlock} style={{ width: "40%", height: "100%", borderRadius: "3px" }} />
           </div>
-          <span style={{ width: "5rem" }}>
-            <Shimmer width="5rem" />
+          <span style={{ width: "6.5rem" }}>
+            <Shimmer width="6.5rem" />
           </span>
           <span style={{ width: "3rem" }}>
             <Shimmer width="2.5rem" />
@@ -325,6 +325,8 @@ export function AffordableUnitsSkeleton() {
         <SkeletonChart height={320} />
       </div>
 
+      <SectionHeading title="Geographic Distribution" subtitle="By neighborhood" />
+
       <div className={layout.splitPane}>
         <div>
           <SkeletonMap />
@@ -367,6 +369,8 @@ export function AffordabilityMapSkeleton() {
           options={["Cost Burden", "Rent", "Home Value", "Income"]}
         />
       </div>
+
+      <SectionHeading title="Geographic Distribution" subtitle="By neighborhood" />
 
       <div className={layout.splitPane}>
         <div>

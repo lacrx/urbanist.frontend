@@ -340,7 +340,7 @@ function RhnaPaceSection({ pace }: { pace: Record<string, RhnaPace> }) {
             <div style={{ flex: 1, height: "0.75rem", background: "var(--dash-surface)", borderRadius: "3px", overflow: "hidden" }}>
               <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: "3px", transition: "width 0.3s" }} />
             </div>
-            <span style={{ width: "5rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color: "var(--text-secondary)" }}>
+            <span style={{ width: "6.5rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color: "var(--text-secondary)", whiteSpace: "nowrap" }}>
               {p.achieved.toLocaleString()} / {p.target.toLocaleString()}
             </span>
             <span style={{ width: "3rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color }}>
