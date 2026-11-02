@@ -2,6 +2,7 @@
   display: grid;
   grid-template-columns: repeat(var(--tile-cols, 4), 1fr);
   gap: 1rem;
+  margin-bottom: var(--space-sm);
 }
 
 @media (max-width: 600px) {
