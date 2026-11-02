@@ -54,17 +54,17 @@ export function buildMapLibreStepExpression(
 }
 
 export const SEQUENTIAL_BLUES: ColorBreak[] = [
-  { value: 0, color: "#eff6ff", label: "0" },
-  { value: 5, color: "#bfdbfe", label: "5" },
-  { value: 15, color: "#93c5fd", label: "15" },
-  { value: 30, color: "#60a5fa", label: "30" },
-  { value: 50, color: "#3b82f6", label: "50" },
-  { value: 100, color: "#2563eb", label: "100" },
-  { value: 200, color: "#1d4ed8", label: "200+" },
+  { value: 0, color: "#f0f4f8", label: "0" },
+  { value: 5, color: "#c6d7eb", label: "5" },
+  { value: 15, color: "#9ab8d8", label: "15" },
+  { value: 30, color: "#6d9ac5", label: "30" },
+  { value: 50, color: "#4e79a7", label: "50" },
+  { value: 100, color: "#3a6291", label: "100" },
+  { value: 200, color: "#264b73", label: "200+" },
 ];
 
 export const DIVERGING = {
-  positive: "#2563eb",
-  negative: "#dc2626",
-  neutral: "#9ca3af",
+  positive: "#4e79a7",
+  negative: "#e15759",
+  neutral: "#bab0ac",
 };

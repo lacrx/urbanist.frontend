@@ -14,13 +14,27 @@
 
 .chartWrap :global([aria-label="y-axis tick label"]),
 .chartWrap :global([aria-label="x-axis tick label"]) {
-  font-size: 12px;
+  font-size: 11px;
+  fill: var(--text-muted);
 }
 
 .chartWrap :global([aria-label="y-axis label"]),
 .chartWrap :global([aria-label="x-axis label"]) {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 600;
+  fill: var(--text-muted);
+}
+
+.chartWrap :global([aria-label="y-axis grid"] line),
+.chartWrap :global([aria-label="x-axis grid"] line) {
+  stroke: var(--border-default);
+  stroke-opacity: 0.5;
+}
+
+.chartWrap :global([aria-label="y-axis tick"] line),
+.chartWrap :global([aria-label="x-axis tick"] line) {
+  stroke: var(--border-default);
+  stroke-opacity: 0.4;
 }
 
 @media (max-width: 600px) {

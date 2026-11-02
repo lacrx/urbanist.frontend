@@ -54,7 +54,7 @@ const TIER_LABELS: Record<string, string> = {
   aboveModerate: "Above Moderate",
 };
 
-const TIER_COLORS = ["#1e40af", "#3b82f6", "#60a5fa", "#bfdbfe"];
+const TIER_COLORS = ["#264b73", "#4e79a7", "#6d9ac5", "#c6d7eb"];
 
 const VIEW_OPTIONS = [
   { value: "all", label: "All Units" },
@@ -62,13 +62,13 @@ const VIEW_OPTIONS = [
 ];
 
 const AFFORDABLE_BLUES: ColorBreak[] = [
-  { value: 0, color: "#eff6ff", label: "0" },
-  { value: 2, color: "#bfdbfe", label: "2" },
-  { value: 5, color: "#93c5fd", label: "5" },
-  { value: 10, color: "#60a5fa", label: "10" },
-  { value: 25, color: "#3b82f6", label: "25" },
-  { value: 50, color: "#2563eb", label: "50" },
-  { value: 100, color: "#1d4ed8", label: "100+" },
+  { value: 0, color: "#f0f4f8", label: "0" },
+  { value: 2, color: "#c6d7eb", label: "2" },
+  { value: 5, color: "#9ab8d8", label: "5" },
+  { value: 10, color: "#6d9ac5", label: "10" },
+  { value: 25, color: "#4e79a7", label: "25" },
+  { value: 50, color: "#3a6291", label: "50" },
+  { value: 100, color: "#264b73", label: "100+" },
 ];
 
 function mergeGeoJSON(
@@ -199,6 +199,7 @@ export default function AffordableUnitsDashboard() {
           colors: TIER_COLORS,
           domain: Object.values(TIER_LABELS),
           title: "Units by Income Tier",
+          subtitle: "All tiers",
         }}
         height={320}
       />

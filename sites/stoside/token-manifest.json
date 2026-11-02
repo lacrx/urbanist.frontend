@@ -3,32 +3,32 @@
     "--color-dash-accent": {
       "references": null,
       "layer": "primitive",
-      "resolved": "#2563eb",
-      "value": "#2563eb"
+      "resolved": "#4e79a7",
+      "value": "#4e79a7"
     },
     "--color-dash-positive": {
       "references": null,
       "layer": "primitive",
-      "resolved": "#16a34a",
-      "value": "#16a34a"
+      "resolved": "#59a14f",
+      "value": "#59a14f"
     },
     "--color-dash-negative": {
       "references": null,
       "layer": "primitive",
-      "resolved": "#dc2626",
-      "value": "#dc2626"
+      "resolved": "#e15759",
+      "value": "#e15759"
     },
     "--color-dash-neutral": {
       "references": null,
       "layer": "primitive",
-      "resolved": "#9ca3af",
-      "value": "#9ca3af"
+      "resolved": "#bab0ac",
+      "value": "#bab0ac"
     },
     "--color-dash-surface": {
       "references": null,
       "layer": "primitive",
-      "resolved": "#f9fafb",
-      "value": "#f9fafb"
+      "resolved": "#f7f7f5",
+      "value": "#f7f7f5"
     },
     "--color-severity-safe": {
       "references": null,
@@ -345,31 +345,31 @@
     "--dash-accent": {
       "references": "--color-dash-accent",
       "layer": "semantic",
-      "resolved": "#2563eb",
+      "resolved": "#4e79a7",
       "value": "var(--color-dash-accent)"
     },
     "--dash-positive": {
       "references": "--color-dash-positive",
       "layer": "semantic",
-      "resolved": "#16a34a",
+      "resolved": "#59a14f",
       "value": "var(--color-dash-positive)"
     },
     "--dash-negative": {
       "references": "--color-dash-negative",
       "layer": "semantic",
-      "resolved": "#dc2626",
+      "resolved": "#e15759",
       "value": "var(--color-dash-negative)"
     },
     "--dash-neutral": {
       "references": "--color-dash-neutral",
       "layer": "semantic",
-      "resolved": "#9ca3af",
+      "resolved": "#bab0ac",
       "value": "var(--color-dash-neutral)"
     },
     "--dash-surface": {
       "references": "--color-dash-surface",
       "layer": "semantic",
-      "resolved": "#f9fafb",
+      "resolved": "#f7f7f5",
       "value": "var(--color-dash-surface)"
     },
     "--bg": {
@@ -478,5 +478,5 @@
     }
   ],
   "site": "stoside",
-  "generated": "2026-11-02T03:09:05.193Z"
+  "generated": "2026-11-02T06:16:57.990Z"
 }

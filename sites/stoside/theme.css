@@ -3,11 +3,11 @@
  */
 
 :root {
-  --color-dash-accent: #2563eb;
-  --color-dash-positive: #16a34a;
-  --color-dash-negative: #dc2626;
-  --color-dash-neutral: #9ca3af;
-  --color-dash-surface: #f9fafb;
+  --color-dash-accent: #4e79a7;
+  --color-dash-positive: #59a14f;
+  --color-dash-negative: #e15759;
+  --color-dash-neutral: #bab0ac;
+  --color-dash-surface: #f7f7f5;
   --color-severity-safe: #2a8a6a;
   --color-severity-caution: #b07820;
   --color-severity-danger: #c44020;

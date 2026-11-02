@@ -3,6 +3,7 @@ import * as Plot from "@observablehq/plot";
 import * as styles from "./bar-chart.module.css";
 import { CATEGORICAL } from "./palette";
 import { repositionYAxis } from "./chart-utils";
+import SectionHeading from "./SectionHeading";
 
 type BarChartConfig = {
   mode: "stacked" | "grouped";
@@ -17,6 +18,7 @@ type BarChartConfig = {
   marginLeft?: number;
   marginRight?: number;
   title?: string;
+  subtitle?: string;
 };
 
 type Props = {
@@ -99,7 +101,7 @@ export default function BarChart({ rows, config: cfg, height = 300 }: Props) {
 
   return (
     <div>
-      {cfg.title && <div className={styles.chartTitle}>{cfg.title}</div>}
+      {cfg.title && <SectionHeading title={cfg.title} subtitle={cfg.subtitle} />}
       <div ref={containerRef} className={styles.container} />
       {domain && (
         <div className={styles.legend}>

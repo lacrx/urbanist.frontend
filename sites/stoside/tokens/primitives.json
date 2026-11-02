@@ -3,11 +3,11 @@
     "$type": "color",
     "dash": {
       "$description": "Dashboard data visualization palette",
-      "accent":   { "$value": "#2563EB" },
-      "positive": { "$value": "#16A34A" },
-      "negative": { "$value": "#DC2626" },
-      "neutral":  { "$value": "#9CA3AF" },
-      "surface":  { "$value": "#F9FAFB" }
+      "accent":   { "$value": "#4E79A7" },
+      "positive": { "$value": "#59A14F" },
+      "negative": { "$value": "#E15759" },
+      "neutral":  { "$value": "#BAB0AC" },
+      "surface":  { "$value": "#F7F7F5" }
     },
     "severity": {
       "$description": "Walk audit severity scale",
