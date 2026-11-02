@@ -20,13 +20,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
 
-  a {
+  a:link,
+  a:visited {
     color: var(--text-muted);
     text-decoration: none;
+  }
 
-    &:hover {
-      text-decoration: underline;
-    }
+  a:hover {
+    text-decoration: underline;
   }
 }
 
