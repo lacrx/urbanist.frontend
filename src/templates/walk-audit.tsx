@@ -26,11 +26,13 @@ function formatDate(iso: string): string {
   return d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
 }
 
+const SECTION = { label: "Articles", path: "/articles" };
+
 export default function WalkAudit({ pageContext }: WalkAuditPageProps) {
   const { title, date, description, mapUrl, segments, summary } = pageContext;
 
   return (
-    <Layout>
+    <Layout breadcrumb={{ section: SECTION, title: `Walk Audit: ${title}` }}>
       <Hero
         title={`Walk Audit: ${title}`}
         description={`${formatDate(date)}${description ? ` · ${description}` : ""}`}

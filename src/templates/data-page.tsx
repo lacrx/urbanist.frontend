@@ -29,12 +29,14 @@ interface DataPageProps extends PageProps {
   pageContext: DataPageContext;
 }
 
+const SECTION = { label: "Data", path: "/data" };
+
 export default function DataPage({ pageContext: { title, description, dashboardType, image, blocks, methodologyHtml, dataUpdatedAt } }: DataPageProps) {
   const img = image ? getImage(image) : null;
   const Dashboard = DASHBOARDS[dashboardType.replace(/_/g, "-")];
 
   return (
-    <Layout>
+    <Layout breadcrumb={{ section: SECTION, title }}>
       <Hero title={title} description={description || undefined} style={{ paddingBottom: 0 }} />
       <Content type="section">
         {img && <GatsbyImage image={img} alt={title} className={cover} />}

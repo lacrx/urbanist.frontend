@@ -25,6 +25,8 @@ const contentProps = {
   type: "section"
 }
 
+const SECTION = { label: "Articles", path: "/articles" };
+
 export default function Article({ pageContext: { title, description, image, blocks, authorName, publishedAt }}: ArticlePageProps) {
   const heroProps = {
     title,
@@ -35,7 +37,7 @@ export default function Article({ pageContext: { title, description, image, bloc
   const img = getImage(image);
 
   return (
-    <Layout>
+    <Layout breadcrumb={{ section: SECTION, title }}>
       <Hero { ...heroProps } />
       <Content { ...contentProps } >
         <Byline author={authorName} publishedAt={publishedAt} />
