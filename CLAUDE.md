@@ -7,7 +7,10 @@ Multi-site Gatsby project. `SITE` env var (default: `ncyimby`) selects which sit
 - `sites/<id>/aliases.json` maps legacy CSS variable names to new token names
 - `@/site` webpack alias resolves to `sites/<SITE>/` at build time
 - Dev: `SITE=stoside yarn dev` or `SITE=ncyimby yarn dev`
+- Dev with CMS data: `STRAPI_URL=https://cms.stoside.org SITE=stoside gatsby develop`
 - Build: `SITE=stoside gatsby build`
+- Production: stoside.org, ncyimby.org
+- CMS: cms.stoside.org, cms.ncyimby.org
 
 ## Workflow
 After completing a code change, commit and push without asking. Deployment pipeline is attached to this repo.
