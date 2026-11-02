@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from "react";
+import { lazy, Suspense, useState, useEffect } from "react";
 import { SKELETONS } from "@/components/Vis/skeletons";
 import VizPlaceholder from "@/components/Vis/VizPlaceholder";
 import type { Visualization } from "@/lib/strapi";
@@ -24,6 +24,22 @@ const NEEDS_STAGE: Record<string, boolean> = {
   "choropleth-3d-maplibre": true,
 };
 
+function useInteractionSignal(timeoutMs = 15000) {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    if (ready) return;
+    const activate = () => setReady(true);
+    const events = ["scroll", "mousemove", "keydown", "touchstart", "pointerdown"] as const;
+    for (const e of events) window.addEventListener(e, activate, { once: true, passive: true });
+    const timer = setTimeout(activate, timeoutMs);
+    return () => {
+      for (const e of events) window.removeEventListener(e, activate);
+      clearTimeout(timer);
+    };
+  }, [ready, timeoutMs]);
+  return ready;
+}
+
 function StagedViz({
   artifact,
   vizId,
@@ -39,20 +55,13 @@ function StagedViz({
   alignClass: string;
   Renderer: React.LazyExoticComponent<React.ComponentType<any>>;
 }) {
-  const [activated, setActivated] = useState(false);
+  const ready = useInteractionSignal();
   const posterUrl = artifact.posterFile?.publicURL ?? artifact.posterFrame ?? null;
   const posterUrlMobile = artifact.posterFileMobile?.publicURL ?? artifact.posterFrameMobile ?? null;
 
   return (
     <figure className={`${styles.vizFigure} ${alignClass}`} data-viz-id={vizId}>
-      <div
-        className={styles.vizStage}
-        style={{ height, cursor: activated ? undefined : "pointer" }}
-        onClick={() => { if (!activated) setActivated(true); }}
-        role={activated ? undefined : "button"}
-        tabIndex={activated ? undefined : 0}
-        onKeyDown={activated ? undefined : (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); setActivated(true); } }}
-      >
+      <div className={styles.vizStage} style={{ height }}>
         {posterUrl && (
           <picture className={styles.vizPoster}>
             {posterUrlMobile && (
@@ -67,16 +76,18 @@ function StagedViz({
             />
           </picture>
         )}
-        {activated ? (
+        {ready ? (
           <Suspense fallback={<div className={styles.vizPosterFill} />}>
             <Renderer artifact={artifact} height={height} />
           </Suspense>
         ) : (
           <div className={styles.vizActivateOverlay}>
-            <span className={styles.vizActivateLabel}>Click to explore the map</span>
+            <div className={styles.vizLoader} aria-hidden="true">
+              <span>&bull;</span><span>&bull;</span><span>&bull;</span>
+            </div>
           </div>
         )}
-        {activated && (
+        {ready && (
           <div className={styles.vizLoader} aria-hidden="true">
             <span>&bull;</span><span>&bull;</span><span>&bull;</span>
           </div>
