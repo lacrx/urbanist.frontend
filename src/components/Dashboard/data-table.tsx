@@ -65,6 +65,20 @@ export default function DataTable({
       })
     : filtered;
 
+  const colWidths = useMemo(() => {
+    const weights = columns.map((col) => {
+      const headerLen = col.label.length + (col.sortable ? 2 : 0);
+      let maxCell = 0;
+      for (const row of rows) {
+        const len = String(row[col.key] ?? "").length;
+        if (len > maxCell) maxCell = len;
+      }
+      return Math.max(headerLen, maxCell);
+    });
+    const total = weights.reduce((s, w) => s + w, 0) || 1;
+    return weights.map((w) => `${(w / total) * 100}%`);
+  }, [columns, rows]);
+
   const { items: paged, page, totalPages, prev, next, setPage } = usePagination(sorted, pageSize || sorted.length);
 
   useEffect(() => setPage(1), [rows, query, setPage]);
@@ -98,6 +112,11 @@ export default function DataTable({
       )}
       <div className={styles.tableScroll}>
         <table className={styles.table} role="grid">
+          <colgroup>
+            {columns.map((col, i) => (
+              <col key={col.key} style={{ width: colWidths[i] }} />
+            ))}
+          </colgroup>
           {caption && <caption>{caption}</caption>}
           <thead>
             <tr>
