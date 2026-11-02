@@ -39,7 +39,8 @@ export default function TrendLineChart({
   const dataRef = useRef(data);
   dataRef.current = data;
 
-  const activeId = selection.activeUnit;
+  const selectedId = selection.selectedUnit;
+  const activeId = selectedId ?? selection.activeUnit;
 
   const findNearestTract = useCallback(
     (clientX: number, clientY: number): string | null => {
@@ -84,62 +85,76 @@ export default function TrendLineChart({
     const marks: Plot.Markish[] = [Plot.ruleY([0])];
 
     if (useColorMap) {
-      const bgColored = bg.map((d) => ({
-        ...d,
-        _color: neighborhoodColor(colorMap, d.tractId),
-      }));
-
-      marks.push(
-        Plot.line(
-          bgColored.filter((d) => isColoredNeighborhood(colorMap, d.tractId)),
-          {
-            x: "year",
-            y: "value",
-            z: "tractId",
-            stroke: "_color",
-            strokeWidth: 1.5,
-            strokeOpacity: 0.6,
-            curve: "catmull-rom",
-          },
-        ),
-        Plot.line(
-          bgColored.filter((d) => !isColoredNeighborhood(colorMap, d.tractId)),
-          {
+      if (selectedId) {
+        marks.push(
+          Plot.line(bg, {
             x: "year",
             y: "value",
             z: "tractId",
             stroke: NEUTRAL,
             strokeWidth: 1,
-            strokeOpacity: 0.2,
+            strokeOpacity: 0.12,
             curve: "catmull-rom",
-          },
-        ),
-      );
-
-      const topIds = [...colorMap.entries()]
-        .filter(([, c]) => c !== NEUTRAL)
-        .map(([id]) => id)
-        .filter((id) => id !== activeId);
-      const maxYear = Math.max(...data.map((d) => d.year));
-      const endPoints = topIds
-        .map((id) => data.filter((d) => d.tractId === id && d.year === maxYear)[0])
-        .filter(Boolean)
-        .sort((a, b) => b.value - a.value)
-        .slice(0, MAX_DIRECT_LABELS);
-
-      if (endPoints.length) {
-        marks.push(
-          Plot.text(endPoints, {
-            x: "year",
-            y: "value",
-            text: (d: TrendPoint) => d.name,
-            dx: -6,
-            fill: (d: TrendPoint) => neighborhoodColor(colorMap, d.tractId),
-            fontSize: 9,
-            fontWeight: 600,
-            textAnchor: "end",
           }),
         );
+      } else {
+        const bgColored = bg.map((d) => ({
+          ...d,
+          _color: neighborhoodColor(colorMap, d.tractId),
+        }));
+
+        marks.push(
+          Plot.line(
+            bgColored.filter((d) => isColoredNeighborhood(colorMap, d.tractId)),
+            {
+              x: "year",
+              y: "value",
+              z: "tractId",
+              stroke: "_color",
+              strokeWidth: 1.5,
+              strokeOpacity: 0.6,
+              curve: "catmull-rom",
+            },
+          ),
+          Plot.line(
+            bgColored.filter((d) => !isColoredNeighborhood(colorMap, d.tractId)),
+            {
+              x: "year",
+              y: "value",
+              z: "tractId",
+              stroke: NEUTRAL,
+              strokeWidth: 1,
+              strokeOpacity: 0.2,
+              curve: "catmull-rom",
+            },
+          ),
+        );
+
+        const topIds = [...colorMap.entries()]
+          .filter(([, c]) => c !== NEUTRAL)
+          .map(([id]) => id)
+          .filter((id) => id !== activeId);
+        const maxYear = Math.max(...data.map((d) => d.year));
+        const endPoints = topIds
+          .map((id) => data.filter((d) => d.tractId === id && d.year === maxYear)[0])
+          .filter(Boolean)
+          .sort((a, b) => b.value - a.value)
+          .slice(0, MAX_DIRECT_LABELS);
+
+        if (endPoints.length) {
+          marks.push(
+            Plot.text(endPoints, {
+              x: "year",
+              y: "value",
+              text: (d: TrendPoint) => d.name,
+              dx: -6,
+              fill: (d: TrendPoint) => neighborhoodColor(colorMap, d.tractId),
+              fontSize: 9,
+              fontWeight: 600,
+              textAnchor: "end",
+            }),
+          );
+        }
       }
 
       if (fg.length) {
@@ -165,10 +180,10 @@ export default function TrendLineChart({
             y: "value",
             text: (d: TrendPoint) => `${d.name}  ${d.value}`,
             dx: -6,
-            dy: -10,
+            dy: selectedId ? 0 : -10,
             fill: fgColor,
-            fontWeight: 700,
-            fontSize: 12,
+            fontWeight: selectedId ? 600 : 700,
+            fontSize: selectedId ? 9 : 12,
             textAnchor: "end",
           }),
         );
@@ -181,7 +196,7 @@ export default function TrendLineChart({
           z: "tractId",
           stroke: "var(--dash-neutral)",
           strokeWidth: 1,
-          strokeOpacity: 0.3,
+          strokeOpacity: selectedId ? 0.12 : 0.3,
           curve: "catmull-rom",
         }),
       );
@@ -207,8 +222,8 @@ export default function TrendLineChart({
             text: (d: TrendPoint) => String(d.value),
             dx: 8,
             fill: "var(--dash-accent)",
-            fontWeight: 700,
-            fontSize: 12,
+            fontWeight: selectedId ? 600 : 700,
+            fontSize: selectedId ? 9 : 12,
           }),
         );
       }
@@ -248,6 +263,24 @@ export default function TrendLineChart({
       });
     }
 
+    const nameToTract = new Map<string, string>();
+    for (const d of data) {
+      nameToTract.set(d.name, d.tractId);
+    }
+    plot.querySelectorAll('[aria-label="text"] text').forEach((el) => {
+      const t = el as SVGTextElement;
+      const text = t.textContent?.trim();
+      if (!text) return;
+      const tractId = nameToTract.get(text.split("  ")[0]) ?? nameToTract.get(text);
+      if (tractId) {
+        t.style.cursor = "pointer";
+        t.addEventListener("click", (e) => {
+          e.stopPropagation();
+          selection.onSelect(tractId);
+        });
+      }
+    });
+
     const xScale = plot.scale("x");
     const yScale = plot.scale("y");
     if (xScale && yScale && xScale.range && yScale.range && xScale.domain && yScale.domain) {
@@ -264,7 +297,7 @@ export default function TrendLineChart({
 
     container.replaceChildren(plot);
     return () => plot.remove();
-  }, [data, activeId, height, colorMap]);
+  }, [data, activeId, selectedId, height, colorMap]);
 
   const handlePointerMove = useCallback(
     (e: React.PointerEvent) => {
