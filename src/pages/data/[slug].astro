@@ -56,7 +56,7 @@ const DATA_SECTION = { label: "Data", path: "/data" };
 
 <script>
   import { lazy, Suspense, createElement } from "react";
-  import { createRoot } from "react-dom/client";
+  import { createRoot, type Root } from "react-dom/client";
   import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
 
   const DASHBOARDS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -65,13 +65,22 @@ const DATA_SECTION = { label: "Data", path: "/data" };
     "affordability-map": lazy(() => import("@/components/Dashboard/AffordabilityDashboard")),
   };
 
-  const mount = document.getElementById("dashboard-mount");
-  if (mount) {
+  let currentRoot: Root | null = null;
+
+  function mountDashboard() {
+    const mount = document.getElementById("dashboard-mount");
+    if (!mount) return;
+
+    if (currentRoot) {
+      currentRoot.unmount();
+      currentRoot = null;
+    }
+
     const type = mount.dataset.type || "";
     const Dashboard = DASHBOARDS[type];
     if (Dashboard) {
-      const root = createRoot(mount);
-      root.render(
+      currentRoot = createRoot(mount);
+      currentRoot.render(
         createElement(
           Suspense,
           { fallback: createElement(DashboardSkeleton, { dashboardType: type }) },
@@ -80,4 +89,6 @@ const DATA_SECTION = { label: "Data", path: "/data" };
       );
     }
   }
+
+  document.addEventListener("astro:page-load", mountDashboard);
 </script>

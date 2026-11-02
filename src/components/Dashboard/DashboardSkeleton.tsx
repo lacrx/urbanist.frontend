@@ -46,13 +46,14 @@ function SkeletonTiles({
 
 function SkeletonSlider({ years }: { years: [number, number] }) {
   const count = years[1] - years[0] + 1;
+  const gridCols = `repeat(${count}, 1fr)`;
   return (
     <div className={sliderStyles.container}>
       <div className={sliderStyles.labels}>
         <span className={sliderStyles.year}>{years[0]}</span>
         <span className={sliderStyles.year}>{years[1]}</span>
       </div>
-      <div className={sliderStyles.sparkline}>
+      <div className={sliderStyles.sparkline} style={{ gridTemplateColumns: gridCols }}>
         {Array.from({ length: count }, (_, i) => (
           <div
             key={i}
@@ -66,7 +67,7 @@ function SkeletonSlider({ years }: { years: [number, number] }) {
         <div className={sliderStyles.handle} style={{ left: 0 }} />
         <div className={sliderStyles.handle} style={{ left: "100%" }} />
       </div>
-      <div className={sliderStyles.ticks}>
+      <div className={sliderStyles.ticks} style={{ gridTemplateColumns: gridCols }}>
         {Array.from({ length: count }, (_, i) => (
           <span key={i} className={sliderStyles.tick}>
             {years[0] + i}
