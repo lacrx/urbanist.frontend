@@ -63,7 +63,14 @@ export default function YearRangeSlider({
     [positionToYear, onChange, value],
   );
 
-  const years = Array.from({ length: max - min + 1 }, (_, i) => min + i);
+  const count = max - min + 1;
+  const years = Array.from({ length: count }, (_, i) => min + i);
+  const gridCols = `repeat(${count}, 1fr)`;
+
+  const tickInterval = count <= 8 ? 1 : count <= 16 ? 2 : 5;
+  const visibleTicks = years.filter(
+    (y, i) => i === 0 || i === count - 1 || y % tickInterval === 0,
+  );
 
   return (
     <div className={styles.container}>
@@ -72,7 +79,7 @@ export default function YearRangeSlider({
         <span className={styles.year}>{value[1]}</span>
       </div>
       {sparklineData && (
-        <div className={styles.sparkline}>
+        <div className={styles.sparkline} style={{ gridTemplateColumns: gridCols }}>
           {sparklineData.map((v, i) => {
             const year = min + i;
             const inRange = year >= value[0] && year <= value[1];
@@ -117,10 +124,10 @@ export default function YearRangeSlider({
           onPointerDown={startDrag("end")}
         />
       </div>
-      <div className={styles.ticks}>
+      <div className={styles.ticks} style={{ gridTemplateColumns: gridCols }}>
         {years.map((y) => (
           <span key={y} className={styles.tick}>
-            {y}
+            {visibleTicks.includes(y) ? y : ""}
           </span>
         ))}
       </div>
