@@ -1,0 +1,482 @@
+{
+  "tokens": {
+    "--color-dash-accent": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#2563eb",
+      "value": "#2563eb"
+    },
+    "--color-dash-positive": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#16a34a",
+      "value": "#16a34a"
+    },
+    "--color-dash-negative": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#dc2626",
+      "value": "#dc2626"
+    },
+    "--color-dash-neutral": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#9ca3af",
+      "value": "#9ca3af"
+    },
+    "--color-dash-surface": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#f9fafb",
+      "value": "#f9fafb"
+    },
+    "--color-severity-safe": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#2a8a6a",
+      "value": "#2a8a6a"
+    },
+    "--color-severity-caution": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#b07820",
+      "value": "#b07820"
+    },
+    "--color-severity-danger": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#c44020",
+      "value": "#c44020"
+    },
+    "--color-severity-connected": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#3db893",
+      "value": "#3db893"
+    },
+    "--color-status-error": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#cc0000",
+      "value": "#cc0000"
+    },
+    "--color-status-error-surface": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#fef3f2",
+      "value": "#fef3f2"
+    },
+    "--color-status-error-border": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#fecaca",
+      "value": "#fecaca"
+    },
+    "--color-status-error-text": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#991b1b",
+      "value": "#991b1b"
+    },
+    "--color-status-warning": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#e8a020",
+      "value": "#e8a020"
+    },
+    "--color-neutral-0": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#ffffff",
+      "value": "#ffffff"
+    },
+    "--color-neutral-100": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#f3f4f6",
+      "value": "#f3f4f6"
+    },
+    "--color-neutral-200": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#e2e2e2",
+      "value": "#e2e2e2"
+    },
+    "--color-neutral-500": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#767676",
+      "value": "#767676"
+    },
+    "--color-neutral-700": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#333333",
+      "value": "#333333"
+    },
+    "--color-neutral-900": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "#121212",
+      "value": "#121212"
+    },
+    "--space-xs": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "4px",
+      "value": "4px"
+    },
+    "--space-sm": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "8px",
+      "value": "8px"
+    },
+    "--space-md": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "16px",
+      "value": "16px"
+    },
+    "--space-lg": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "24px",
+      "value": "24px"
+    },
+    "--space-xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "32px",
+      "value": "32px"
+    },
+    "--space-2xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "48px",
+      "value": "48px"
+    },
+    "--space-3xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "64px",
+      "value": "64px"
+    },
+    "--font-size-sm": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "0.875rem",
+      "value": "0.875rem"
+    },
+    "--font-size-base": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "1rem",
+      "value": "1rem"
+    },
+    "--font-size-lg": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "1.25rem",
+      "value": "1.25rem"
+    },
+    "--font-size-xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "1.5rem",
+      "value": "1.5rem"
+    },
+    "--font-size-2xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "2rem",
+      "value": "2rem"
+    },
+    "--font-size-3xl": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "2.5rem",
+      "value": "2.5rem"
+    },
+    "--font-serif": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "Georgia, 'Times New Roman', Times, serif",
+      "value": "Georgia, 'Times New Roman', Times, serif"
+    },
+    "--font-sans": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "Helvetica, 'Helvetica Neue', Arial, sans-serif",
+      "value": "Helvetica, 'Helvetica Neue', Arial, sans-serif"
+    },
+    "--font-mono": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "'SF Mono', 'Cascadia Code', ui-monospace, monospace",
+      "value": "'SF Mono', 'Cascadia Code', ui-monospace, monospace"
+    },
+    "--radius-sm": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "4px",
+      "value": "4px"
+    },
+    "--radius-md": {
+      "references": null,
+      "layer": "primitive",
+      "resolved": "8px",
+      "value": "8px"
+    },
+    "--font-display": {
+      "references": "--font-serif",
+      "layer": "semantic",
+      "resolved": "Georgia, 'Times New Roman', Times, serif",
+      "value": "var(--font-serif)"
+    },
+    "--font-body": {
+      "references": "--font-sans",
+      "layer": "semantic",
+      "resolved": "Helvetica, 'Helvetica Neue', Arial, sans-serif",
+      "value": "var(--font-sans)"
+    },
+    "--bg-primary": {
+      "references": "--color-neutral-0",
+      "layer": "semantic",
+      "resolved": "#ffffff",
+      "value": "var(--color-neutral-0)"
+    },
+    "--bg-surface": {
+      "references": "--color-neutral-100",
+      "layer": "semantic",
+      "resolved": "#f3f4f6",
+      "value": "var(--color-neutral-100)"
+    },
+    "--text-primary": {
+      "references": "--color-neutral-900",
+      "layer": "semantic",
+      "resolved": "#121212",
+      "value": "var(--color-neutral-900)"
+    },
+    "--text-secondary": {
+      "references": "--color-neutral-700",
+      "layer": "semantic",
+      "resolved": "#333333",
+      "value": "var(--color-neutral-700)"
+    },
+    "--text-muted": {
+      "references": "--color-neutral-500",
+      "layer": "semantic",
+      "resolved": "#767676",
+      "value": "var(--color-neutral-500)"
+    },
+    "--accent-primary": {
+      "references": "--color-neutral-900",
+      "layer": "semantic",
+      "resolved": "#121212",
+      "value": "var(--color-neutral-900)"
+    },
+    "--btn-text": {
+      "references": "--color-neutral-0",
+      "layer": "semantic",
+      "resolved": "#ffffff",
+      "value": "var(--color-neutral-0)"
+    },
+    "--border-default": {
+      "references": "--color-neutral-200",
+      "layer": "semantic",
+      "resolved": "#e2e2e2",
+      "value": "var(--color-neutral-200)"
+    },
+    "--severity-safe": {
+      "references": "--color-severity-safe",
+      "layer": "semantic",
+      "resolved": "#2a8a6a",
+      "value": "var(--color-severity-safe)"
+    },
+    "--severity-caution": {
+      "references": "--color-severity-caution",
+      "layer": "semantic",
+      "resolved": "#b07820",
+      "value": "var(--color-severity-caution)"
+    },
+    "--severity-danger": {
+      "references": "--color-severity-danger",
+      "layer": "semantic",
+      "resolved": "#c44020",
+      "value": "var(--color-severity-danger)"
+    },
+    "--severity-connected": {
+      "references": "--color-severity-connected",
+      "layer": "semantic",
+      "resolved": "#3db893",
+      "value": "var(--color-severity-connected)"
+    },
+    "--status-error": {
+      "references": "--color-status-error",
+      "layer": "semantic",
+      "resolved": "#cc0000",
+      "value": "var(--color-status-error)"
+    },
+    "--status-error-surface": {
+      "references": "--color-status-error-surface",
+      "layer": "semantic",
+      "resolved": "#fef3f2",
+      "value": "var(--color-status-error-surface)"
+    },
+    "--status-error-border": {
+      "references": "--color-status-error-border",
+      "layer": "semantic",
+      "resolved": "#fecaca",
+      "value": "var(--color-status-error-border)"
+    },
+    "--status-error-text": {
+      "references": "--color-status-error-text",
+      "layer": "semantic",
+      "resolved": "#991b1b",
+      "value": "var(--color-status-error-text)"
+    },
+    "--status-warning": {
+      "references": "--color-status-warning",
+      "layer": "semantic",
+      "resolved": "#e8a020",
+      "value": "var(--color-status-warning)"
+    },
+    "--dash-accent": {
+      "references": "--color-dash-accent",
+      "layer": "semantic",
+      "resolved": "#2563eb",
+      "value": "var(--color-dash-accent)"
+    },
+    "--dash-positive": {
+      "references": "--color-dash-positive",
+      "layer": "semantic",
+      "resolved": "#16a34a",
+      "value": "var(--color-dash-positive)"
+    },
+    "--dash-negative": {
+      "references": "--color-dash-negative",
+      "layer": "semantic",
+      "resolved": "#dc2626",
+      "value": "var(--color-dash-negative)"
+    },
+    "--dash-neutral": {
+      "references": "--color-dash-neutral",
+      "layer": "semantic",
+      "resolved": "#9ca3af",
+      "value": "var(--color-dash-neutral)"
+    },
+    "--dash-surface": {
+      "references": "--color-dash-surface",
+      "layer": "semantic",
+      "resolved": "#f9fafb",
+      "value": "var(--color-dash-surface)"
+    },
+    "--bg": {
+      "references": "--bg-primary",
+      "layer": "alias",
+      "resolved": "#ffffff",
+      "value": "var(--bg-primary)"
+    },
+    "--text": {
+      "references": "--text-primary",
+      "layer": "alias",
+      "resolved": "#121212",
+      "value": "var(--text-primary)"
+    },
+    "--accent": {
+      "references": "--accent-primary",
+      "layer": "alias",
+      "resolved": "#121212",
+      "value": "var(--accent-primary)"
+    },
+    "--accent-btn": {
+      "references": "--accent-primary",
+      "layer": "alias",
+      "resolved": "#121212",
+      "value": "var(--accent-primary)"
+    },
+    "--rule": {
+      "references": "--border-default",
+      "layer": "alias",
+      "resolved": "#e2e2e2",
+      "value": "var(--border-default)"
+    },
+    "--black": {
+      "references": "--color-neutral-900",
+      "layer": "alias",
+      "resolved": "#121212",
+      "value": "var(--color-neutral-900)"
+    },
+    "--grey": {
+      "references": "--color-neutral-700",
+      "layer": "alias",
+      "resolved": "#333333",
+      "value": "var(--color-neutral-700)"
+    },
+    "--light-grey": {
+      "references": "--color-neutral-500",
+      "layer": "alias",
+      "resolved": "#767676",
+      "value": "var(--color-neutral-500)"
+    },
+    "--dark-grey": {
+      "references": "--text-secondary",
+      "layer": "alias",
+      "resolved": "#333333",
+      "value": "var(--text-secondary)"
+    },
+    "--serif": {
+      "references": "--font-display",
+      "layer": "alias",
+      "resolved": "Georgia, 'Times New Roman', Times, serif",
+      "value": "var(--font-display)"
+    },
+    "--sans": {
+      "references": "--font-body",
+      "layer": "alias",
+      "resolved": "Helvetica, 'Helvetica Neue', Arial, sans-serif",
+      "value": "var(--font-body)"
+    },
+    "--dash-mono": {
+      "references": "--font-mono",
+      "layer": "alias",
+      "resolved": "'SF Mono', 'Cascadia Code', ui-monospace, monospace",
+      "value": "var(--font-mono)"
+    }
+  },
+  "contrastPairs": [
+    {
+      "fg": "--text-primary",
+      "bg": "--bg-primary",
+      "fgHex": "#121212",
+      "bgHex": "#ffffff"
+    },
+    {
+      "fg": "--text-secondary",
+      "bg": "--bg-primary",
+      "fgHex": "#333333",
+      "bgHex": "#ffffff"
+    },
+    {
+      "fg": "--text-muted",
+      "bg": "--bg-primary",
+      "fgHex": "#767676",
+      "bgHex": "#ffffff"
+    },
+    {
+      "fg": "--btn-text",
+      "bg": "--accent-primary",
+      "fgHex": "#ffffff",
+      "bgHex": "#121212"
+    },
+    {
+      "fg": "--status-error-text",
+      "bg": "--status-error-surface",
+      "fgHex": "#991b1b",
+      "bgHex": "#fef3f2"
+    }
+  ],
+  "site": "stoside",
+  "generated": "2026-11-02T03:09:05.193Z"
+}
