@@ -297,7 +297,7 @@ export default function PermittedUnitsDashboard() {
           {
             value: `${d.citywide.rhnaPace}%`,
             label: <span title="Regional Housing Needs Allocation: state-mandated housing production targets for each jurisdiction" style={{ cursor: "help", borderBottom: "1px dotted var(--dash-neutral)" }}>RHNA Pace</span>,
-            detail: `${d.rhna.total.toLocaleString()} unit target (6th cycle)`,
+            detail: `${d.rhna.total.toLocaleString()} unit target`,
             trend: d.citywide.rhnaPace >= 50 ? "positive" : "negative",
           },
         ]}
