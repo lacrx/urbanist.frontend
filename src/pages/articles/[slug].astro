@@ -4,7 +4,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero/Hero.astro";
 import Content from "@/components/Content/Content.astro";
 import Byline from "@/components/Byline/Byline.astro";
-import ArticleBlocks from "@/components/ArticleBlocks/article-blocks";
+import ArticleBlocks from "@/components/ArticleBlocks/ArticleBlocks.astro";
 import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
 import config from "@/site/config";
 import {
@@ -55,7 +55,7 @@ const ARTICLE_SECTION = { label: "Articles", path: "/articles" };
         {article.coverUrl && article.blocks[0]?.kind !== "visualization" && (
           <img src={article.coverUrl} alt={article.title} class={cover} loading="lazy" width="1050" height="600" />
         )}
-        <ArticleBlocks client:visible blocks={article.blocks} visualizations={visualizations} />
+        <ArticleBlocks blocks={article.blocks} visualizations={visualizations} />
       </Content>
     </BaseLayout>
   );

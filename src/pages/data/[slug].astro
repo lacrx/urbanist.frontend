@@ -3,7 +3,7 @@ import type { GetStaticPaths } from "astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero/Hero.astro";
 import Content from "@/components/Content/Content.astro";
-import ArticleBlocks from "@/components/ArticleBlocks/article-blocks";
+import ArticleBlocks from "@/components/ArticleBlocks/ArticleBlocks.astro";
 import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
 import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
 import config from "@/site/config";
@@ -42,7 +42,7 @@ const DATA_SECTION = { label: "Data", path: "/data" };
     {dataPage.coverUrl && (
       <img src={dataPage.coverUrl} alt={dataPage.title} class={cover} loading="lazy" width="1050" height="600" />
     )}
-    <ArticleBlocks client:visible blocks={dataPage.blocks} visualizations={visualizations} />
+    <ArticleBlocks blocks={dataPage.blocks} visualizations={visualizations} />
     <div id="dashboard-mount" data-type={normalizedDashboardType}>
       <DashboardSkeleton dashboardType={normalizedDashboardType} />
     </div>

@@ -1,0 +1,32 @@
+---
+import VisualizationBlock from "./visualization-block";
+import type { ArticleBlock } from "./article-blocks";
+import type { Visualization } from "@/lib/strapi";
+import styles from "./article-blocks.module.css";
+
+type Props = {
+  blocks: ArticleBlock[];
+  visualizations?: Visualization[];
+};
+
+const { blocks, visualizations = [] } = Astro.props;
+---
+
+{blocks.map((block) => {
+  if (block.kind === "rich-text" && block.html) {
+    return <div class={styles.richText} set:html={block.html} />;
+  }
+  if (block.kind === "visualization" && block.vizId) {
+    return (
+      <VisualizationBlock
+        client:visible
+        vizId={block.vizId}
+        caption={block.caption}
+        height={block.height ?? 520}
+        align={block.align ?? "inline"}
+        visualizations={visualizations}
+      />
+    );
+  }
+  return null;
+})}
