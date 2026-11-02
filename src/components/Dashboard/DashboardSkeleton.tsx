@@ -237,10 +237,10 @@ function SkeletonRhnaPace() {
           >
             <div className={skel.shimmerBlock} style={{ width: "40%", height: "100%", borderRadius: "3px" }} />
           </div>
-          <span style={{ width: "6.5rem" }}>
+          <span style={{ width: "6.5rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right" }}>
             <Shimmer width="6.5rem" />
           </span>
-          <span style={{ width: "3rem" }}>
+          <span style={{ width: "3rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right" }}>
             <Shimmer width="2.5rem" />
           </span>
         </div>
