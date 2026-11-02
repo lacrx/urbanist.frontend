@@ -30,8 +30,20 @@ All UI uses the design token system. Read the active site's `DESIGN.md` for visu
 - All border radii via `--radius-*` tokens.
 - Dashboard data viz colors via `--dash-*` tokens (accent, positive, negative, neutral, surface). Stoside only.
 - Use semantic token names (`--bg-primary`, `--text-primary`, `--accent-primary`) in new code, not legacy names (`--bg`, `--text`, `--accent`) or primitive names (`--color-warm-100`).
-- Read existing components before creating new ones.
+- Alpha tints use `color-mix(in srgb, var(--token) N%, transparent)`, not rgba or opacity hacks.
+
+### Component reuse
+- Read existing components before creating new ones. Extend or wrap; don't duplicate.
+- `Vis/` components are thin adapters over `Dashboard/` components. Never duplicate Dashboard logic into Vis.
+- Dashboard section headers use `SectionHeading` component, not inline markup.
+- Chart y-axis repositioning uses `chart-utils.ts` `repositionYAxis()`.
+- Pagination uses `usePagination` hook + shared `Pagination` component.
 - New components follow existing patterns (same file structure, same prop conventions, same naming).
+
+### Data viz palettes
+- Categorical: `CATEGORICAL` from `Dashboard/palette.ts`.
+- Sequential blues: `BLUE_RAMP` (flat array) or `SEQUENTIAL_BLUES` (with breakpoints) from `color-scales.ts`.
+- Don't create ad-hoc color arrays. Use or extend the existing palettes.
 
 ### Token files (per site, in `sites/<id>/`)
 - Primitives: `tokens/primitives.json` (raw values, named by what they are)
