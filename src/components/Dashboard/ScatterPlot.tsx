@@ -2,7 +2,6 @@ import { useEffect, useRef, useCallback } from "react";
 import * as Plot from "@observablehq/plot";
 import * as styles from "./scatter-plot.module.css";
 import SectionHeading from "./SectionHeading";
-import { repositionYAxis } from "./chart-utils";
 import type { LinkedSelection } from "./types";
 
 export type ScatterPoint = {
@@ -105,7 +104,7 @@ export default function ScatterPlot({
         fill: (d: ScatterPoint) =>
           d.y >= (yRef ?? 0) ? "var(--dash-positive)" : "var(--dash-negative)",
         fillOpacity: 0.5,
-        stroke: "#fff",
+        stroke: "var(--bg-primary)",
         strokeWidth: 1,
       }),
     );
@@ -117,7 +116,7 @@ export default function ScatterPlot({
           y: "y",
           r: 8,
           fill: "var(--dash-accent)",
-          stroke: "#fff",
+          stroke: "var(--bg-primary)",
           strokeWidth: 2,
         }),
         Plot.text(fg, {

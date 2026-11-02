@@ -19,7 +19,6 @@ type BarChartConfig = {
   title?: string;
 };
 
-
 type Props = {
   rows: Array<Record<string, string | number>>;
   config: BarChartConfig;

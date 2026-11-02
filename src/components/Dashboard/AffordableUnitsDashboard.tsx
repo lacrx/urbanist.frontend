@@ -264,7 +264,7 @@ function RhnaPaceSection({ pace }: { pace: Record<string, RhnaPace> }) {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-      <div style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--dark-grey)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+      <div style={{ fontSize: "0.75rem", fontWeight: 600, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.05em" }}>
         RHNA Progress (6th Cycle)
       </div>
       {tiers.map((tier) => {
@@ -274,13 +274,13 @@ function RhnaPaceSection({ pace }: { pace: Record<string, RhnaPace> }) {
         const color = p.pct >= 80 ? "var(--dash-positive)" : p.pct >= 40 ? "var(--dash-accent)" : "var(--dash-negative)";
         return (
           <div key={tier} style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <span style={{ width: "7rem", fontSize: "0.8rem", color: "var(--dark-grey)" }}>
+            <span style={{ width: "7rem", fontSize: "0.8rem", color: "var(--text-secondary)" }}>
               {TIER_LABELS[tier]}
             </span>
             <div style={{ flex: 1, height: "0.75rem", background: "var(--dash-surface)", borderRadius: "3px", overflow: "hidden" }}>
               <div style={{ width: `${pct}%`, height: "100%", background: color, borderRadius: "3px", transition: "width 0.3s" }} />
             </div>
-            <span style={{ width: "5rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color: "var(--dark-grey)" }}>
+            <span style={{ width: "5rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color: "var(--text-secondary)" }}>
               {p.achieved.toLocaleString()} / {p.target.toLocaleString()}
             </span>
             <span style={{ width: "3rem", fontSize: "0.75rem", fontFamily: "var(--dash-mono)", textAlign: "right", color }}>

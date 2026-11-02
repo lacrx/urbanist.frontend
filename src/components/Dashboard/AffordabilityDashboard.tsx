@@ -279,14 +279,14 @@ function TractDetail({ tract }: { tract: TractRow }) {
 
   return (
     <div style={{ padding: "1rem", background: "var(--dash-surface)", borderRadius: "4px", border: "1px solid var(--rule)" }}>
-      <div style={{ fontSize: "0.85rem", fontWeight: 600, marginBottom: "1rem", color: "var(--dark-grey)" }}>
+      <div style={{ fontSize: "0.85rem", fontWeight: 600, marginBottom: "1rem", color: "var(--text-secondary)" }}>
         {tract.name}
       </div>
       <dl style={{ display: "grid", gridTemplateColumns: "1fr auto", gap: "0.5rem 1rem", margin: 0 }}>
         {rows.map((r) => (
           <div key={r.label} style={{ display: "contents" }}>
-            <dt style={{ fontSize: "0.8rem", color: "var(--light-grey)" }}>{r.label}</dt>
-            <dd style={{ fontSize: "0.85rem", fontFamily: "var(--dash-mono)", textAlign: "right", margin: 0, color: "var(--dark-grey)" }}>
+            <dt style={{ fontSize: "0.8rem", color: "var(--text-muted)" }}>{r.label}</dt>
+            <dd style={{ fontSize: "0.85rem", fontFamily: "var(--dash-mono)", textAlign: "right", margin: 0, color: "var(--text-secondary)" }}>
               {r.value}
             </dd>
           </div>

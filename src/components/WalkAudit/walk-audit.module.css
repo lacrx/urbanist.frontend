@@ -2,8 +2,6 @@
   max-width: 100%;
 }
 
-.segmentBtn,
-
 .routeLink {
   display: inline-flex;
   align-items: center;
@@ -15,8 +13,6 @@
   padding: 0.4rem 0;
   cursor: pointer;
 }
-
-.mapToggleBtn,
 
 .pinMapWrap {
   margin-bottom: 0;

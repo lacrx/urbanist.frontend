@@ -1,7 +1,6 @@
 import type { GatsbyVisualization } from "@/components/ArticleBlocks/visualization-block";
+import { CATEGORICAL } from "@/components/Dashboard/palette";
 import * as styles from "./skeletons.module.css";
-
-const FALLBACK_PALETTE = ["#4269d0", "#efb118", "#ff725c", "#a463f2", "#36b07e", "#e6549f", "#0bb4ff", "#54bebe"];
 
 type BarChartConfig = {
   xField: string;
@@ -23,7 +22,7 @@ export default function BarChartSkeleton({ artifact, height }: Props) {
   const cfg = (artifact.config ?? { xField: "x", yField: "y" }) as BarChartConfig;
   if (!rows.length) return null;
 
-  const palette = cfg.colors ?? FALLBACK_PALETTE;
+  const palette = cfg.colors ?? CATEGORICAL;
   const domain = cfg.domain ??
     (cfg.seriesField ? [...new Set(rows.map(r => String(r[cfg.seriesField!])))] : undefined);
 
@@ -50,7 +49,7 @@ export default function BarChartSkeleton({ artifact, height }: Props) {
   return (
     <div className={styles.barChartWrap}>
       {cfg.title && (
-        <div style={{ fontFamily: "var(--serif)", fontSize: "1.0625rem", fontWeight: 700, color: "var(--text)", marginBottom: "0.75rem" }}>
+        <div style={{ fontFamily: "var(--font-display)", fontSize: "1.0625rem", fontWeight: 700, color: "var(--text-primary)", marginBottom: "0.75rem" }}>
           {cfg.title}
         </div>
       )}
