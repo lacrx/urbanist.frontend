@@ -20,7 +20,7 @@ import {
   buildTractToGroupMap,
   buildGroupToTractsMap,
 } from "./neighborhood-mapping";
-import DashboardPlaceholder from "./DashboardPlaceholder";
+import DashboardSkeleton from "./DashboardSkeleton";
 import * as layout from "./dashboard-layout.module.css";
 import SectionHeading from "./SectionHeading";
 
@@ -276,7 +276,7 @@ export default function PermittedUnitsDashboard() {
   }, [neighborhoods, activeRange, category, yoyYears]);
 
   if (data.status === "loading" || geo.status === "loading") {
-    return <DashboardPlaceholder dashboardType="permitted-units" />;
+    return <DashboardSkeleton dashboardType="permitted-units" />;
   }
 
   if (data.status === "error" || geo.status === "error") {

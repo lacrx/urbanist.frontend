@@ -6,7 +6,7 @@ import Layout from "@/components/Layout/layout";
 import Hero from "@/components/Hero/hero";
 import Content from "@/components/Content/content";
 import ArticleBlocks, { type ArticleBlock } from "@/components/ArticleBlocks/article-blocks";
-import DashboardPlaceholder from "@/components/Dashboard/DashboardPlaceholder";
+import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
 import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
 
 const DASHBOARDS: Record<string, React.LazyExoticComponent<React.ComponentType>> = {
@@ -43,7 +43,7 @@ export default function DataPage({ pageContext: { title, description, dashboardT
         {img && <GatsbyImage image={img} alt={title} className={cover} />}
         <ArticleBlocks blocks={blocks} />
         {Dashboard ? (
-          <Suspense fallback={<DashboardPlaceholder dashboardType={dashboardType.replace(/_/g, "-")} />}>
+          <Suspense fallback={<DashboardSkeleton dashboardType={dashboardType.replace(/_/g, "-")} />}>
             <Dashboard />
           </Suspense>
         ) : (

@@ -12,7 +12,7 @@ import DataTable from "./data-table";
 import CsvExport from "./CsvExport";
 import { SEQUENTIAL_BLUES } from "./color-scales";
 import type { YearRange, TractId, ColorBreak } from "./types";
-import DashboardPlaceholder from "./DashboardPlaceholder";
+import DashboardSkeleton from "./DashboardSkeleton";
 import * as layout from "./dashboard-layout.module.css";
 
 type TractRow = {
@@ -104,7 +104,7 @@ export default function AffordableUnitsDashboard() {
   const [view, setView] = useState("all");
 
   if (data.status === "loading" || geo.status === "loading") {
-    return <DashboardPlaceholder dashboardType="affordable-units" />;
+    return <DashboardSkeleton dashboardType="affordable-units" />;
   }
 
   if (data.status === "error" || geo.status === "error") {

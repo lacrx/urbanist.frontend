@@ -1,0 +1,77 @@
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+
+.shimmer {
+  display: inline-block;
+  height: 1em;
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--dash-surface) 25%,
+    var(--border-default) 50%,
+    var(--dash-surface) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+  vertical-align: middle;
+}
+
+.shimmerBlock {
+  background: linear-gradient(
+    90deg,
+    var(--dash-surface) 25%,
+    var(--border-default) 50%,
+    var(--dash-surface) 75%
+  );
+  background-size: 800px 100%;
+  animation: shimmer 1.5s infinite linear;
+}
+
+.chart {
+  composes: shimmerBlock;
+  border-radius: 4px;
+  margin-top: 0.5rem;
+}
+
+.map {
+  composes: shimmerBlock;
+  aspect-ratio: 4 / 3;
+  border-radius: 4px;
+}
+
+.legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-top: 0.5rem;
+}
+
+.legendTitle {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+}
+
+.legendBar {
+  composes: shimmerBlock;
+  height: 12px;
+  border-radius: 2px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem 0.75rem;
+  border-top: 1px solid var(--border-default);
+}
+
+.paginationText {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
