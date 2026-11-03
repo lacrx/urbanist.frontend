@@ -71,7 +71,7 @@ function NavInner() {
       </li>
       {config.navLinks.map(link => (
         <li key={link.path}>
-          <a href={link.path}><span>{link.label}</span></a>
+          <a href={link.path} onClick={() => setOpen(false)}><span>{link.label}</span></a>
         </li>
       ))}
       {config.auth && <AuthButtons />}
