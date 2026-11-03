@@ -20,11 +20,19 @@ export type ArticleBlock = {
   align?: string | null;
 };
 
+export type CoverImage = {
+  url: string;
+  thumbnail: string | null;
+  small: string | null;
+  medium: string | null;
+};
+
 export type Article = {
   title: string;
   description: string;
   slug: string;
   coverUrl: string | null;
+  cover: CoverImage | null;
   coverIsFallback: boolean;
   authorName: string | null;
   blocks: ArticleBlock[];
@@ -50,6 +58,7 @@ export type Event = {
   startDateDisplay: string;
   endDate: string | null;
   imageUrl: string | null;
+  image: CoverImage | null;
 };
 
 export type SiteSettings = {
@@ -74,6 +83,7 @@ export type DataPage = {
   slug: string;
   dashboardType: string;
   coverUrl: string | null;
+  cover: CoverImage | null;
   blocks: ArticleBlock[];
   methodologyHtml: string | null;
   dataUpdatedAt: string | null;
@@ -95,12 +105,28 @@ type StrapiBlock =
       align: string | null;
     };
 
+type StrapiImageFormat = {
+  url: string;
+  width: number;
+  height: number;
+};
+
+type StrapiCover = {
+  url: string;
+  formats?: {
+    thumbnail?: StrapiImageFormat;
+    small?: StrapiImageFormat;
+    medium?: StrapiImageFormat;
+    large?: StrapiImageFormat;
+  } | null;
+};
+
 type StrapiArticle = {
   documentId: string;
   title: string;
   description: string;
   slug: string;
-  cover: { url: string } | null;
+  cover: StrapiCover | null;
   authors: { name: string }[];
   blocks: StrapiBlock[];
   publishedAt: string;
@@ -124,7 +150,7 @@ type StrapiEvent = {
   date: string;
   location: string | null;
   url: string | null;
-  cover: { url: string } | null;
+  cover: StrapiCover | null;
 };
 
 type StrapiWalkAudit = {
@@ -143,7 +169,7 @@ type StrapiDataPage = {
   description: string | null;
   slug: string;
   dashboardType: string;
-  cover: { url: string } | null;
+  cover: StrapiCover | null;
   blocks: StrapiBlock[];
   methodology: string | null;
   dataUpdatedAt: string | null;
@@ -203,12 +229,30 @@ function resolveBlocks(blocks: StrapiBlock[], config: SiteConfig): ArticleBlock[
   });
 }
 
+function resolveUrl(url: string, strapiUrl: string): string {
+  return url.startsWith("http") ? url : `${strapiUrl}${url}`;
+}
+
 function resolveCoverUrl(
-  cover: { url: string } | null,
+  cover: StrapiCover | null,
   strapiUrl: string,
 ): string | null {
   if (!cover?.url) return null;
-  return cover.url.startsWith("http") ? cover.url : `${strapiUrl}${cover.url}`;
+  return resolveUrl(cover.url, strapiUrl);
+}
+
+function resolveCoverImage(
+  cover: StrapiCover | null,
+  strapiUrl: string,
+): CoverImage | null {
+  if (!cover?.url) return null;
+  const formats = cover.formats;
+  return {
+    url: resolveUrl(cover.url, strapiUrl),
+    thumbnail: formats?.thumbnail ? resolveUrl(formats.thumbnail.url, strapiUrl) : null,
+    small: formats?.small ? resolveUrl(formats.small.url, strapiUrl) : null,
+    medium: formats?.medium ? resolveUrl(formats.medium.url, strapiUrl) : null,
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -241,7 +285,7 @@ function buildArticleQuery(config: SiteConfig): string {
         title
         description
         slug
-        cover { url }
+        cover { url formats }
         authors { name }
         blocks {
           __typename
@@ -278,7 +322,7 @@ const EVENTS_QUERY = `
       date
       location
       url
-      cover { url }
+      cover { url formats }
     }
   }
 `;
@@ -314,7 +358,7 @@ const DATA_PAGES_QUERY = `
       description
       slug
       dashboardType
-      cover { url }
+      cover { url formats }
       blocks {
         __typename
         ...on ComponentSharedRichText { body }
@@ -374,11 +418,13 @@ export async function fetchArticles(config: SiteConfig): Promise<Article[]> {
           coverIsFallback = true;
         }
       }
+      const cover = coverIsFallback ? null : resolveCoverImage(a.cover, strapiUrl);
       return {
         title: a.title,
         description: a.description,
         slug: a.slug,
         coverUrl,
+        cover,
         coverIsFallback,
         authorName: a.authors?.length
           ? a.authors.map((au) => au.name).join(" & ")
@@ -473,6 +519,7 @@ export async function fetchEvents(config: SiteConfig): Promise<Event[]> {
           startDateDisplay: formatEventDate(ev.date),
           endDate: null,
           imageUrl: resolveCoverUrl(ev.cover, strapiUrl),
+          image: resolveCoverImage(ev.cover, strapiUrl),
         }));
     } catch (err) {
       console.warn(
@@ -499,6 +546,7 @@ export async function fetchEvents(config: SiteConfig): Promise<Event[]> {
           startDateDisplay: formatEventDate(e.startDate),
           endDate: e.endDate || null,
           imageUrl: e.imageUrl || null,
+          image: e.imageUrl ? { url: e.imageUrl, thumbnail: null, small: null, medium: null } : null,
         };
       });
     } catch (err) {
@@ -576,6 +624,7 @@ export async function fetchDataPages(config: SiteConfig): Promise<DataPage[]> {
       slug: dp.slug,
       dashboardType: dp.dashboardType,
       coverUrl: resolveCoverUrl(dp.cover, strapiUrl),
+      cover: resolveCoverImage(dp.cover, strapiUrl),
       blocks: resolveBlocks(dp.blocks, config),
       methodologyHtml: dp.methodology
         ? processHtml(dp.methodology, config)

@@ -49,6 +49,7 @@ const instagramUrl = settings.instagramUrl || config.hero.defaultInstagramUrl ||
         title={article.title}
         description={article.description}
         imageUrl={article.coverUrl}
+        cover={article.cover}
         authorName={article.authorName}
         publishedAt={article.publishedAt}
       />
@@ -68,6 +69,7 @@ const instagramUrl = settings.instagramUrl || config.hero.defaultInstagramUrl ||
         title={dataPage.title}
         description={dataPage.description || ""}
         imageUrl={dataPage.coverUrl}
+        cover={dataPage.cover}
         publishedAt={dataPage.dataUpdatedAt}
       />
     </Content>

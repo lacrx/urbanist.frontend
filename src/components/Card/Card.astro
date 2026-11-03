@@ -1,17 +1,21 @@
 ---
+import { Image } from "astro:assets";
 import Byline from "@/components/Byline/Byline.astro";
 import { card } from "./card.module.css";
+import type { CoverImage } from "@/lib/strapi";
 
 type Props = {
   link: string;
   title: string;
   description: string;
   imageUrl?: string | null;
+  cover?: CoverImage | null;
   authorName?: string | null;
   publishedAt?: string | null;
 };
 
-const { link, title, description, imageUrl, authorName, publishedAt } = Astro.props;
+const { link, title, description, imageUrl, cover, authorName, publishedAt } = Astro.props;
+const thumbSrc = cover?.small ?? cover?.thumbnail ?? imageUrl;
 ---
 
 <article class={card}>
@@ -20,10 +24,10 @@ const { link, title, description, imageUrl, authorName, publishedAt } = Astro.pr
     <div><a href={link}><p>{description}</p></a></div>
     <Byline author={authorName} publishedAt={publishedAt} compact />
   </div>
-  {imageUrl && (
+  {thumbSrc && (
     <div>
       <a href={link}>
-        <img src={imageUrl} alt={title} width="150" height="150" loading="lazy" />
+        <Image src={thumbSrc} alt={title} width={150} height={150} loading="lazy" />
       </a>
     </div>
   )}

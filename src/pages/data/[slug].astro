@@ -1,11 +1,12 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { Image } from "astro:assets";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import Hero from "@/components/Hero/Hero.astro";
 import Content from "@/components/Content/Content.astro";
 import ArticleBlocks from "@/components/ArticleBlocks/ArticleBlocks.astro";
 import DashboardSkeleton from "@/components/Dashboard/DashboardSkeleton";
-import { cover } from "@/components/ArticleBlocks/article-blocks.module.css";
+import { cover as coverCls } from "@/components/ArticleBlocks/article-blocks.module.css";
 import config from "@/site/config";
 import { fetchDataPages, fetchVisualizations } from "@/lib/strapi";
 
@@ -40,7 +41,7 @@ const DATA_SECTION = { label: "Data", path: "/data" };
   />
   <Content type="section">
     {dataPage.coverUrl && (
-      <img src={dataPage.coverUrl} alt={dataPage.title} class={cover} loading="lazy" width="1050" height="600" />
+      <Image src={dataPage.cover?.medium ?? dataPage.cover?.url ?? dataPage.coverUrl} alt={dataPage.title} class={coverCls} loading="lazy" width={1050} height={600} />
     )}
     <ArticleBlocks blocks={dataPage.blocks} visualizations={visualizations} />
     <div id="dashboard-mount" data-type={normalizedDashboardType}>
