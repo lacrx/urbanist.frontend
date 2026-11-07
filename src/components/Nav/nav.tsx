@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { nav, loginBtn, authOnly, noAuthOnly } from './nav.module.css';
+import { nav, loginBtn, authOnly, noAuthOnly, authItem } from './nav.module.css';
 import config from "@/site/config";
 import { AuthProvider, useAuth } from "@/components/Auth/auth-context";
 
@@ -22,7 +22,7 @@ const X = () =>
 function AuthButtons() {
   const { logout } = useAuth();
   return (
-    <li>
+    <li className={authItem}>
       <button className={`${loginBtn} ${authOnly}`} onClick={logout}>
         Sign out
       </button>
