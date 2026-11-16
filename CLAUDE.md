@@ -25,6 +25,12 @@ Discovery: fetch `QUICK-REF.md` first, find matching row, fetch that path. Fallb
 
 All UI uses the design token system. Read the active site's `DESIGN.md` for visual direction before any UI work.
 
+**`.claude/skills/design-tokens/` is the working detail**: how to load the manifest, how to
+write a T2 criterion that proves a computed value traces back to a token, the contrast and
+drift sweeps, the per-site profiles for ncyimby and stoside, and the two-site theme matrix. It
+is loaded on match rather than on every session, and it is the half of the global
+`ui-surgeon` skill that was specific to this repository until 2026-11-16.
+
 ### Rules
 - All colors via CSS custom properties from `sites/<SITE>/theme.css`. Never hardcode hex, rgb, hsl, or named CSS colors.
 - All spacing via `--space-*` tokens. Never use arbitrary px/rem values for margin, padding, or gap.
