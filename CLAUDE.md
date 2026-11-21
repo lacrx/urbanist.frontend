@@ -49,10 +49,28 @@ is loaded on match rather than on every session, and it is the half of the globa
 - Pagination uses `usePagination` hook + shared `Pagination` component.
 - New components follow existing patterns (same file structure, same prop conventions, same naming).
 
-### Data viz palettes
-- Categorical: `CATEGORICAL` from `Dashboard/palette.ts`.
-- Sequential blues: `BLUE_RAMP` (flat array) or `SEQUENTIAL_BLUES` (with breakpoints) from `color-scales.ts`.
+### Data viz
+- **The chart core is `src/lib/charts/`** (2026-11-21): `palettes.ts`, `scales.ts`, `specs.ts`.
+  Framework-free on purpose. It has a SECOND consumer outside this repo: the report site on
+  workhorse renders the same specs to SVG in Node via `scripts/render-chart.mjs`. So a chart
+  is defined once and only the mount is written twice.
+- `Dashboard/palette.ts` and `Dashboard/color-scales.ts` are **re-export shims**. Import from
+  either; add to `src/lib/charts/`.
+- Categorical: `CATEGORICAL`. Sequential blues: `BLUE_RAMP` or `SEQUENTIAL_BLUES`.
 - Don't create ad-hoc color arrays. Use or extend the existing palettes.
+- **A palette is a theme, not a constant.** `PALETTES` holds `web` (these dashboards) and
+  `gruvbox` / `gruvbox-light` (the report site). A spec takes a palette and never names a
+  colour.
+- Spec builders: `bar`, `scatter`, `line`, plus the diagnostic set added 2026-11-21 —
+  `loss`, `distributions`, `ratio`, `heatmap`, `embedding`. Each carries a docstring saying
+  what it is FOR; a chart type nobody can state the purpose of gets used for the wrong
+  question.
+- **Internal imports in `src/lib/charts/` carry a `.ts` extension.** Vite does not need it
+  and Node's ESM resolver does, and the Node renderer imports these files directly.
+- **Server-side rendering cannot draw a continuous colour legend.** Plot draws a ramp onto a
+  canvas and jsdom has none. `render-chart.mjs` drops that legend and says so on stderr
+  rather than failing with `Cannot set properties of null`. Ordinal legends are swatches and
+  are fine.
 
 ### Token files (per site, in `sites/<id>/`)
 - Primitives: `tokens/primitives.json` (raw values, named by what they are)

@@ -1,22 +1,6 @@
-export const BLUE_RAMP = [
-  "#f0f4f8",
-  "#c6d7eb",
-  "#9ab8d8",
-  "#6d9ac5",
-  "#4e79a7",
-  "#3a6291",
-  "#264b73",
-] as const;
-
-export const CATEGORICAL = [
-  "#4e79a7",
-  "#f28e2b",
-  "#e15759",
-  "#76b7b2",
-  "#59a14f",
-  "#edc948",
-  "#b07aa1",
-  "#ff9da7",
-] as const;
-
-export const NEUTRAL = "#bab0ac" as const;
+/**
+ * Moved to `src/lib/charts/palettes.ts` on 2026-11-21, so the report site's server-side
+ * renderer uses the same values rather than a second copy of them. Kept as a re-export: every
+ * existing import keeps working and there is still exactly one definition.
+ */
+export { BLUE_RAMP, CATEGORICAL, NEUTRAL } from "@/lib/charts/palettes";
